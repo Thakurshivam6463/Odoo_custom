@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+         <!-- master data for valueaddproduct -->
+        <record model="ir.ui.view" id="value_add_product_tree">
+            <field name="name">valueadd.product.tree</field>
+            <field name="model">valueadd.product</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="value_add_product"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="value_add_product_form">
+           <field name="name">valueadd.product.from</field>
+            <field name="model">valueadd.product</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="value_add_product"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="action_valueadd_product">
+            <field name="name">Value Add Product</field>
+            <field name="res_model">valueadd.product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Sub Menu -->
+
+        <menuitem name="Value Add Product"
+                  id="menu_value_add_product"
+                  parent="menu_configuration"
+                  sequence="20"
+                  action="action_valueadd_product"/>
+
+    </data>
+</odoo>

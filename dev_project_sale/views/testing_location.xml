@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_testing_location_tree" model="ir.ui.view">
+        <field name="name">view.testing.location.tree</field>
+        <field name="model">dev.testing.location</field>
+        <field name="arch" type="xml">
+            <tree string="Testing Location" editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_testing_location_filter" model="ir.ui.view">
+        <field name="name">view.dev.testing.location.filter</field>
+        <field name="model">dev.testing.location</field>
+        <field name="arch" type="xml">
+            <search string="Testing Location">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_dev_testing_location" model="ir.actions.act_window">
+        <field name="name">Testing Location</field>
+        <field name="res_model">dev.testing.location</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add Location
+            </p>
+        </field>
+    </record>
+
+    <menuitem name="Testing Location" id="menu_dev_model_testing_location" 
+              action='action_dev_testing_location'
+              parent='sale.menu_sale_config' sequence="100" />
+    
+
+</odoo>

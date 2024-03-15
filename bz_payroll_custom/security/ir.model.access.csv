@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_investment_declaration,investment.declaration,model_investment_declaration,base.group_user,1,1,1,1
+access_investment_declaration_sections,investment.declaration.sections,model_investment_declaration_sections,base.group_user,1,1,1,1
+access_investment_declaration_line,investment.declaration.line,model_investment_declaration_line,base.group_user,1,1,1,1
+access_house_rent_line,house.rent.line,model_house_rent_line,base.group_user,1,1,1,1
+access_investment_declaration_sections_line,investment.declaration.sections.line,model_investment_declaration_sections_line,base.group_user,1,1,1,1
+access_payslip_rent_line,payslip.rent.line,model_payslip_rent_line,base.group_user,1,1,1,1
+access_payslip_investment_line,payslip.investment.line,model_payslip_investment_line,base.group_user,1,1,1,1
+access_multi_payslip_wizard,multi.payslip.wizard,model_multi_payslip_wizard,base.group_user,1,1,1,1
+access_batch_account_details,batch.account.details,model_batch_account_details,om_hr_payroll.group_hr_payroll_manager,1,1,1,1
+access_employees_accounts_details,employees.accounts.details,model_employees_accounts_details,om_hr_payroll.group_hr_payroll_manager,1,1,1,1
+access_pay_structures,pay.structures,model_pay_structures,om_hr_payroll.group_hr_payroll_manager,1,1,1,1
+access_multi_payslip_confirm_wizard,multi.payslip.confirm.wizard,model_multi_payslip_confirm_wizard,om_hr_payroll.group_hr_payroll_manager,1,1,1,1

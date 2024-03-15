@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="fish_planning_list">
+      <field name="name">fish.planning.list</field>
+      <field name="model">fish.planning</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="number"/>
+          <field name="user_id"/>
+          <field name="create_date"/>
+          <field name="from_date"/>
+          <field name="to_date"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="fish_planning_form_new">
+      <field name="name">fish.planning.form</field>
+      <field name="model">fish.planning</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+          </header>
+          <sheet>
+            <div class="oe_title">
+                <h1>
+                  <field name="number" readonly="0"/>
+                </h1>
+            </div>
+            <group>
+              <group>
+                  <field name="user_id"/>
+                  <field name="create_date"/>
+                  <field name="from_date"/>
+                  <field name="to_date"/>
+              </group>
+            </group>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="action_fish_planning">
+      <field name="name">Planning</field>
+      <field name="res_model">fish.planning</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="fish_planning_list"/>
+    </record>
+
+    <!-- Sub Menu -->
+    <menuitem name="Planning" 
+      id="menu_fish_planning" 
+      parent="menu_root_fish_management"
+      action="action_fish_planning"/>
+
+  </data>
+</odoo>

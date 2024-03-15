@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- create tree view -->
+    <record id="view_maintenance_check_tree" model="ir.ui.view">
+        <field name="name">maintenance.check.tree</field>
+        <field name="model">maintenance.check</field>
+        <field name="arch" type="xml">
+            <tree expand="1">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- create form view -->
+     <record id="view_maintenance_check_form" model="ir.ui.view">
+        <field name="name">maintenance.check.form</field>
+        <field name="model">maintenance.check</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                            <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Acton Model -->
+    <record id="action_maintenance_check" model="ir.actions.act_window">
+        <field name="name">Maintenance Checklist</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">maintenance.check</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                maintenance check From!
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_maintenance_check"
+              name="Maintenance Check"
+              parent="maintenance.menu_maintenance_configuration"
+              action="action_maintenance_check"
+              sequence="20"/>
+
+</odoo>

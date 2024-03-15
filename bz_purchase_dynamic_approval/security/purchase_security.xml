@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <!--<record id="po_group_auto_done_setting" models="res.groups">
+        <field name="name">Lock Confirmed Purchase</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>-->
+
+    <record id="group_auto_done_setting_po" model="res.groups">
+        <field name="name">Lock Confirmed Purchase PO</field>
+        <field name="category_id" ref="base.module_category_inventory_purchase"/>
+    </record>
+</data>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_so_blanket,so.blanket,model_so_blanket,sales_team.group_sale_salesman,1,1,1,1
+access_so_blanket_line,so.blanket.line,model_so_blanket_line,sales_team.group_sale_salesman,1,1,1,1
+access_create_sale_quotation,create.sale.quotation,model_create_sale_quotation,sales_team.group_sale_salesman,1,1,1,1
+access_blanket_quotation_line,create.sale.quotation,model_blanket_quotation_line,sales_team.group_sale_salesman,1,1,1,1

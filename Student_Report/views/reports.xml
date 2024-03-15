@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<odoo>
+    <!-- create tree view -->
+    <record id="view_reports_tree" model="ir.ui.view">
+        <field name="name">management.reports.tree</field>
+        <field name="model">management.reports</field>
+        <field name="arch" type="xml">
+            <tree expand="1">
+                <field name="name"/>
+                <field name="course"/>
+                <field name="branch"/>
+                <field name="batch"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- create form view -->
+   <record id="view_reports_form" model="ir.ui.view">
+        <field name="name">management.reports.form</field>
+        <field name="model">management.reports</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="course"/>
+                        </group>
+                        <group>
+                            <field name="branch"/>
+                            <field name="batch"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+     <!-- Acton Model -->
+    <record id="action_reports" model="ir.actions.act_window">
+        <field name="name">Reports</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">management.reports</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create reports!
+            </p>
+        </field>
+    </record>
+    <!--    &lt;!&ndash; Menu Item &ndash;&gt;-->
+<menuitem id="menu_op_school_root"
+          name="Reports"
+          sequence="15"
+          />
+    <menuitem id="menu_student_root"
+              name="Student Reports"
+              sequence="20" parent="menu_op_school_root" action="action_reports"/>
+
+<!--    <menuitem id="menu_student_root"-->
+<!--              name="Student"-->
+<!--              parent="menu_student_root"-->
+<!--              sequence="10"/>-->
+<!--    <menuitem id="student_reports"-->
+<!--              name="Reports"-->
+<!--              parent="menu_student_root"-->
+<!--              action="action_reports"-->
+<!--              sequence="10"/>-->
+
+</odoo>

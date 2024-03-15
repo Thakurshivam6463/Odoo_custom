@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_scope_pdf1">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <td class="text-left">
+                                    <strong><span>Samples</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Test Description</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Time (hrs) per one module</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Frequency</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>System Voltage</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Total time</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Duration in days</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Equipment, Software required</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Manpower required</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Remarks</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Sub-contracting required</span></strong>
+                                </td>
+                            </tr>
+                            <t t-foreach="o.batch_scope_matrix_ids" t-as="line">
+                                <tr>
+                                    <td>
+                                        <span t-field="line.product_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.test_description"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.time"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.frequency"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.quantity"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.total_time"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.duration_in_days"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.equipment_software_required"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.manpower_required"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.remarks"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.sub_contracting_required"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                        <table class="table table-sm table-bordered ">
+                            <tr>
+                                <td>
+                                    <strong>Buffer time</strong>
+                                </td>
+                                <td><span t-esc="o.buffer_time"/></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Compiling data, Results Interpretation of results </strong>
+                                </td>
+                                <td><span t-esc="o.compiling_data_results_interpretation_of_results"/></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Preparation of Report</strong>
+                                </td>
+                                <td><span t-esc="o.preparation_of_report"/></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Total Project Time ( in hrs.and days)</strong>
+                                </td>
+                                <td><span t-esc="o.total_project_time"/></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

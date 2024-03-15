@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- create tree view -->
+    <record id="view_process_type_tree" model="ir.ui.view">
+        <field name="name">process.type.tree</field>
+        <field name="model">process.type</field>
+        <field name="arch" type="xml">
+            <tree expand="1">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- create form view -->
+     <record id="view_process_type_form" model="ir.ui.view">
+        <field name="name">process.type.form</field>
+        <field name="model">process.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acton Model -->
+    <record id="action_process_type" model="ir.actions.act_window">
+        <field name="name">Process Type</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">process.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+               Process Type
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="process_type_menu"
+              name="Test Type"
+              parent="project.menu_project_config"
+              action="action_process_type"
+              sequence="12"/>
+</odoo>

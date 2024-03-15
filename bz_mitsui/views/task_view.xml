@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- create tree view -->
+    <record id="view_task_description_tree" model="ir.ui.view">
+        <field name="name">task.description.tree</field>
+        <field name="model">task.description</field>
+        <field name="arch" type="xml">
+            <tree expand="1">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- create form view -->
+     <record id="view_task_description_form" model="ir.ui.view">
+        <field name="name">task.description.tree</field>
+        <field name="model">task.description</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page name="description" string="Description">
+                            <field name="description" nolabel="1" placeholder="Describe your task..." type="html"/>
+                            <div class="d-none oe_clear"/>
+                        </page>
+                         <page name="result_compilation" string="Result Compilation">
+                            <field name="result_compilation" nolabel="1" placeholder="Describe your result..." type="html"/>
+                            <div class="d-none oe_clear"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acton Model -->
+    <record id="action_task_descriptionss" model="ir.actions.act_window">
+        <field name="name">Task/Description</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">task.description</field>
+        <field name="view_mode">tree,form</field>
+        <!--<field name="context">{'search_default_patient_name':1}</field>-->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+               Task Description
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+
+    <menuitem id="task_description"
+              name="Task/Description"
+              parent="project.menu_project_config"
+              action="action_task_descriptionss"
+              sequence="10"/>
+</odoo>

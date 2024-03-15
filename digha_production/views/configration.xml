@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- master data for grade count -->
+        <record model="ir.ui.view" id="garde_count_tree">
+            <field name="name">grade.count.tree</field>
+            <field name="model">grade.count</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="grade_count"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="garde_count_form">
+            <field name="name">grade.count.from</field>
+            <field name="model">grade.count</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="grade_count"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="action_configuration">
+            <field name="name">Configuration</field>
+            <field name="res_model">grade.count</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Sub Menu -->
+        <menuitem name="Configuration"
+                  id="menu_configuration"
+                  parent="menu_sea_production"
+                  sequence="20"
+        />
+
+        <menuitem name="Grade Count"
+                  id="menu_grade_count"
+                  parent="menu_configuration"
+                  sequence="10"
+                  action="action_configuration"/>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_contract_consultant" model="hr.contract.type">
+            <field name="name">Consultant</field>
+            <field name="sequence">20</field>
+        </record>
+
+    </data>
+</odoo>

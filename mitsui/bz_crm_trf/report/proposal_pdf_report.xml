@@ -1,0 +1,1906 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_proposal_pdf1">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <!-- Page 1 -->
+                        <div style="text-align: right;">
+                            <h1>Proposal cum Contract for</h1>
+                            <h1 style="color:blue;">Solar PV Lab Testing Services</h1>
+                            <h4>Offer Number:
+                                <span t-esc="o.name"/>
+                            </h4>
+                            <h4>Offer date:
+                                <span t-esc="o.date_order" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                            </h4>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-6" style="width:50%;">
+                                    <h5>
+                                        <strong>Customer / Contracting Party</strong>
+                                    </h5>
+                                    <p>
+                                        <span t-esc="o.partner_id.name"/>
+                                    </p>
+                                    <p>
+                                        <span t-esc="o.partner_id.street"/>
+                                        <span t-esc="o.partner_id.street2"/>,
+                                        <span t-esc="o.partner_id.city"/>,<span t-esc="o.partner_id.state_id.name"/>,
+                                        <span t-esc="o.partner_id.zip"/>,
+                                        <span t-esc="o.partner_id.country_id.name"/>
+                                    </p>
+                                </div>
+                                <div class="col-6" style="width:50%;">
+                                    <h5>
+                                        <strong>Service Provider</strong>
+                                    </h5>
+                                    <p>
+                                        <span t-esc="o.company_id.name"/>
+                                    </p>
+                                    <p>Registered Address:</p>
+                                    <p>
+                                        <span t-esc="o.company_id.street"/>
+                                        <span t-esc="o.company_id.street2"/>,
+                                        <span t-esc="o.company_id.city"/>,<span t-esc="o.company_id.state_id.name"/>,
+                                        <span t-esc="o.company_id.zip"/>,
+                                        <span t-esc="o.company_id.country_id.name"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-6" style="width:50%;">
+                                    <h5>
+                                        <strong>Contact Person</strong>
+                                        <p>
+                                            <span t-esc="o.contact_person.name"/>
+                                        </p>
+                                        <p>
+                                            <span t-esc="o.contact_person.email"/>
+                                        </p>
+                                        <p>
+                                            <span t-esc="o.contact_person.phone"/>
+                                        </p>
+                                    </h5>
+                                </div>
+                                <div class="col-6" style="width:50%;">
+                                    <h5>
+                                        <strong>Also at:</strong>
+                                    </h5>
+                                    <p>
+                                        <span t-esc="o.company_id.street"/>
+                                        <span t-esc="o.company_id.street2"/>,
+                                        <span t-esc="o.company_id.city"/>,<span t-esc="o.company_id.state_id.name"/>,
+                                        <span t-esc="o.company_id.zip"/>,
+                                        <span t-esc="o.company_id.country_id.name"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container" style="margin-top:175px;">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p style="font-size:10px;">Mitsui Chemicals India Pvt.Ltd.<br/>Plot no.5 &amp; 6
+                                        Swasitk
+                                        Industrial estate,<br/>Sarkhej-Bavla highway, Ahmedabad.
+                                    </p>
+                                    <p style="font-size:10px;">Phone: +91 9871742221</p>
+                                    <p style="font-size:10px;">web: in.mitsuichem.com</p>
+                                </div>
+                                <div class="col-4">
+                                    <p style="font-size:10px;">Bank Account: HDFC Bank<br/>A/C no.: 12032320000421
+                                        <br/>
+                                        IFSC
+                                        : HDFC0001203
+                                    </p>
+                                    <p style="font-size:10px;">Registered Office: New Delh</p>
+                                    <p style="font-size:10px;">GST No.: 24AAFCM4312D1Z2</p>
+                                </div>
+                                <div class="col-4">
+                                    <p style="font-size:10px;">Lab Management:</p>
+                                    <p style="font-size:10px;">Mr. Puneet Kumar – Sr. Manager</p>
+                                    <p style="font-size:10px;">Mr. Ganesh Gowri – Technical Manager</p>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <!-- Page 2 -->
+
+                        <h3 style="color:blue;">
+                            <strong>1. DOCUMENT HISTORY</strong>
+                        </h3>
+                        <table class="table table-sm table-bordered solid">
+                            <tr>
+                                <td>
+                                    <strong>Version</strong>
+                                </td>
+                                <td>
+                                    <strong>Date</strong>
+                                </td>
+                                <td>
+                                    <strong>Comment</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>V1</strong>
+                                </td>
+                                <td>
+                                    <strong>28.02.2023</strong>
+                                </td>
+                                <td>
+                                    <strong>First release to Customer</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>V2</strong>
+                                </td>
+                                <td>
+                                    <strong>02.03.2023</strong>
+                                </td>
+                                <td>
+                                    <strong>Revision in payment terms</strong>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <h3 style="color:blue;">
+                            <strong>2. CONTENTS</strong>
+                        </h3>
+                        <table class="table table-sm table-bordered solid">
+                            <tr>
+                                <td>
+                                    <strong>1.</strong>
+                                </td>
+                                <td>
+                                    <strong>DOCUMENT HISTORY</strong>
+                                </td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>2.</strong>
+                                </td>
+                                <td>
+                                    <strong>CONTENTS</strong>
+                                </td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>3.</strong>
+                                </td>
+                                <td>
+                                    <strong>RECITALS</strong>
+                                </td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>4.</strong>
+                                </td>
+                                <td>
+                                    <strong>DEFINITIONS</strong>
+                                </td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>5.</strong>
+                                </td>
+                                <td>
+                                    <strong>TERM</strong>
+                                </td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>6.</strong>
+                                </td>
+                                <td>
+                                    <strong>PRELIMINARY INFORMATION</strong>
+                                </td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>7.</strong>
+                                </td>
+                                <td>
+                                    <strong>SCOPE OF WORK</strong>
+                                </td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>8.</strong>
+                                </td>
+                                <td>
+                                    <strong>SCHEDULE</strong>
+                                </td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>9.</strong>
+                                </td>
+                                <td>
+                                    <strong>PRICES</strong>
+                                </td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>10.</strong>
+                                </td>
+                                <td>
+                                    <strong>TRANSPORTATION AND TRAVEL</strong>
+                                </td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>11.</strong>
+                                </td>
+                                <td>
+                                    <strong>PAYMENT</strong>
+                                </td>
+                                <td>8</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>12.</strong>
+                                </td>
+                                <td>
+                                    <strong>OFFER VALIDITY</strong>
+                                </td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>13.</strong>
+                                </td>
+                                <td>
+                                    <strong>GENERAL TERMS AND BUSINESS CONDITIONS (GTC)</strong>
+                                </td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>14.</strong>
+                                </td>
+                                <td>
+                                    <strong>NOTICES AND REVISIONS</strong>
+                                </td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>15.</strong>
+                                </td>
+                                <td>
+                                    <strong>CONFIDENTIALITY</strong>
+                                </td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>16.</strong>
+                                </td>
+                                <td>
+                                    <strong>ANTI-BRIBERY CLAUSE</strong>
+                                </td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>17.</strong>
+                                </td>
+                                <td>
+                                    <strong>GOVERNING LAW AND JURISDICTION</strong>
+                                </td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>18.</strong>
+                                </td>
+                                <td>
+                                    <strong>DISPUTE RESOLUTION</strong>
+                                </td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>19.</strong>
+                                </td>
+                                <td>
+                                    <strong>SUPERSESSION</strong>
+                                </td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>20.</strong>
+                                </td>
+                                <td>
+                                    <strong>WAIVER</strong>
+                                </td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>21.</strong>
+                                </td>
+                                <td>
+                                    <strong>ENTIRE AGREEMENT AND BINDING EFFECT</strong>
+                                </td>
+                                <td>10</td>
+                            </tr>
+                            <br/>
+                            <br/>
+                            <br></br>
+                            <tr>
+                                <td>
+                                    <strong>22.</strong>
+                                </td>
+                                <td>
+                                    <strong>NON-SOLICITATION</strong>
+                                </td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>23.</strong>
+                                </td>
+                                <td>
+                                    <strong>DISCLAIMER</strong>
+                                </td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>24.</strong>
+                                </td>
+                                <td>
+                                    <strong>SIGNATURE</strong>
+                                </td>
+                                <td>11</td>
+                            </tr>
+                        </table>
+                        <h5>
+                            <strong>Attachments:</strong>
+                        </h5>
+                        <h5 style="margin-left:25px;">A.
+                            <strong style="margin-left:10px;">Schedule</strong>
+                        </h5>
+                        <h5 style="margin-left:25px;">B.
+                            <strong style="margin-left:10px;">General Terms and Conditions (GTC)</strong>
+                        </h5>
+
+                        <br/><br/><br/><br/> <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/> <br/><br/><br/><br/>
+                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                        <table>
+                            <!--Page No-4-->
+
+                            <tr>
+                                <td style="width:100%" colspan="3">
+                                    <h4>
+                                        <b style="color:blue">3. RECITALS</b>
+                                    </h4>
+                                    <p>
+                                        <b>WHEREAS</b>
+                                        Mitsui Chemicals is one of the world's leading petrochemical manufacturer
+                                        and is driving forward its Next-Generation Business with deep-sighted focus on
+                                        new
+                                        business segments like Energy Solution Business, Medical Solution Business, IoT
+                                        Solution
+                                        Business and many more. As a next step forward Mitsui Chemicals through its
+                                        affiliated
+                                        company Mitsui Chemicals India Pvt. Ltd is bringing services for Solar industry
+                                        in
+                                        India.
+                                    </p>
+                                    <p>
+                                        <b>WHEREAS</b>
+                                        both the above-mentioned companies are entering into this Agreement for
+                                        the purpose of Solar PV Lab Bureau of Indian Standards (BIS) Testing Facilities
+                                        being undertaken by the MCIND and by signing of this Agreement, the Contracting
+                                        Party
+                                        is hereby agreeing to the terms below.
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="width:100%" colspan="3">
+                                    <h4>
+                                        <b style="color:blue">4. DEFINITIONS</b>
+                                    </h4>
+                                    <p>a. “ Agreement” shall mean this Proposal cum Contract for Solar PV Lab Testing
+                                        Services and all the annexures attached herewith being signed by and between the
+                                        two parties;
+                                    </p>
+
+                                    <p>b. “Completion Date” means the date so referred to in Annexure A and/or agreed to
+                                        by
+                                        the Parties.
+                                    </p>
+
+                                    <p>c. “Confidential Information” means any information about the names of past,
+                                        present
+                                        or prospective clients of the Company, any information pertaining to business of
+                                        the
+                                        company, trade or business secrets, financial information, pricing policies and
+                                        procedures or any formula used in the Company of its Group or any Clients
+                                        thereof
+                                        or their affairs;
+                                    </p>
+
+                                    <p>d. “Effective Date” shall mean the date from which this Agreement shall come into
+                                        force and on the date it is so executed;
+                                    </p>
+
+                                    <p>e. “Completion Date” shall mean the date on which the Project as stipulated in
+                                        this
+                                        Agreement is completed.
+                                    </p>
+
+                                    <p>f. “Intellectual Property” means all intellectual and industrial property and all
+                                        rights
+                                        therein including, improvements, developments, discoveries, proprietary
+                                        information; trademarks, , trade names, websites, Internet domain names, logos,
+                                        trade secrets, processes, designs (whether or not registrable and whether or not
+                                        design rights subsist in them), works in which copyright may subsist (including
+                                        computer software and preparatory and design materials therefore).
+                                    </p>
+
+                                    <!--page No-5-->
+
+                                    <p>g. Month: A month as per the English Calendar constituting either 30 or 31 days
+                                        or 30
+                                        days continuing period shall be considered a calendar Month.
+                                    </p>
+
+                                    <p>h. Week: Continuing period of 7 days shall be considered a week.</p>
+
+                                    <p>i. “Storage Costs” shall mean the amount spent over the storage or holding of
+                                        inventory including the cost of warehouse utilities, material handling
+                                        personnel,
+                                        equipment maintenance, building maintenance, and security personnel.
+                                    </p>
+
+                                    <p>j. “Working day” shall mean five days per week which shall exclude Saturday,
+                                        Sunday
+                                        and other Indian Holidays;
+                                    </p>
+
+                                    <p>k. “Working Hours” shall mean working 8 hours in a working day;</p>
+
+                                </td>
+                            </tr>
+                            <br/><br/>
+                            <tr>
+                                <td style="width:100%" colspan="3">
+                                    <h4>
+                                        <b style="color:blue">5. TERM</b>
+                                    </h4>
+                                    <p>This Agreement shall be binding for a period as referred to Annexure A.</p>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td style="width:100%" colspan="3">
+                                    <h4>
+                                        <b style="color:blue">6. PRELIMINARY INFORMATION</b>
+                                    </h4>
+                                    <strong>
+                                        <b>6. 1. Customer / Contracting Party Details</b>
+                                    </strong>
+                                    <p>
+                                        <b>Mitsui Chemicals India Private Limited ,</b>Mitsui Chemicals is one of the
+                                        world's
+                                        leading petrochemical manufacturer and is driving forward its Next-Generation
+                                        Business
+                                        with deep-sighted focus on new business segments like Energy Solution Business,
+                                        Medical Solution Business, IoT Solution Business and many more. As a next step
+                                        forward
+                                        Mitsui Chemicals through its affiliated company Mitsui Chemicals India Private
+                                        Limited
+                                        (‘MCIND’ in short) is bringing services for Solar industry in India.
+                                    </p>
+                                    <p>
+                                        MCIND together with PI Berlin has recognized the needs of solar industry, so
+                                        MCIND
+                                        is
+                                        expanding its business by launching a World Class PV testing lab with wide
+                                        spectrum
+                                        of
+                                        services for ensuring quality from factory to field.
+                                    </p>
+                                    <p>
+                                        The MCIND has an IEC/ISO 17025:2017 BIS recognized test laboratory at Ahmedabad
+                                        location in the State of Gujarat for evaluating the performance, reliability and
+                                        durability
+                                        of solar modules. Modules are tested according to strict criteria that meet or
+                                        exceed IEC
+                                        standards.
+                                    </p>
+                                    <p>
+                                        Both the Party are collectively called as “Parties” and individually “Party”
+                                        with
+                                        respect to
+                                        the services rendered by MCIND to the Customer.
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <!-- Page No-6-->
+                            <tr>
+                                <td style="width:100%" colspan="3">
+                                    <br/>
+                                    <br/>
+                                    <h4>
+                                        <b style="color:blue">7. SCOPE OF WORK</b>
+                                    </h4>
+                                    <strong>
+                                        <b>7. 1. Services</b>
+                                    </strong>
+                                    <p>Scope of work is as per below-</p>
+                                    <t t-foreach="o.order_line" t-as="line">
+
+                                        <p>
+                                            <span t-field="line.name"/>
+                                        </p>
+                                    </t>
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="width:100%" colspan="3">
+                                    <h4>
+                                        <b style="color:blue">8. SCHEDULE</b>
+                                    </h4>
+                                    <p>
+                                        Estimated Duration of complete schedule shall be based upon receipt of samples
+                                        acceptable to perform test and release of balance payment from customer
+                                        whichever is later. The Schedule may be referred to in Annexure A.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <h4>
+                            <b style="color:blue">9. PRICES</b>
+                        </h4>
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <td class="text-left">
+                                    <strong>
+                                        <span>Sr.No.</span>
+                                    </strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong>
+                                        <span>Particulars</span>
+                                    </strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong>
+                                        <span>Rate</span>
+                                    </strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong>
+                                        <span>Quantity</span>
+                                    </strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong>
+                                        <span>Amount</span>
+                                    </strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong>
+                                        <span>Remark</span>
+                                    </strong>
+                                </td>
+                            </tr>
+                            <t t-foreach="o.order_line" t-as="line">
+                                <tr>
+                                    <td>
+
+                                    </td>
+                                    <td>
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.price_unit"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.product_uom_qty"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.price_subtotal"/>
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                </tr>
+                            </t>
+                            <tr>
+                                <td>Total</td>
+                                <td colspan="4" style="text-align:right;">
+                                    <span t-field="o.amount_total"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>In Word:</td>
+                                <td>INR
+                                    <span t-field="o.word_num"/>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                        <strong>
+                            <b>Price Basis:</b>
+                        </strong>
+                        <p>1. This offer is exclusive of following applicable taxes &amp; duties for testing
+                            services,
+                            as on date of this offer:
+                        </p>
+                        <p> Custom Duty</p>
+                        <p> GST</p>
+                        <p> All govt. statutory fees and duties</p>
+                        <p>2. Travel costs are not included and will be charged to the Customer additionally,
+                            if applicable as mentioned in Clause 10.2
+                        </p>
+                        <p>
+                            3. After a period of 12 weeks, in the case of BIS certification solar lab testing
+                            MCIND charges the customer storage fees of INR1000 for each m² per day, shall
+                            be applicable. However, if the customer is to make a request for a specific test
+                            other than BIS testing, then after a period of 4 weeks the customer storage fees
+                            of INR1000 for each m² per day, shall be applicable ( Details in section 10.1)
+                        </p>
+                        <p>
+                            4. All additional cost/s due to statutory variation and/ or any increase of taxes
+                            and
+                            duties and in the event of introduction of any new taxes such as duties, cess and
+                            levies in the future, these will be payable extra to MCIND by the customer.
+                        </p>
+                        <p>
+                            5. Any change in scope of work shall be subjected to extra cost which shall be
+                            mutually agreed and discussed between the parties.
+                        </p>
+                        <p>
+                            6. All payments dueunder this contract shall be made free from all deductions,
+                            except for the deductions made for the purpose of withholding income taxes at
+                            the applicable tax rate/s as per the laws of India, if applicable. In the event that
+                            any income taxes are withheld by Customer and paid to the government treasury
+                            in respect of any payment made to MCIND under this contract, Customer shall
+                            duly forward the relevant tax credit certificate evidencing payment of such
+                            income taxes to MCIND.
+                        </p>
+
+
+                        <!-- Page No-7-->
+
+                        <tr>
+                            <td style="width:100%" colspan="3">
+                                <br/>
+                                <br/>
+                                <h4>
+                                    <b style="color:blue">10. TRANSPORTATION AND TRAVEL</b>
+                                </h4>
+                                <strong>
+                                    <b>10. 1. Delivery of Modules and other Equipment to MCIND Laboratory</b>
+                                </strong>
+                                <p>If there are any questions regarding the transportation of the goods, please approach
+                                    to contact person at MCIND .
+                                </p>
+
+                                <table class="table table-sm table-bordered">
+                                    <tr>
+                                        <td class="text-left">
+                                            <p>Shipping address</p>
+                                        </td>
+                                        <td class="text-left">
+                                            <p>Mitsui Chemicals India Private Limited
+                                                Offer no. : MCIND/22-22/053.V1
+                                                Plot no. 5 &amp;, Swastik Industrial Estate, Sarkhej-Bavla
+                                                Highway, Village: Sari, Tal: Sanand,
+                                                Dist: Ahmedabad, Gujarat, India. 382220
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:33.33%">
+                                            <p>Pickup and delivery time of</p>
+                                            <P>goods at MCIND lab</P>
+                                        </td>
+                                        <td class="text-left">
+                                            <p>Mo-Fr: 10.00– 13.00 and 14.00– 16.00</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <p>The MCIND lab’s contact person , the telephone number and the offer number shall
+                                    be included in the shipping documents and in the delivery note.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:100%" colspan="3">
+                                <p>MCIND is not responsible for any import duty costs comprising of custom duty,
+                                    cess and IGST. If MCIND is charged by Custom’s Authority for import of modules,
+                                    these costs shall be reimbursed by the Customer.
+                                </p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="width:100%" colspan="3">
+                                <strong>
+                                    <b>Test Modules and other goods upon Completion</b>
+                                </strong>
+                                <p>When the customer places the order, it can decide what is going to happen to the test
+                                    modules / samples after completion. If no further agreements have been made, the
+                                    following applies:
+                                </p>
+                                <p> The customer is responsible for the packaging, insurance and shipping costs.</p>
+                                <p> MCIND provides storage for PV modules and other goods for 12 weeks after
+                                    sending the report. This 12 weeks’ storage is free of charge.
+                                </p>
+                                <p> After 12 weeks, MCIND charges the customer storage fees of INR 1000 for each m² per
+                                    day.
+                                </p>
+                                <p> After 16 weeks, the modules will be disposed and the resulting costs together with
+                                    the storage fees will be charged to the Customer.
+                                </p>
+                                <p>After completion of 20 weeks, customer shall lose its ownership of test samples
+                                    and MCIND lab shall be open to use the test samples as per lab’s discretion.
+                                </p>
+                            </td>
+                        </tr>
+
+                        <!-- Page No-8 -->
+
+                        <tr>
+                            <td style="width:100%" colspan="3">
+                                <br/>
+                                <br/>
+                                <h4>
+                                    <b style="color:blue">10. 2. TRAVEL COSTS</b>
+                                </h4>
+                                <p>Travel costs are not included in the testing fees and shall be arranged by customer
+                                    at
+                                    its cost.
+                                </p>
+
+                                <table class="table table-sm table-bordered">
+                                    <tr>
+                                        <td class="text-left">
+                                            <p>Flights</p>
+                                        </td>
+                                        <td class="text-left">
+                                            <p>MCIND employees travel in economy class and endeavor to
+                                                use the most effective and efficient connections possible.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">
+                                            <p>Rental cars</p>
+                                        </td>
+                                        <td class="text-left">
+                                            <p>If required, MCIND will rent a car that is suitable for the
+                                                terrain of the site. Car rental charges along with other
+                                                incidental costs like toll &amp; parking fees will be added to the
+                                                charges.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">
+                                            <p>Public Transportation</p>
+                                        </td>
+                                        <td class="text-left">
+                                            <p>Taxi fees and public transportation tickets will be charged
+                                                for MCIND’s employees and transferring equipment.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">
+                                            <p>Accommodation</p>
+                                        </td>
+                                        <td class="text-left">
+                                            <p>MCIND’s employees shall be at the discretion to exercise a choice in
+                                                accommodation wherein a minimum threshold of a
+                                                3 Star Accommodation shall be foreseen on actual basis.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">
+                                            <p>Miscellaneous Costs</p>
+                                        </td>
+                                        <td class="text-left">
+                                            <p>All other costs shall be paid by the customer on actual basis</p>
+                                        </td>
+                                    </tr>
+                                </table>
+
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4>
+                                            <b style="color:blue">11. PAYMENT</b>
+                                        </h4>
+                                        <strong style="color:blue">11. 1. PAYMENT TERMS</strong>
+                                        <table class="table table-sm table-bordered">
+                                            <tr>
+                                                <td class="text-left">
+                                                    <p>Payment Milestones:</p>
+                                                </td>
+                                                <td class="text-left">
+                                                    <p>100% on work completion and invoicing within 10 days</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <p>The gross fee along with incidental expenses shall be payable within 10
+                                            working days of
+                                            the billing date without deductions. Any delay in payment may result in
+                                            delay in execution
+                                            of supplies under the order accordingly. Further, an interest @ 18% p.a.
+                                            with monthly
+                                            rests will be payable in case of delayed payments from the date of
+                                            milestones as stated
+                                            above till the date of actual payment.
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <br/>
+                                        <br/>
+                                        <strong style="color:blue">11. 2. PAYMENT DETAILS</strong>
+                                        <p>All prices are given as net prices. For services within India, GST (currently
+                                            18%) is
+                                            applicable. MCIND’s GST number is 24AAFCM4312D1Z2
+                                        </p>
+                                        <table class="table table-sm table-bordered">
+                                            <tr>
+                                                <td class="text-left">
+                                                    <p>Bank Details:</p>
+                                                </td>
+                                                <td class="text-left">
+                                                    <p>Bank:
+                                                        <span t-esc="o.bank"/>
+                                                    </p>
+                                                    <p>A/c No.:
+                                                        <span t-esc="o.account_no"/>
+                                                    </p>
+                                                    <p>IFSC:
+                                                        <span t-esc="o.ifsc"/>
+                                                    </p>
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <!-- Page No-9-->
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4>
+                                            <b style="color:blue">12. OFFER VALIDITY</b>
+                                        </h4>
+                                        <p>This offer is valid for 30 days from the date of submission. In case Customer
+                                            doesn’t
+                                            confirm its acceptance within 30 days period, then fresh proposal shall be
+                                            submitted by
+                                            MCIND as per mutually agreed terms and conditions .
+                                        </p>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4>
+                                            <b style="color:blue">13. GENERAL TERMS AND BUSINESS CONDITIONS (GTC)</b>
+                                        </h4>
+                                        <p>The current applicable general terms and business conditions (GTC) are
+                                            attached as Annexure-B.
+                                        </p>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <br/>
+                                        <br/>
+                                        <h4>
+                                            <b style="color:blue">14. NOTICES AND REVISIONS</b>
+                                        </h4>
+                                        <p>If you have any concern about privacy or grievances at MCIND, please contact
+                                            us
+                                            with a thorough description and we will try to resolve the issue for you.
+                                        </p>
+                                        <p>All notices, requests, demands or other communication required or permitted
+                                            to be given
+                                            under this contract and the provisions contained herein shall be in writing
+                                            in English
+                                            language and are effective upon delivery to the applicable Party (whether by
+                                            mail, fax,
+                                            personal delivery or otherwise) at the address, and marked to the attention
+                                            of the
+                                            person, indicated below:
+                                        </p>
+
+
+                                        <p>a. If to the MCIND, at:</p>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <p style="margin-left:35px;">Kind Attention: </p>
+                                                </td>
+                                                <td>
+                                                    <p style="margin-left:15px;">
+                                                        <span  t-esc="o.user_id.name"/>
+                                                    </p>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p style="margin-left:35px;">E-mail:</p>
+                                                </td>
+                                                <td>
+                                                    <p style="margin-left:15px;">
+                                                        <span t-esc="o.user_id.login"/>
+                                                    </p>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p style="margin-left:35px;">Mobile no.:</p>
+                                                </td>
+                                                <td>
+                                                    <p style="margin-left:15px;">
+                                                        <span t-esc="o.user_id.phone"/>
+                                                    </p>
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <p>b. If to Contracting Party, at:</p>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <p style="margin-left:35px;">Kind Attention:
+                                                        <span  style="margin-left:15px;" t-esc="o.contact_person.name"/>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p  style="margin-left:35px;">E-mail:
+                                                        <span  style="margin-left:15px;" t-esc="o.contact_person.email"/>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p  style="margin-left:35px;">Mobile no.:
+                                                        <span  style="margin-left:15px;" t-esc="o.contact_person.phone"/>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4 style="color:blue">
+                                            <b>15. CONFIDENTIALITY</b>
+                                        </h4>
+                                        <p>All information disclosed to MCIND shall be kept strictly confidential at all
+                                            times.
+                                            Dissemination of information shall be regulated and monitored on a need to
+                                            know basis.
+                                            MCIND has a comprehensive and secure information and documents management
+                                            system that protects the integrity of their customer information.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4 style="color:blue">
+                                            <b>16. ANTI-BRIBERY CLAUSE</b>
+                                        </h4>
+                                        <p>Both Parties represent and affirm that they will comply with all applicable
+                                            laws and
+                                            regulations relating to anti-corruption and anti-bribery and will comply
+                                            with all applicable
+                                            laws and regulations .
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4 style="color:blue">
+                                            <b>17. GOVERNING LAW AND JURISDICTION</b>
+                                        </h4>
+                                        <p>The terms of this engagement shall be governed by Indian Law and Courts in
+                                            Delhi shall
+                                            have exclusive jurisdiction to hear any disputes arising out of this
+                                            engagement.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <!-- page no-10-->
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <br/>
+                                        <br/>
+                                        <h4 style="color:blue">
+                                            <b>18. DISPUTE RESOLUTION</b>
+                                        </h4>
+                                        <p>a. The contracting parties shall endeavor to settle any disagreements
+                                            amicably and
+                                            swiftly [within a maximum of 30 (thirty) days].
+                                        </p>
+                                        <p>b. All disputes arising between the parties shall then be settled under the
+                                            provisions
+                                            of the Indian Arbitration and Conciliation Act, 1996 and be governed by Laws
+                                            of
+                                            India, as amended from time to time. The Parties also agree that the seat of
+                                            Arbitration proceedings shall be at New Delhi.
+                                        </p>
+                                        <p>c. If the dispute concerns a company that is not headquartered in India,
+                                            MCIND
+                                            shall be free to institute legal proceedings at the contracting party’s
+                                            principal
+                                            place of business or at the competent court in New Delhi. The official
+                                            language
+                                            in court shall be English.
+                                        </p>
+                                        <p>d. New Delhi shall be the exclusive place of jurisdiction for any complaints
+                                            made
+                                            against MCIND.
+                                        </p>
+                                        <p>e. Should individual or several provisions of a contract or of the GTC be or
+                                            become
+                                            fully or partially invalid, this shall not affect the validity of the
+                                            remaining
+                                            provisions. The same shall apply in the event of a contractual gap.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4 style="color:blue">
+                                            <b>19. SUPERSESSION</b>
+                                        </h4>
+                                        <p>This Agreement supersedes any prior or subsisting agreement, correspondence
+                                            or
+                                            arrangement, made between the Parties in and any such agreement(s) shall be
+                                            deemed
+                                            to have been terminated by mutual consent with effect from the Effective
+                                            Date.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4 style="color:blue">
+                                            <b>20. WAIVER</b>
+                                        </h4>
+                                        <p>The failure of either Party hereto to exercise the rights, powers, or
+                                            remedies under this
+                                            contract and any delay by either party herein to exercise the rights,
+                                            powers, or remedies
+                                            under this contract shall not function as a waiver of such rights, powers,
+                                            or remedies.
+                                            Any exercise made on an occasion or partial exercise by either Party hereto
+                                            of a right,
+                                            power, or remedy shall not preclude such Party from exercising on any other
+                                            occasion
+                                            or further exercising such rights, powers, or remedies. Even if either Party
+                                            expressly
+                                            waives the right to violation or non-observance of the conditions hereof or
+                                            expressly
+                                            admits such violation or non-observance, such waiver or admission shall not
+                                            be deemed
+                                            to have waived the rights that the Party is accorded with regard to
+                                            subsequent violations
+                                            or non-observance of such conditions or any other conditions hereof, or to
+                                            have
+                                            permitted subsequent violations or non-observances.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <br/>
+                                        <br/>
+                                        <h4 style="color:blue">
+                                            <b>21. ENTIRE AGREEMENT AND BINDING EFFECT</b>
+                                        </h4>
+                                        <p>This contract constitutes entire contract between the Parties hereto and
+                                            shall supersede
+                                            all previous negotiations, agreements, understandings (whether in writing or
+                                            otherwise)
+                                            and commitments, whether formal or informal, oral or written, with respect
+                                            to the
+                                            subject matter hereto.
+                                        </p>
+                                        <p>This contract shall be binding upon and inure to the benefit of the Parties
+                                            and their
+                                            respective successors and permitted assigns.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <!-- Page no-11 -->
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4 style="color:blue">
+                                            <b>22. NON-SOLICITATION:</b>
+                                        </h4>
+                                        <p>The Customer(s) hereby agree not to solicit the Company's clients, employees
+                                            or
+                                            customers for their own benefit or for the benefit of a competitor after the
+                                            lapse or
+                                            termination of this Agreement, for a period of one year.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4 style="color:blue">
+                                            <b>23. DISCLAIMER</b>
+                                        </h4>
+                                        <p>This offer is explicitly created and provided to the addressed party. The
+                                            contents of this
+                                            offer shall not be shared with any third party without the written consent
+                                            of MCIND. This
+                                            offer is only binding when signed by an Authorized Signatory /
+                                            Representative of MCIND.
+                                            Any warranties, supplements, changes and amendments to contracts must be
+                                            made in
+                                            writing; the written form requirement can only be waived in writing in
+                                            individual cases.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <h4 style="color:blue">
+                                            <b>24. SIGNATURE</b>
+                                        </h4>
+
+                                        <table class="table table-sm">
+                                            <tr>
+                                                <td style="margin-left:25px;">
+                                                    <p>For the MCIND</p>
+                                                </td>
+                                                <td class="text-left" style="margin-left:25px;">
+                                                    <p>For the Contracting Party</p>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="margin-left:25px;">
+                                                    <p>through its duly authorised signatory</p>
+                                                    <p>(Puneet Kumar)</p>
+                                                </td>
+                                                <td class="text-left" style="margin-left:25px;">
+                                                    <p>(Acceptor)</p>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left" style="margin-left:25px;">
+                                                    <p>Date:</p>
+                                                    <p>Place: Ahmedabad</p>
+                                                </td>
+                                                <td class="text-left" style="margin-left:25px;">
+                                                    <p>Date:</p>
+                                                    <p>Place:</p>
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <br/>
+                                        <br/>
+                                        <h4>SCHEDULE</h4>
+                                        <table class="table table-sm table-bordered">
+                                            <tr>
+                                                <td class="text-left">
+                                                    <strong>
+                                                        <span>Sr.No.</span>
+                                                    </strong>
+                                                </td>
+
+                                                <td class="text-left">
+                                                    <strong>Activity</strong>
+                                                </td>
+                                                <td class="text-left">
+                                                    <strong>Timeline</strong>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">
+                                                    <strong>
+                                                        <span>1</span>
+                                                    </strong>
+                                                </td>
+
+                                                <td class="text-left">
+                                                    <strong>Review of test samples and Pre conditioning/Stabilization
+                                                    </strong>
+                                                </td>
+                                                <td class="text-left">
+                                                    <strong>Four days</strong>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">
+                                                    <strong>
+                                                        <span>2</span>
+                                                    </strong>
+                                                </td>
+
+                                                <td class="text-left">
+                                                    <strong>Testing as Per Standards</strong>
+                                                </td>
+                                                <td class="text-left">
+                                                    <strong>Twenty Four-Twenty Eight days</strong>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">
+                                                    <strong>
+                                                        <span>3</span>
+                                                    </strong>
+                                                </td>
+
+                                                <td class="text-left">
+                                                    <strong>Report preparation &amp; Analysis</strong>
+                                                </td>
+                                                <td class="text-left">
+                                                    <strong>Five days</strong>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2" style="text-align:center;">
+                                                    <strong>
+                                                        <span>Total</span>
+                                                    </strong>
+                                                </td>
+
+                                                <td class="text-left">
+                                                    <strong>
+                                                        <span>33-37 working days*</span>
+                                                    </strong>
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                        <p>*Estimated duration of timeline is based upon following,</p>
+                                        <br/>
+                                        <p>1. Delivery of samples</p>
+                                        <p>2. Receipt of Advance payment.</p>
+                                        <p>3. Successful generation of test request on BIS portal with QR code</p>
+                                        <br/>
+                                        <p>In case of any delay in above mentioned, it will account to variation in
+                                            timelines of project.
+                                        </p>
+
+                                    </td>
+                                </tr>
+
+                                <!-- page no- 13-->
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4>
+                                            <b>GENERAL TERMS AND CONDITIONS</b>
+                                        </h4>
+                                        <p>TPlease read these conditions carefully (collectively referred to as the
+                                            “GTC”) before entering
+                                            into an agreement with the MCIND. By using the MCIND website/application or
+                                            digital
+                                            platform, the Contracting Party signifies its agreement to be bound by these
+                                            conditions.
+                                            In addition to these general terms and conditions of use, when the
+                                            Contracting Party use
+                                            any current or future MCIND Content/Service, you will also be subjected to
+                                            specific terms,
+                                            guidelines and conditions applicable to that Service and if these conditions
+                                            are inconsistent
+                                            with such Terms, them those specific Terms will uphold.
+                                            The following "Terms and Conditions" constitute an electronic record within
+                                            the meaning
+                                            of the applicable law. This electronic record is generated by a computer
+                                            system and does
+                                            not require any physical or digital signatures.
+                                            Violation of the terms or this agreement constitute an unauthorized use of
+                                            the MCIND
+                                            website and applications and may give rise to an actionable cause/claim of
+                                            MCIND or its
+                                            affiliates against the violator.
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <br/>
+                                        <br/>
+                                        <h4>
+                                            <b>I. VALIDITY OF THE GTC and SEVERANCE OF CLAUSES:</b>
+                                        </h4>
+                                        <p>If any of these conditions is deemed invalid, void, or for any reason
+                                            unenforceable, that
+                                            condition will be deemed severable and will not affect the validity and
+                                            enforceability of
+                                            any remaining conditions.
+                                        </p>
+                                        <p style="margin-left:10px;">a. You agree that you are making use of our Services, at your own risk, and
+                                            that
+                                            hey are being provided to you on an “AS IS” and “AS AVAILABLE” basis. All
+                                            goods supplied and services provided by MCIND shall be subject to:
+                                        </p>
+                                        <p style="margin-left:25px;">i. countersigned quotations;</p>
+                                        <p style="margin-left:25px;">ii. upon delivery of test objects; or</p>
+                                        <p style="margin-left:25px;">iii. upon confirmation of order either in writing or via any other mode of
+                                            communication, in coexistence with the following GTC.
+                                        </p>
+                                        <p style="margin-left:10px;">b. Regardless of whether they were expressly objected, contracting parties’
+                                            terms
+                                            and conditions that deviate from the GTC shall not be binding.
+                                        </p>
+                                        <p style="margin-left:10px;">c. The above shall also apply if performance of the services is affected
+                                            without
+                                            reservation in the knowledge that the Contracting Party’s terms and
+                                            conditions
+                                            deviate from or conflict with these GTC.
+                                        </p>
+                                        <p style="margin-left:10px;">d. These terms and conditions shall be considered to be accepted by the
+                                            contracting
+                                            party at the latest upon acceptance of MCIND’s performance of the services.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4>
+                                            <b>II. DOCUMENTATION</b>
+                                        </h4>
+                                        <p>a. The Contracting Party shall ensure that any sort of documentation that it
+                                            broadcasts to MCIND are free from third-party rights (specifically
+                                            copyrights, and
+                                            patent, brand and registered design rights).
+                                        </p>
+                                        <p>b. Additionally, the Contracting Party shall indemnify and hold harmless
+                                            MCIND, its
+                                            subsidiaries, affiliates and their respective officers, Directors, agents
+                                            and
+                                            employees against any liability for claims or demands made by third parties
+                                            and
+                                            bear any damages arising out of your breach of these GTC or any document
+                                            incorporated by reference, or your violation of any law, rules, regulations
+                                            or the
+                                            rights of a third party.
+                                        </p>
+                                        <p>c. The Contracting Party hereby expressly release MCIND and/or its affiliates
+                                            and/or
+                                            any of its officers and representatives from any cost, damage, liability or
+                                            other
+                                            consequence of any of the actions/inactions of the Service Partners, Members
+                                            or
+                                            vendors and specifically waiver any claims or demands that the Contracting
+                                            Party
+                                            may have in this behalf under any statute, contract or otherwise.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <!-- Page no- 14-->
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4>
+                                            <b>III. QUOTATIONS AND SCOPE OF PERFORMANCE</b>
+                                        </h4>
+                                        <p>a. In accordance with law, pending quotations shall be subject to change for
+                                            our
+                                            services being rendered.
+                                        </p>
+                                        <p>b. The magnitude of obligations owed by the service provider shall be based
+                                            exclusively on the confirmation of MCIND or the contract.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4>
+                                            <b>IV. CONTRACTING PERIOD</b>
+                                        </h4>
+                                        <p>a. This Agreement shall be valid for a period as referred to in the Annexure
+                                            A.
+                                        </p>
+                                        <p>b. Deadlines for completing the contract shall only be binding if agreed in
+                                            writing.
+                                        </p>
+                                        <p>c. At no time shall any right, title or interest vest with MCIND nor shall
+                                            MCIND have
+                                            any obligations or liabilities in respect of any transactions. The
+                                            Contracting Party
+                                            shall fulfill all the obligations that must be met before the contract can
+                                            be
+                                            performed, properly and in due time.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4>
+                                            <b>V. FORCE MAJEURE</b>
+                                        </h4>
+                                        <p>a. If an act of force majeure prevents MCIND from rendering services or
+                                            supplying
+                                            goods on time, then MCIND shall not be liable for any damages incurred as a
+                                            result thereof for the duration of the disturbance or delay.
+                                        </p>
+                                        <p>b. MCIND shall be entitled to terminate the contract if the circumstances
+                                            warranting
+                                            the act of force majeure continue for more than a month. In this case, the
+                                            contracting party shall not be entitled to claim for damages. Mitsui
+                                            Chemicals
+                                            India Pvt. Ltd. shall be remunerated for any expenses incurred up until this
+                                            point.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4>
+                                            <b>VI. INDEMNIFICATION</b>
+                                        </h4>
+                                        <p>a. The Contracting Party shall ensure that any images, drawings,
+                                            calculations,
+                                            technical information and other documentation that it transmits to MCIND are
+                                            free from any third-party rights (in particular copyrights incurred, patent,
+                                            brand
+                                            and design right);
+                                        </p>
+                                        <p>b. The Contracting Party shall indemnify MCIND against any liability for
+                                            claims made
+                                            by third parties and bear any damages incurred as a result thereof.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4>
+                                            <b>VII. PRICING AND TERMS OF PAYMENT</b>
+                                        </h4>
+                                        <p>a. We further expressly disclaim any warranties or representations in respect
+                                            of
+                                            quality, suitability, accuracy, reliability, timeliness, performance,
+                                            safety,
+                                            merchantability, fitness for a particular purpose, or legality of the
+                                            products.
+                                        </p>
+                                        <p>b. Unless otherwise agreed, the agreed price shall not include GST
+                                            (calculated at
+                                            the rate valid on the invoicing date), and shall be payable within ten
+                                            working
+                                            days of the billing date without deductions. In the event of delayed
+                                            payment, the
+                                            invoiced amount shall be subject to interest at 18% per annum. This shall
+                                            not
+                                            affect any higher compensation claims arising from the default.
+                                        </p>
+                                        <p>c. Agreed prices shall not include transportation costs, i.e. costs for
+                                            packaging,
+                                            transport insurance and import duty which shall include Customs duty and
+                                            IGST;
+                                        </p>
+                                        <p>d. MCIND shall charge the contracting party for transportation costs.
+                                            Transport
+                                            insurance shall only be provided at the contracting party’s request, duly
+                                            made in
+                                            writing;
+                                        </p>
+                                        <p>e. Travel expenses, accommodation expenses and any other out of pocket
+                                            expenses
+                                            shall be paid by the Contracting Party to MCIND in accordance with the terms
+                                            and conditions and as per the daily man day charges;
+                                        </p>
+                                        <p>f. MCIND shall receive information about the contracting party’s illiquidity
+                                            (e.g.
+                                            failure to pay due and overdue payments, registered insolvency), it shall be
+                                            entitled to refuse further performance until counter-performance is
+                                            affected.
+                                        </p>
+                                        <p>g. The Contracting Party may only offset debts against counterclaims which
+                                            are
+                                            uncontested by MCIND or legally established counterclaims.
+                                        </p>
+                                        <p>h. The Contracting Party shall only be entitled to exercise rights of
+                                            retention if
+                                            counterclaims are based on the same contract.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <!-- Page No- 15 -->
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4>
+                                            <b>VIII. RETENTION OF OWNERSHIP</b>
+                                        </h4>
+                                        <p>a. Mitsui Chemicals India Pvt. Ltd. reserves the right of ownership of all
+                                            contractual
+                                            performance until the Contracting Party has fulfilled all of its outstanding
+                                            claims
+                                            arising from the business relationship.
+                                        </p>
+                                        <p>b. If the Contracting Party breaches its duties, in particular through a
+                                            delay in
+                                            payment to MCIND, MCIND shall serve a 15 days’ notice period, post which,
+                                            MCIND shal be entitled to terminate the contract and return any
+                                            documentation
+                                            provided.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4>
+                                            <b>IX. INDEPENDENT RELATIONSHIP BETWEEN THE PARTIES</b>
+                                        </h4>
+                                        <p>Both the Parties are independent entities and any clause of this contract
+                                            should not be construed to mean or establish any relation of principal-agent
+                                            between
+                                            the Parties. The relationship between both the Parties is on Principal to
+                                            principal
+                                            basis and in no way the conduct of one Party bound the other in any manner
+                                            whatsoever. The obligation arising from this contract is independent and for
+                                            the
+                                            act and/or omission of one Party the other shall not held to be responsible.
+                                        </p>
+                                        <p>Each Party is and will remain an independent party with respect to all
+                                            performance rendered pursuant to this contract. No party will be considered
+                                            as an agent of the other Party for any purpose and will have no authority to
+                                            bind or
+                                            make commitments on behalf of such other Party for any purpose and shall not
+                                            hold itself or themselves out as having such authority.
+                                        </p>
+                                        <p>Nothing in this contract will be construed as creating a partnership between
+                                            the
+                                            Parties and neither Party shall have the authority or power to bind the
+                                            other Party
+                                            or to contract in the name of or create a liability against the other Party
+                                            in any
+                                            way or for any purpose.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width:100%" colspan="3">
+                                        <h4>
+                                            <b>X. DEFECT LIABILITY PERIOD</b>
+                                        </h4>
+                                        <p>a. MCIND shall only be liable for special features of the performance of the
+                                            services
+                                            as contracted if such features were agreed in writing.
+                                        </p>
+                                        <p>b. MCIND shall remedy or replace defected goods or deficient performance at
+                                            its
+                                            discretion.
+                                        </p>
+                                        <p>c. The limitation period for claims for defects shall expire after a period
+                                            of three
+                                            months post the contract has been performed. This shall not apply if defects
+                                            were concealed fraudulently or in the event of injury to life, limb or
+                                            health.
+                                        </p>
+                                        <p>d. The Contracting Party is required to inspect goods for defects and
+                                            services for
+                                            deficiencies without delay and report them within two weeks of receipt.
+                                            Claims
+                                            for defects made after the above-mentioned period shall not be considered.
+                                            Contracting Party(ies) must notify MCIND of any “hidden” defects in writing
+                                            within two weeks of becoming aware thereof.
+                                        </p>
+                                        <p>e. Such defects shall only be considered to be reported if the deviation
+                                            between the
+                                            actual and the agreed condition is described in a comprehensible manner.
+                                        </p>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <h4>
+                                            <b>XI. INDUSTRIAL PROPERTY RIGHTS</b>
+                                        </h4>
+                                        <p>a. MCIND shall not accept any liability if performance of the contract
+                                            encroaches on
+                                            third-party industrial property rights.
+                                        </p>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <h4>
+                                            <b>XII. LIMITATION ON LIABILITY</b>
+                                        </h4>
+                                        <p>a. Liability for breaches of duties committed by MCIND or its representatives
+                                            and
+                                            contractual assistant agents, shall be limited to willful or negligent
+                                            breaches of
+                                            duties unless defects were concealed fraudulently or a warranty was granted.
+                                        </p>
+                                        <p>b. Liability for gross negligence shall be limited to foreseeable damages
+                                            typical for
+                                            this type of contract. The Contracting Party shall not be entitled to make
+                                            any
+                                            further or other claims, particularly as a result of consequential damages.
+                                            This
+                                            shall not apply in the event of injury to life, limb or health.
+                                        </p>
+                                        <p>c. Liability shall be limited to the relevant contract value only;</p>
+                                        <p>d. If the object of the contract is to perform work and services related to
+                                            crystalline
+                                            solar modules (c-Si), liability shall be capped at INR 18/W p or, if related
+                                            to other solar modules,
+                                            in particular thin-film solar modules, at INR 17/W p ;
+                                        </p>
+                                        <p>e. Any test objects (e.g. modules) provided to MCIND by the contracting party
+                                            shall be returned after completion of the contract. MCIND shall not be
+                                            liable for
+                                            compensation if modules are damaged or destroyed with no external forces, or
+                                            only external forces caused by slight negligence, being involved.
+                                        </p>
+                                        <p>f. The obligation to return shall be deemed to be fulfilled if 90% (ninety
+                                            percent)
+                                            of the modules are returned.
+                                        </p>
+                                        <p>g. MCIND shall only be liable for compensation if evidence is provided of the
+                                            extent
+                                            of damage claimed. By way of precaution, MCIND hereby rejects any
+                                            generalized
+                                            compensation provisions, regardless of the contracting party’s legal
+                                            grounds.
+                                        </p>
+                                        <p>h. Production yield losses are consequential damages for which MCIND shall
+                                            not be
+                                            held liable by its contracting parties.
+                                        </p>
+
+                                        <!-- page 17 -->
+                                        <h4>
+                                            <b>XIII. TAKE-BACK CLAUSE</b>
+                                        </h4>
+                                        <p>a. The contracting party shall be obliged to take back test modules and any
+                                            other
+                                            objects provided.
+                                        </p>
+                                        <p>b. If the Contracting Party fails to meet its obligations to take back goods
+                                            despite
+                                            having been provided with a deadline, MCIND shall be entitled to sell the
+                                            modules/objects, or store or destroy them at the Contracting Party’s
+                                            expense.
+                                        </p>
+
+                                        <h4>
+                                            <b>XIV. PROVISIONS FOR CONSULTANCY SERVICES</b>
+                                        </h4>
+                                        <p>a. If consultancy services are provided, they shall be subject to the
+                                            additional GTC
+                                            in this paragraph:
+                                        </p>
+                                        <p style="margin-left:10px;">i. MCIND organizes its activities independently and is not bound to any
+                                            particular
+                                            location or working hours (except with respect to operational matters).
+                                        </p>
+                                        <p style="margin-left:10px;">ii. MCIND is entitled to turn down additional orders placed by the
+                                            contracting
+                                            party without specifying a reason.
+                                        </p>
+                                        <p style="margin-left:10px;">iii. MCIND may perform services itself or through specialist third parties,
+                                            after
+                                            obtaining prior written consent from the Contracting Party.
+                                        </p>
+                                        <p style="margin-left:10px;">iv. MCIND shall have the liberty to work for other customers, even if they
+                                            are in
+                                            competition to the Contracting Party.
+                                        </p>
+                                        <p>b. MCIND shall provide consultancy services in compliance with generally
+                                            recognized industry standards, but shall not be responsible if the project
+                                            goal is
+                                            not achieved. Services and intermediate stages shall therefore not be
+                                            subject to
+                                            acceptance.
+                                        </p>
+
+                                        <h4>
+                                            <b>XV. CONFIDENTIALITY AND INTELLECTUAL PROPERTY</b>
+                                        </h4>
+                                        <p>a. The Contracting Party(ies) agree to treat all provided information of a
+                                            technical
+                                            or business nature with confidentiality during, as well as after termination
+                                            of,
+                                            work performed.
+                                        </p>
+                                        <p>b. This shall not apply to information that demonstrably:</p>
+                                        <p style="margin-left:10px;">i. is or became common knowledge through no fault of the receiver;</p>
+                                            <p style="margin-left:10px;">ii. is publicly available or becomes publicly available through no fault
+                                                of MCIND;
+                                            </p>
+                                            <p style="margin-left:10px;">iii. was known before it was received;</p>
+                                            <p style="margin-left:10px;">iv. is already in the lawful possession of MCIND without restriction
+                                                prior to disclosure to MCIND;</p>
+                                        <p style="margin-left:10px;">v. is at any developed independently by MCIND;</p>
+                                        <p style="margin-left:10px;">vi. becomes known after being disclosed by a third party entitled to disclose
+                                            this
+                                            information;
+                                        </p>
+                                        <p style="margin-left:10px;">vii. has been exempted from these obligations in writing; or</p>
+                                        <p style="margin-left:10px;">viii. had to be disclosed pursuant to applicable law or an order from court
+                                            of
+                                            Competent Jurisdiction (in which case the receiving party – if obliged to
+                                            disclose this information – must notify the disclosing party in writing and
+                                            without delay of its duty to disclose the information).
+                                        </p>
+                                        <p>c. Unless otherwise agreed in writing by the parties, the obligation of
+                                            confidentiality
+                                            shall be valid for five years.
+                                        </p>
+                                        <p>d. The Contracting Party(ies) shall only become the owner of the
+                                            contractually
+                                            agreed performance outcomes and associated rights of use upon full payment
+                                            of
+                                            the agreed purchase price.
+                                        </p>
+                                        <p>e. The right to use performance outcomes shall be limited to internal
+                                            purposes only.
+                                            These outcomes may only be disclosed to third parties following written
+                                            approval
+                                            from MCIND, or to those legally bound to maintain confidentiality.
+                                        </p>
+                                        <p>f. Unless otherwise agreed at the time the order was placed or unless
+                                            required to
+                                            fulfill the purpose of the contract, written approval must be obtained from
+                                            MCIND
+                                            before information is processed, passed on, sublicensed, published,
+                                            distributed
+                                            and/or reproduced on electronic data carriers.
+                                        </p>
+                                        <p>g. MCIND shall be entitled to use contractual relationships as a reference
+                                            both
+                                            online and offline, stating the name of the customer and the project.
+                                        </p>
+                                        <p>h. Without prior written consent from MCIND, the Contracting Party shall not
+                                            use
+                                            the trademark-protected name MCIND or the associated logo in online or
+                                            offline
+                                            presentations, publications, marketing material, on websites or in any other
+                                            way.
+                                        </p>
+                                        <p>i. The Contracting Party must obtain prior approval before making any
+                                            publications
+                                            related to MCIND. Such publications may only contain objective information
+                                            about MCIND, facts and conclusive results.
+                                        </p>
+
+                                        <h4>
+                                            <b>XVI. TERMINATION</b>
+                                        </h4>
+                                        <p>a. The right to ordinary termination of the contract shall be excluded.
+                                            However, the
+                                            right to terminate with cause shall remain unaffected.
+                                        </p>
+                                        <p>b. In the event that the contract is terminated with cause, MCIND shall
+                                            within four
+                                            weeks provide the contracting party with the results of the inspection
+                                            and/or
+                                            consultation obtained up until the point the notice was issued, but not
+                                            before
+                                            payment of the pro rata remuneration.
+                                        </p>
+                                        <p>c. The contracting party agrees to remunerate MCIND for any costs, works and
+                                            services incurred before expiry of the contractual period of notice.
+                                        </p>
+                                        <p>d. Each Party shall serve a notice period of 14 (“Fourteen”) days before
+                                            terminating
+                                            the contract.
+                                        </p>
+                                        <h4>
+                                            <b>XVII. MISCELLANEOUS</b>
+                                        </h4>
+                                        <p>a. The contracting parties shall endeavor to replace any fully or partially
+                                            invalid
+                                            provision with a legally permissible provision that will achieve the
+                                            economic result
+                                            that should have been achieved by the invalid provision.
+                                        </p>
+                                        <p>b. The assignment of rights or transfer of duties arising from a contract
+                                            requires
+                                            prior written approval.
+                                        </p>
+                                        <p>c. Any warranties, supplements, changes and amendments to contracts must be
+                                            made in writing; the written form requirement can only be waived in writing
+                                            in
+                                            individual cases.
+                                        </p>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <h5>Signed by Acceptor</h5>
+                                        <h5>Date:</h5>
+                                        <h5>Place:</h5>
+                                    </td>
+                                </tr>
+
+
+                            </td>
+                        </tr>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

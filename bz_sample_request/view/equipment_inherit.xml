@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="equipment_list_inherit" model="ir.ui.view">
+        <field name="name">equipment.form.inherit</field>
+        <field name="model">maintenance.equipment</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                 <div class="oe_title">
+                    <field name="equipment_id" readonly="1"/>
+                 </div>
+            </xpath>
+            <xpath expr="//field[@name='employee_id']" position="before">
+                    <field name="calibration_due_date"/>
+            </xpath>
+            <xpath expr="//notebook//page[@name='maintenance']" position="after">
+                <page name="equipment_list" string="Equipment List">
+                    <form string="Equipment List">
+                        <sheet>
+                            <field name="equi_ids">
+                                <tree editable="bottom">
+                                    <field name="eq_id"/>
+                                    <field name="sensor_device_name"/>
+                                    <field name="type_model"/>
+                                    <field name="serial_number"/>
+                                    <field name="test_site_location"/>
+                                    <field name="manufacturer"/>
+                                    <field name="calibration_lab"/>
+                                    <field name="calibration_type"/>
+                                    <field name="cal_certificate_no"/>
+                                    <field name="date_of_calibration"/>
+                                    <field name="next_calibration"/>
+                                    <field name="calibrated_range"/>
+                                    <field name="uncertainty"/>
+                                    <field name="accuracy"/>
+                                    <field name="calibration_interval"/>
+                                    <field name="provider"/>
+                                    <field name="traceability"/>
+                                    <field name="reviewed_by"/>
+                                    <field name="Remarks"/>
+                                </tree>
+                            </field>
+                        </sheet>
+                    </form>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

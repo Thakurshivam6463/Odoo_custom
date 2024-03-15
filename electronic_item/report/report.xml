@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="report_product_details" model="ir.actions.report">
+        <field name="name">Product Details</field>
+        <field name="model">electronic.product</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">electronic_item.report_product_details</field>
+        <field name="report_file">electronic_item.report_product_details</field>
+        <field name="binding_model_id" ref="model_electronic_product"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_product_xlsx" model="ir.actions.report">
+        <field name="name">Product Excel</field>
+        <field name="model">electronic.product</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">electronic_item.report_product_xlsx</field>
+        <field name="report_file">electronic_item.report_product_xlsx</field>
+        <field name="binding_model_id" ref="model_electronic_product"/>
+        <field name="binding_type">report</field>
+    </record>
+    
+    <record id="action_report_order_custom" model="ir.actions.report">
+        <field name="name">Order Details</field>
+        <field name="model">electronic.product</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">electronic_item.report_order_details_custom</field>
+        <field name="report_file">electronic_item.report_order_details_custom</field>
+        <field name="binding_model_id" ref="model_electronic_product"/>
+        <field name="binding_type">report</field>
+    </record>
+
+        <record id="report_product_order_xlsx" model="ir.actions.report">
+        <field name="name">Order details Excel</field>
+        <field name="model">electronic.product</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">electronic_item.report_order_details_xlsx</field>
+        <field name="report_file">electronic_item.report_order_details_xlsx</field>
+        <field name="binding_model_id" ref="model_electronic_product"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

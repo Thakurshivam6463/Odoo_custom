@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="Dashboard">
+        <div class="oh_dashboards">
+            <div class="container-fluid o_purchase_dashboard">
+            </div>
+        </div>
+    </t>
+    <t t-name="RfqDetails">
+        <!--Dashboard for Purchase Agreements/Purchase Requisition/Indent-->
+        <div class="row main-section">
+            <div class="col-md-2 col-sm-6 po_requisition_draft oh-payslip oh-indent">
+                <div class="oh-card">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon"><i class="fa fa-fw o_button_icon fa-list-alt"/></div>
+                            <div class="stat-content">
+                                <div class="stat-head">Draft Indent</div>
+                                <div class="stat-count"><t t-esc="widget.total_po_requisition_draft"/></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 po_requisition_ongoing oh-payslip oh-indent">
+                <div class="oh-card">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon"><i class="fa fa-fw o_button_icon fa-list-alt"/></div>
+                            <div class="stat-content">
+                                <div class="stat-head">Ongoing Indent</div>
+                                <div class="stat-count"><t t-esc="widget.total_po_requisition_ongoing"/></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 po_requisition_confirmed oh-payslip oh-indent">
+                <div class="oh-card">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon"><i class="fa fa-fw o_button_icon fa-list-alt"/></div>
+                            <div class="stat-content">
+                                <div class="stat-head">Confirmed Indent</div>
+                                <div class="stat-count"><t t-esc="widget.total_po_requisition_confirmed"/></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Group by State-->
+        <div class="row main-section">
+            <div class="col-md-2 col-sm-6 po_rfq oh-payslip oh-timesheets" >
+                <div class="oh-card">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon"><i class="fa fa-money"/></div>
+                            <div class="stat-content">
+                                <div class="stat-head">RFQ</div>
+                                <div class="stat-count"><t t-esc="widget.total_rfq"/></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 purchase_order oh-payslip oh-timesheets">
+                <div class="oh-card">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon"><i class="fa fa-money"/></div>
+                            <div class="stat-content">
+                                <div class="stat-head">Purchase Order</div>
+                                <div class="stat-count"><t t-esc="widget.total_po"/></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 purchase_done oh-payslip oh-timesheets">
+                <div class="oh-card">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon"><i class="fa fa-money"/></div>
+                            <div class="stat-content">
+                                <div class="stat-head">Purchase Done</div>
+                                <div class="stat-count"><t t-esc="widget.total_po_done"/></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 purchase_cancel oh-payslip oh-timesheets">
+                <div class="oh-card">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon"><i class="fa fa-money"/></div>
+                            <div class="stat-content">
+                                <div class="stat-head">Cancelled</div>
+                                <div class="stat-count"><t t-esc="widget.total_po_cancel"/></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Group by Department-->
+        <div class="row main-section">
+            <div class="col-md-2 col-sm-6 po_management oh-payslip">
+                <div class="oh-card">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon"><i class="fa fa-money"/></div>
+                            <div class="stat-content">
+                                <div class="stat-head">PO Management</div>
+                                <div class="stat-count"><t t-esc="widget.total_management_po"/></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 po_administration oh-payslip">
+                <div class="oh-card">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon"><i class="fa fa-money"/></div>
+                            <div class="stat-content">
+                                <div class="stat-head">PO Administration</div>
+                                <div class="stat-count"><t t-esc="widget.total_administration_po"/></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6 po_sales oh-payslip">
+                <div class="oh-card">
+                    <div class="oh-card-body">
+                        <div class="stat-widget-one">
+                            <div class="stat-icon"><i class="fa fa-money"/></div>
+                            <div class="stat-content">
+                                <div class="stat-head">PO Sales</div>
+                                <div class="stat-count"><t t-esc="widget.total_sales_po"/></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

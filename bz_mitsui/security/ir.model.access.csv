@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_abbreviations,access.abbreviations,model_abbreviations,,1,1,1,1
+access_task_description,access.task.description,model_task_description,,1,1,1,1
+access_standards,access.standards,model_standards,,1,1,1,1
+access_maintenance_checksheet,access.maintenance.checksheet,model_maintenance_checksheet,,1,1,1,1
+access_action_checksheet,access.action.checksheet,model_action_checksheet,,1,1,1,1
+access_process_type,access.process.type,model_process_type,,1,1,1,1
+access_protocol_parameter,access.protocol.parameter,model_protocol_parameter,,1,1,1,1
+access_protocol_line,access.protocol.line,model_protocol_line,,1,1,1,1
+

@@ -1,0 +1,226 @@
+<odoo>
+	<data>
+
+	<!-- explicit form view definition -->
+
+	<record id="purchase_indent_view_form" model="ir.ui.view">
+		<field name="name">purchase.indent.form</field>
+		<field name="model">purchase.indent</field>
+		<field name="arch" type="xml">
+			<form string="Purchase Indent">
+				<header>					
+					<button string="Confirm" states="new" name="action_in_progress" type="object" class="oe_highlight"/>
+					<button name="submit_department_validate" string="Validate" type="object" class="btn-primary" attrs="{'invisible':['|',('department_flag','=',False),('state','!=','in_progress')]}"/>
+					<button name="submit_to_store_manager" string="Validate" type="object" class="btn-primary" attrs="{'invisible':['|',('store_manager_flag','=',False),('state','!=','department_validate')]}"/>
+					<button name="submit_account_validate" string="Validate" type="object" class="btn-primary" attrs="{'invisible':['|',('account_manager_flag','=',False),('state','!=','store_manager')]}"/>
+					<button name="submit_md_validate" string="Validate" type="object" class="btn-primary" attrs="{'invisible':['|',('md_flag','=',False),('state','!=','account')]}"/>
+					<button string="Reject" name="button_reject" type="object" attrs="{'invisible':[('state','in',('approve','close', 'rejected','delivered','md_validated'))]}"/>
+					<button name="new_quotation" string="New Tender" type="object" class="oe_highlight" attrs="{'invisible':[('state','!=','md_validated')]}"/>
+					<button name="transfer_products" string="Transfer Products" type="object" class="oe_highlight" attrs="{'invisible':[('state','!=','md_validated')]}"/>
+					<button name="button_close" string="Close Indent" type="object" class="oe_highlight" attrs="{'invisible':[('state','!=','md_validated')]}"/>
+					<field name="state" widget="statusbar" statusbar_visible="new"/> 
+				</header>
+				<sheet>
+					<div class="oe_button_box" name="button_box">
+						<button class="oe_stat_button" type="object" name="get_purchase_tender" icon="fa-pencil-square-o" attrs="{'invisible': [('purchase_tender_count', '=', 0)]}">
+							<field string="PO Tender" name="purchase_tender_count" widget="statinfo"/>
+						</button>
+						
+						<button class="oe_stat_button" type="object" name="get_picking" icon="fa-arrow-right" attrs="{'invisible': [('picking_count', '=', 0)]}">
+							<field string="Product Transfers" name="picking_count" widget="statinfo"/>
+						</button>
+					</div>
+					<div class="oe_title">
+						<h1>
+							<field name="name" readonly="1"/>
+						</h1>
+					</div>
+					<group>
+						<group>
+							<field name="employee_id" options="{'no_open': True}"
+									attrs="{'readonly':[('state','in',('approve', 'rejected','delivered'))]}"/>
+							<field name="department_id" force_save="1"/>
+							<field name="requestion_validater_id"/>
+							<field name="store_manager_id"/>
+							<field name="account_user_id"/>
+							<field name="requestion_md_id"/>
+							<!-- <field name="purchase_user_id"/> -->
+							<field name="department_flag" invisible="1"/>
+							<field name="store_manager_flag" invisible="1"/>
+							<field name="account_manager_flag" invisible="1"/>
+							<field name="md_flag" invisible="1"/>
+							<field name="purchase_requisition_ids" invisible="1"/>
+						</group>
+						<group>
+							<field name="indent_type"/>
+							<field name="indent_date" attrs="{'readonly':[('indent_type','!=', 'emergency')]}"/>
+							<field name="rejected_remarks" invisible="1"/>
+							<field name="rejected_user" invisible="1"/>
+							<field name="material_required_date"/>
+							<field name="delivery_location"/>
+							<field name="cost_center_id"/>
+							<field name="purchase_user_flag" invisible="1" />
+							<field name="company_id" string="Business Group" 
+													 options="{'no_open': True}"/>
+						</group>
+					</group>
+					<field name="reason" placeholder="Reason for Indent ..." attrs="{'readonly':[('state','in',('approve', 'rejected','delivered'))]}"/>
+					
+					<notebook colspan="4">
+						<page string="Product Details">
+							<field name="prod_ids" >
+								<tree editable="bottom" delete="1">
+									<field name="product_id"/>
+									<field name="code" force_save="1"/>
+									<field name="name"/>
+									<field name="product_qty"/>
+									<field name="available_qty" readonly="1" force_save="1"/>
+									<field name="product_uom"/>
+									<!-- <field name="cost_center_id"/> -->
+									<field name="schedule_date"/>
+									<field name="price_unit"/>
+									<field name="is_purchase" invisible="1" force_save="1"/>
+									<!-- <field name="partner_id"/> -->
+								</tree>
+							</field>
+						</page>
+
+						<page string="Remarks">
+							<group>
+								<field name="user_remarks"/>
+								<field name="hod_remarks"/>
+								<field name="sm_remarks"/>
+								<field name="am_remarks"/>
+								<field name="md_remarks"/>
+								<field name="purchaser_remarks"/>
+							</group>
+						</page>
+					</notebook>
+				</sheet>
+				<div class="oe_chatter">
+					<field name="message_follower_ids" widget="mail_followers"/>
+					<field name="message_ids" widget="mail_thread" />
+				</div>
+			</form>
+		</field>
+	</record>
+
+	<!-- explicit list view definition -->
+
+	<record model="ir.ui.view" id="purchase_indent_view_list">
+		<field name="name">purchase.indent.list</field>
+		<field name="model">purchase.indent</field>
+		<field name="arch" type="xml">
+		<tree>
+			<field name="name"/>
+			<field name="indent_date"/>
+			<field name="employee_id"/>
+			<field name="department_id"/>
+			<field name="company_id" string="Business Group"/>
+			<field name="state" widget="badge" decoration-success="state == 'md_validated'" decoration-danger="state =='rejected'" decoration-info="state not in ('md_validated','rejected')"/>
+		</tree>
+		</field>
+	</record>
+
+	<!-- explicit Search view definition -->
+	<record id="view_purchase_indent_filter" model="ir.ui.view">
+		<field name="name">purchase.indent.select</field>
+		<field name="model">purchase.indent</field>
+		<field name="arch" type="xml">
+			<search string="Search Purchase Indent">
+				<field name="employee_id"/>
+				<field name="indent_date"/>
+				<field name="department_id"/>
+				<field name="state"/>
+				
+				<group expand="0" string="Group By">
+					<filter string="Employee" name="employee_id" domain="[]" context="{'group_by': 'employee_id'}"/>
+					<filter string="Indent date" name="indent_date" domain="[]" context="{'group_by': 'indent_date'}"/>
+					<filter string="Department" name="department_id" domain="[]" context="{'group_by': 'department_id'}"/>
+					<filter string="Status" name="state" domain="[]" context="{'group_by': 'state'}"/>
+				</group>
+			</search>
+		</field>
+	</record>
+
+	<!-- actions opening views on models -->
+
+	<record model="ir.actions.act_window" id="purchase_indent_action_window">
+		<field name="name">Purchase Indent</field>
+		<field name="res_model">purchase.indent</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<!-- Top menu item -->
+
+	<menuitem name="Indent" id="menu_purchase_indent" parent="purchase.menu_purchase_root"
+	sequence="-1"/>
+
+	<!-- actions -->
+
+	 <menuitem name="Indent" id="sub_menu_purchase_indent" parent="menu_purchase_indent" action="purchase_indent_action_window" sequence="1"/>
+
+
+	<!-- New Quotation button - wizard -->
+	<record id="form_indent_wizard" model="ir.ui.view">
+		<field name="name">indent.quotation.form</field>
+		<field name="model">indent.quotation</field>
+		<field name="arch" type="xml">
+			<form>
+				<group>
+					<field name="indent_quotation_ids" nolabel="1">	
+						<tree create="false" editable="bottom" >
+							<field name="pi_number"/>
+							<field name="product_id"/>
+							<field name="code" />
+							<field name="name"/>
+							<field name="product_qty"/>
+							<field name="available_qty"/>
+							<field name="price_unit"/>
+						</tree>
+					</field>
+				</group>
+				<footer>
+					<button string="Create Tender" name="create_quotation" type="object" class="oe_highlight"/>
+<!--					<button string="Create &amp; Send Quotation" name="create_send_quotation" type="object" class="oe_highlight"/>-->
+					<button special="cancel" class="oe_link" string="Cancel" />
+			   </footer>
+			</form>
+		</field>
+	</record>
+	
+	<act_window id="action_indent_quotation"
+                name="PO Tender"
+                res_model="indent.quotation" 
+                binding_model="purchase.indent"
+                view_mode="form" 
+                target="new"	
+                context="{'bulk_confirm':'True'}"
+        />
+	
+
+	<!-- Transfer Products - wizard -->
+	<record id="form_transfer_products" model="ir.ui.view">
+		<field name="name">transfer.products.form</field>
+		<field name="model">transfer.products</field>
+		<field name="arch" type="xml">
+			<form>
+				<group>
+					<group>
+						<field name="picking_type_id"/>
+					</group>
+					<group>
+						<field name="location_id"/>
+						<field name="location_dest_id"/>
+					</group>
+				</group>
+				<footer>
+					<button string="Create Transfer" name="create_transfer" type="object" class="oe_highlight"/>
+					<button special="cancel" class="oe_link" string="Cancel" />
+			   </footer>
+			</form>
+		</field>
+	</record>
+
+	</data>
+</odoo>

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_trf_pdf1">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <td>
+                                    <strong>Reference No. <span t-esc="o.reference"/></strong>
+                                    <strong class="text-right"> date</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Date: <span t-esc="o.date"/></strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <strong>Part 1 General Information</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Customer's Organisation Name : <span t-esc="o.name.name"/></strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Address of customer's organisation: <span t-esc="o.address"/></strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Contact person's name: <span t-esc="o.contact_persons_name"/></strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Contact person's Designation: <span t-esc="o.contact_person_Designation"/></strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Contact person's Phone Number: <span t-esc="o.contact_persons_phone_number"/></strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>E-Mail: <span t-esc="o.email"/></strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Name &amp; Address of the Organization making payment: (If different from 1 &amp; 2 )</strong>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <td class="text-left">
+                                    <strong><span>Identification of test samples (Sr.No.)</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Test Requirement</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Sample Specifications(Voc, Isc, Vmax, Imax, Pmax OR attach TDS)</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>System Voltage</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Sample Dimensions</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Sample Technology</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Sample Type (Frame/unframe/bifaciality)</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>No. Of Samples</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Connectors type and availability</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Standard to be Followed</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Decision rule agreed with customer (Yes/No/Not Applicable)</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Make ( Name of Sample Manufacturing Company</span></strong>
+                                </td>
+                                <td class="text-left">
+                                    <strong><span>Year Of Make</span></strong>
+                                </td>
+                            </tr>
+                            <t t-foreach="o.document_details_ids" t-as="line">
+                                <tr>
+                                    <td>
+                                        <span t-field="line.product_no"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.product_category"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.sample_specifications"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.system_voltage"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.sample_dimensions"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.sample_technology"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.sample_type"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.no_of_sample"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.connectors_type_and_availability"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.Standard_to_be_followed"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.decision_rule_agreed_with_customer"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.make"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.year_of_make"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <td style="width:33.33%">
+                                    <strong>Delivery Challan: <span t-field="o.delivery_challan"/></strong>
+                                </td>
+                                <td style="width:33.33%">
+                                    <strong>Transport intimation**: <span t-field="o.tranport_intimation"/></strong>
+                                </td>
+                                <td style="width:33.33%">
+                                    <strong>Transit Insurance intimation**: <span t-field="o.transit_insurance_intimation"/></strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:33.33%">
+<!--                                    <strong>Drawings/Catalogs/Operating Manual (provided): <span t-field="o.drawings_catalogs_operating_manual_provided"/></strong>-->
+                                </td>
+                                <td style="width:33.33%">
+                                    <strong>NOC if not the original manufacture: <span t-field="o.noc_if_not_the_original_manufacture"/></strong>
+                                </td>
+                                <td style="width:33.33%">
+                                    <strong>Type of Testing requested: <span t-field="o.type_of_testing_requested"/></strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:50%">
+                                    <strong>Witnessing required: <span t-field="o.witnessing_required"/></strong>
+                                </td>
+                                <td style="width:50%" colspan="2">
+                                    <strong>If Yes, Name &amp; Designation of witnessing authority/Company/3rd party agency: </strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:50%">
+                                    <strong>Test reports required: One for all tests: <span t-field="o.test_reports_required_One_for_all_tests"/></strong>
+                                </td>
+                                <td style="width:50%" colspan="2">
+                                    <strong>If separate reports required for each test/sample: <span t-field="o.if_separate_reports_required_for_each_test_sample"/></strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:100%" colspan="3">
+                                    <strong>Whether sample will be collected back (not applicable for destructive test): <span t-field="o.whether_sample_will_be_collected_back"/><br>If yes, please collect within 30 days from the date of receipt of Test report. MCIND will not be responsible thereafter.</br></strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:50%">
+                                    <strong>Requirement of 'Statement of Confirmty': <span t-field="o.requirement_of_statement_of_confirmty"/></strong>
+                                </td>
+                                <td style="width:50%" colspan="2">
+                                    <strong>If yes, Then select the option from below as applicable: </strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:100%" colspan="3">
+                                    <p>1. Decision on Compliance to specification will be based on the tolerance mentioned in the Standard specification.</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:100%" colspan="3">
+                                    <p>2. For the tolerance specified by the customer, same will be considered for decision criteria.(Note: Deviations requested by the customer shall not impact the integrity of the laboratory or the validity of the results).</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:100%" colspan="3">
+                                    <p>3. If Measurement Uncertainty to be considered for decision on compliance, MCIND's calculated Measurement Uncertainty at confidence level of approximately 95% will be acceptable.</p>
+                                </td>
+                            </tr>
+                        </table>
+                        <p style="page-break-before:always;"> </p>
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <td style="width:100%;padding-top:15px;" colspan="3" class="text-center">
+                                    <strong>(Decision criteria cannot be changed after preparation of work order)</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:100%" colspan="3">
+                                    <strong>Post delivery requirement:</strong> (x) Physical copy of report by courier ( x ) Encrypted soft copy through email.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:100%" colspan="3">
+                                    <strong>Sample delivery condition: Box packing</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:100%" colspan="3">
+                                    <strong>Other Special Requirement:Test to be completed within committed timelines of 14-16 days of receiving samples.</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:100%;font-size:10px;" colspan="3">
+                                    <strong>Terms &amp; conditions</strong>
+                                    <p>1.MCIND is responsible, through legally enforceable commitments for the management of all information obtained or created during theperformance of testing/calibration activities. MCIND will inform, in advance, of the information it intends to place in the public domain, except for information that the Customer makes publicly available, or when agreed between the MCIND and the Customer (e.g. for the purpose of responding to complaints). All other information is considered proprietary information will be regarded as confidential.</p>
+                                    <p>2.MCIND ensures that, whenever required by law or authorized by contractual arrangements to release confidential information of customeror individual concerned, unless prohibited by law, information is provided only after notifying the customer.</p>
+                                    <p>3.Information about the customer obtained from sources other than the customer (e.g. complainant, regulators) is treated as confidentialbetween the customer and MCIND. The provider (source) of this information is kept confidential to the MCIND and will not be shared with the customer, unless agreed by the source.</p>
+                                    <p>4.MCIND will keep all information confidential except it provides the test report verification service for the authenticity of the reportsreceived against the written request received from utilities, government organizations, PSUs etc.</p>
+                                    <p>5.Whenever drawings are submitted by customer, the customer has guaranteed that the equipment submitted for testing has beenmanufactured in accordance with drawings submitted.</p>
+                                    <p>6.If any additional test required by the customer, kindly mentioned with cl. No. or test name in the technical form.</p>
+                                    <p>7.Testing of sample will be initiated after submission of these details and payment.</p>
+                                    <p>8.We provide the undertaking that the above mentioned samples are manufactured by us and if not the NOC from the manufacturer issubmitted along with this test request (NA for calibration).</p>
+                                    <p>9.All possible care will be taken in handling the sample, but the risk of damages in transit or during testing rests with the client. MCINDwill not be responsible for any damage to the samples during loading, unloading, shifting and testing or due to acts of God like fire,accidents, storms, earthquakes etc.</p>
+                                    <p>10.MCIND will not be responsible if a test has to be postponed because of non-availability of power, malfunctioning of the equipments etc.</p>
+                                    <p>11.In case of any dispute, the decision of the authorised personnel of MCIND shall be final.</p>
+                                    <p>12.In case of any dispute, Vadodara will be the exclusive jurisdiction &amp; shall be construed as where the cause has arised.</p>
+                                    <p>13.Acceptance of terms &amp; conditions must be communicated by the customer to MCIND within 7 days. If the same is not received within 7days, it will be presumed that MCIND's terms &amp; conditions are acceptable to the customer.</p>
+                                    <p>14.Tested samples must be removed from MCIND’s campus within 30 days from date of issue of test report. In case of samples are notremoved within 30 days, applicable demurrage will be charged for next 30 days and thereafter sample will be disposed off at the risk of customer.</p>
+                                    <p>15.For development testing, MCIND will not issue any report or document of any kind containing the results.</p>
+                                    <p>16.The details mentioned above are correct to best of my knowledge &amp; belief. I abide by the same, and understand its importance. I fullyagree upon for no change whatsoever from our side &amp; request to proceed for testing as per allotted schedule.</p>
+                                    <br/><br/><br/><br/>
+                                    <strong>I accept &amp; agree terms &amp; Conditions ( ) Yes ( ) No, Name of person:</strong>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <td style="width:100%;padding-top:12px;" colspan="2" class="text-center">
+                                    <strong>Part 3 For Mitsui Chemicals India Pvt. Ltd - Solar PV Lab use</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:50%">
+                                    <strong>19 a.Sample Quantity Received: <span t-field="o.sample_quantity_received"/></strong>
+                                </td>
+                                <td style="width:50%">
+                                    <strong>19 b.Samples received in good condition: <span t-field="o.samples_received_in_good_condition"/></strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:100%" colspan="2">
+                                    <p>Test Method Competency available with The Mitsui Chemicals India Pvt. Ltd : <span t-field="o.test_method_competency_available"/></p>
+                                    <p>If no, does the completion requires sub-contracting: <span t-field="o.if_no_does_the_completion_requires_sub_contracting"/></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:100%" colspan="2">
+                                    <p>Report Duration Feasible: <span t-field="o.report_duration_feasible"/></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:50%">
+                                    <p>( ) Accept the request</p>
+                                </td>
+                                <td style="width:50%">
+                                    <p>( ) Not accepted, mention reason:</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:50%">
+                                    <p>Reviewed By (Technical Manager):</p>
+                                    <p>Name:</p>
+                                    <p>Sign:</p>
+                                </td>
+                                <td style="width:50%">
+                                    <p>Date:</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:100%" colspan="2">
+                                    <p style="color:red">Note : * - To be updated by Technical manager upon approval for Test</p>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

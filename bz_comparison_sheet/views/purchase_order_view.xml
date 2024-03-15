@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="purchase_order_form_comparison" model="ir.ui.view">
+        <field name="name">purchase.order.comparison</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+        	
+        	<xpath expr="//page[@name='purchase_delivery_invoice']" position="after">
+        		<page string="Indent Information">
+        			<group>
+        				<group>
+        					<field name="performance" />
+        					<field name="credentials"  />
+        					<field name="commercial_rating"  />
+        					<field name="technical_rating"  />
+        					<field name="final_recommendtation"  />
+        				</group>
+						<group>
+							<field name="any_other" />
+        					<field name="delivery" />
+        					<field name="ld_clause" />
+        					<field name="warranty" />
+		    			</group>
+        			</group>
+        			<group string="Charges">
+        				<group>
+        					<label for="packing_forwarding" />
+        					<div class="o_row" name="packing_forwarding">
+				                <field name="packing_forwarding" nolabel="1"/>
+				                <field name="packing_forwarding_charges" attrs="{'required': [('packing_forwarding', 'in', ['fixed','percentage'])]}" />
+                   			 </div>
+                   			 
+                   			 
+                   			<label for="other" />
+        					<div class="o_row" name="other">
+				                <field name="other" nolabel="1"/>
+				                <field name="other_charges" attrs="{'required': [('other', 'in', ['fixed','percentage'])]}" />
+                   			 </div>
+        				</group>
+						<group>
+							<label for="freight" />
+        					<div class="o_row" name="freight">
+				                <field name="freight" nolabel="1"/>
+				                <field name="freight_charges" attrs="{'required': [('freight', 'in', ['fixed','percentage'])]}" />
+                   			 </div>
+		    			</group>
+        			</group>
+        			<group string="Extra Taxes">
+        				<group>
+	    					<field name="landed_cost_lc" />
+						</group>
+						<group>
+	    					<field name="landed_cost_lc_gst" />
+						</group>
+					</group>
+        		</page>
+        		
+        	</xpath>
+        
+        </field>
+    </record>
+</odoo>

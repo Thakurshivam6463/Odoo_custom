@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+       <record id="project_or_code_inherited" model="ir.ui.view">
+        <field name="name">project.form.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+           <field name="arch" type="xml">
+               <xpath expr="//field[@name = 'partner_email']" position="after">
+                   <field name="qr_code" widget='image' class="oe_avatar"
+                    />
+                   <field name="nabl" widget='image' class="oe_avatar"
+                    />
+               </xpath>
+      </field>
+  </record>
+   </data>
+</odoo>
+<!--
+qr = qrcode.QRCode(
+                   version=1,
+                   error_correction=qrcode.constants.ERROR_CORRECT_L,
+                   box_size=3,
+                   border=4,
+               )-->

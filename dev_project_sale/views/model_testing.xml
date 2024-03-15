@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_dev_testing_form" model="ir.ui.view">
+        <field name="name">view.dev.testing.form</field>
+        <field name="model">dev.testing</field>
+        <field name="arch" type="xml">
+            <form string="Testing">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="code"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="checklist_ids" widget="many2many_tags"/>                        
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    
+    <record id="view_dev_testing_tree" model="ir.ui.view">
+        <field name="name">view.dev.testing.tree</field>
+        <field name="model">dev.testing</field>
+        <field name="arch" type="xml">
+            <tree string="Testing">
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_model_testing_filter" model="ir.ui.view">
+        <field name="name">view.dev.dev.testing.filter</field>
+        <field name="model">dev.testing</field>
+        <field name="arch" type="xml">
+            <search string="Testing">
+                <field name="name"/>
+                <field name="code"/>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_dev_model_testing" model="ir.actions.act_window">
+        <field name="name">Testing</field>
+        <field name="res_model">dev.testing</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add Testing
+            </p>
+        </field>
+    </record>
+
+    <menuitem name="Testing" id="menu_dev_model_testing" 
+              action='action_dev_model_testing'
+              parent='sale.menu_sale_config' sequence="100" />
+    
+
+</odoo>

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <template id="report_quotation_1" inherit_id="purchase.report_purchasequotation_document">
+             <xpath expr="//t[@t-call='web.external_layout']" position="replace">
+           <t t-call="web.external_layout">
+             <t t-if="False">
+            <div style="display:none; border:1px solid red;">
+            <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+                    <t t-set="address" style="border:1px solid red;">
+                        <div t-field="o.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                        <p t-if="o.partner_id.vat"><t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="o.partner_id.vat"/></p>
+                    </t>
+                    <t t-if="o.dest_address_id">
+                        <t t-set="information_block">
+                            <strong>Shipping address123:</strong>
+                            <div t-if="o.dest_address_id">
+                                <div t-field="o.dest_address_id"
+                                    t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}' name="purchase_shipping_address"/>
+                            </div>
+
+                        </t>
+                    </t>
+                </div>
+            </t>
+            <center>
+                <t t-call="indian_gst_calculation.custom_external_purchase_order_layouts_quo">
+                    <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+                    <div class="page">
+                        <div class="row" style="font-size:11px">
+                            <div class="col-xs-12">
+                                <style type="text/css">
+                                              @media print
+                                    table { page-break-inside:auto; border-collapse: separate;border-spacing:0 15px;}
+                                    tr    { page-break-inside:avoid; page-break-after:auto }
+                                    th, td{ width:150px;
+                                            padding:5px}
+                                    thead { display:table-header-group }
+                                    tfoot { display:table-footer-group }
+<!---->
+                                    .border-none, table, tr, td, h4, span, b{
+                                        border:1px solid #ffffff !important;
+                                    }
+                                </style>
+
+                                            <center>
+                                                <h4 style="border:1px solid #fff !important;">
+                                                    <span><b>Request for Quotation</b></span>
+                                                </h4>
+                                            </center>
+                                    <table style="border:1px solid #000 !important; margin-top:0px !important; margin-bottom:0px !important; padding:0px !important;width:100%;"  >
+                                    <tr style="border:1px solid #000 !important;">
+                                        <td style="border:1px solid #000 !important;" colspan="11">
+                                            <t t-if="o.company_id.company_gst_number">
+                                            <b t-if="o.company_id.company_gst_number"> Company GSTIN: </b><t t-esc="o.company_id.company_gst_number"/><br/>
+                                            </t>
+                                            <b>Req. for Quotation Number: </b><t t-esc="o.name"/><br/>
+                                            <b>Order Date: </b><span t-field="o.date_order" t-field-options="{&quot;format&quot;: &quot;dd-MM-yyyy&quot;}" /><![CDATA[&nbsp; &nbsp; &nbsp;]]>
+                                            <span t-if="o.company_id.vat"><b>TIN: </b><span t-field="o.company_id.vat"/></span>
+                                        </td>
+                                    </tr>
+                                    <tr style="border:1px solid #000 !important;">
+                                        <td style="border:1px solid #000 !important;" width="50%" colspan="6"> <center><b>Details of Receiver</b></center></td>
+                                         <td style="border:1px solid #000 !important;" width="50%" colspan="5"><center><b>Details of Consignee(Shipping Address)</b></center></td>
+                                    </tr>
+                                    <tr style="border:1px solid #000 !important;">
+
+                                        <td style="border:1px solid #000 !important;" colspan="6">
+                                        <b> Name: </b>  <t t-esc="o.partner_id.name"/><br/>
+                                        <b> Address:</b>    <t t-esc="o.partner_id.street"/><br/>
+                                        <b> City:</b>  <t t-esc="o.partner_id.city"/><![CDATA[&nbsp; &nbsp; ]]>
+                                        <b> State:</b>  <t t-esc="o.partner_id.state_id.name"/><br/>
+                                        <b> Country:</b>  <t t-esc="o.partner_id.country_id.name"/> <![CDATA[&nbsp; &nbsp;]]>
+                                        <b> Pin code:</b> <t t-esc="o.partner_id.zip"/><br/>
+                                        <b> GSTIN Number:</b> <t t-esc="o.partner_id.partner_gst_number"/>
+                                        <span t-if="o.partner_id.vat"><b>TIN: </b><span t-field="o.partner_id.vat"/></span></td>
+
+                                        <!-- Shipping Address -->
+                                        <td style="border:1px solid #000 !important;" colspan="5" t-if="o.dest_address_id">
+                                        <b> Name: </b>  <t t-esc="o.dest_address_id.name"/><br/>
+                                        <b> Address:  </b>  <t t-esc="o.dest_address_id.street"/><br/>
+                                        <b> City:</b>  <t t-esc="o.dest_address_id.city"/><![CDATA[&nbsp; &nbsp; ]]>
+                                        <b> State:</b>  <t t-esc="o.dest_address_id.state_id.name"/><br/>
+                                        <b> Country:</b>  <t t-esc="o.dest_address_id.country_id.name"/> <![CDATA[&nbsp; &nbsp; ]]>
+                                        <b> Pin code:</b> <t t-esc="o.dest_address_id.zip"/><br/>
+                                        <b> GSTIN Number: </b><t t-esc="o.partner_id.partner_gst_number"/>
+                                        <span t-if="o.partner_id.vat"><b>TIN: </b><span t-field="o.partner_id.vat"/></span></td>
+
+                                        <td style="border:1px solid #000 !important;" colspan="5" t-if="not o.dest_address_id and o.picking_type_id.warehouse_id">
+                                        <b> Name: </b>  <t t-esc="o.picking_type_id.warehouse_id.name"/><br/>
+                                        <b> Address:  </b>  <t t-esc="o.picking_type_id.warehouse_id.partner_id.street"/><br/>
+                                        <b> City:</b>  <t t-esc="o.picking_type_id.warehouse_id.partner_id.city"/><![CDATA[&nbsp; &nbsp; ]]>
+                                        <b> State:</b>  <t t-esc="o.picking_type_id.warehouse_id.partner_id.state_id.name"/><br/>
+                                        <b> Country:</b>  <t t-esc="o.picking_type_id.warehouse_id.partner_id.country_id.name"/> <![CDATA[&nbsp; &nbsp; ]]>
+                                        <b> Pin code:</b> <t t-esc="o.picking_type_id.warehouse_id.partner_id.zip"/><br/>
+                                        <b> GSTIN Number: </b><t t-esc="o.partner_id.partner_gst_number"/>
+                                        <span t-if="o.partner_id.vat"><b>TIN: </b><span t-field="o.partner_id.vat"/></span></td>
+
+                                        <td style="border:1px solid #000 !important;" colspan="5" t-if="o.dest_address_id and not o.picking_type_id.warehouse_id">
+                                        <b> Name: </b>  <t t-esc="o.dest_address_id.name"/><br/>
+                                        <b> Address:  </b>  <t t-esc="o.dest_address_id.street"/><br/>
+                                        <b> City:</b>  <t t-esc="o.dest_address_id.city"/><![CDATA[&nbsp; &nbsp; ]]>
+                                        <b> State:</b>  <t t-esc="o.dest_address_id.state_id.name"/><br/>
+                                        <b> Country:</b>  <t t-esc="o.dest_address_id.country_id.name"/> <![CDATA[&nbsp; &nbsp; ]]>
+                                        <b> Pin code:</b> <t t-esc="o.dest_address_id.zip"/><br/>
+                                        <b> GSTIN Number: </b><t t-esc="o.partner_id.partner_gst_number"/>
+                                        <span t-if="o.partner_id.vat"><b>TIN: </b><span t-field="o.partner_id.vat"/></span></td>
+                                    </tr>
+                                    </table>
+
+                                <table style="border:1px solid #000 !important; margin-top:0px !important; margin-bottom:0px !important; padding:0px !important; width:100%;" >
+                                    <thead>
+                                        <tr style="border:1px solid #000 !important;">
+                                            <th><b>No</b></th>
+                                            <th><b> Description of Goods</b></th>
+                                            <th><b>Expected Date</b></th>
+                                            <th class="text-center"><b>Qty</b></th>
+                                            <th class="text-center"><b>UOM</b></th>
+                                            <th class="text-center"><b>Rate</b></th>
+                                            <th class="text-center"><b>CGST</b></th>
+                                            <th class="text-center"><b>SGST</b></th>
+                                            <th class="text-center"><b>IGST</b></th>
+                                            <th class="text-center"><b>UTGST</b></th>
+                                            <th class="text-center"><b>Total</b></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="invoice-body">
+                                     <tr t-foreach="o.order_line" t-as="l">
+                                        <t t-set="order_line" t-value='l'/>
+                                        <td> <t t-esc="l_index+1"/></td>
+                                        <td><span t-field="l.product_id.name"/></td>
+                                        <td><t t-esc="l.date_planned"/></td>
+                                        <td><t t-esc="l.product_qty"/></td>
+                                        <td><t t-esc="l.product_uom.name" groups="product.group_uom"/></td>
+                                        <td class="text-right">
+                                            <t t-esc="l.price_unit" t-esc-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="l.purchase_amount_CGST" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/><br/>
+                                             <span style="color:#696969">@<t t-esc="'%.2f' %(l.purchase_CGST)"/>%</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="l.purchase_amount_SGST" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/><br/>
+                                             <span style="color:#696969">@<t t-esc="'%.2f' %(l.purchase_SGST)"/>%</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="l.purchase_amount_IGST" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/><br/>
+                                             <span style="color:#696969">@<t t-esc="'%.2f' %(l.purchase_IGST)"/>%</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="l.purchase_amount_UTGST" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/><br/>
+                                             <span style="color:#696969">@<t t-esc="'%.2f' %(l.purchase_UTGST)"/>%</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="l.price_subtotal" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr style="border:1px solid #000 !important;">
+                                        <td style="border:1px solid #000 !important;" colspan="6" class="text-center"><b>Purchase Amount (In Words)</b>
+                                        </td>
+                                        <td style="border:1px solid #000 !important;" colspan="4" class="text-right"><b>Total</b></td>
+                                        <td style="border:1px solid #000 !important;" class="text-right">
+                                            <span t-field="o.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:1px solid #000 !important; " rowspan="6" colspan="6" class="text-center">
+                                            <b>INR </b><span t-esc="o.amount_to_text(o.amount_total, o.currency_id)"/>
+                                        </td>
+                                        <td colspan="4" class="text-right"><b>Add : CGST</b> </td>
+                                        <td class="text-right">
+                                            <span t-field="o.amount_CGST" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-right"><b>Add : SGST</b></td>
+                                        <td class="text-right">
+                                            <span t-field="o.amount_SGST" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-right"><b>Add : IGST</b></td>
+                                        <td class="text-right">
+                                            <span t-field="o.amount_IGST" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-right"><b>Add : UTGST</b></td>
+                                        <td class="text-right">
+                                            <span t-field="o.amount_UTGST" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr style="border:1px solid #000 !important;">
+                                        <td style="border:1px solid #000 !important;" colspan="4" class="text-right">
+                                            <span t-if="not o.amount_CGST and not o.amount_SGST and not o.amount_IGST and not o.amount_UTGST"><b>Total Tax Amount: Other Taxes</b></span>
+                                            <span t-if="o.amount_CGST or o.amount_SGST or o.amount_IGST or o.amount_UTGST"><b>Total Tax Amount: GST</b></span>
+                                        </td>
+                                        <td style="border:1px solid #000 !important;" class="text-right">
+                                            <span t-field="o.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr style="border:1px solid #000 !important;">
+                                        <td style="border:1px solid #000 !important;" colspan="4" class="text-right"><b>Total Amount </b></td>
+                                        <td style="border:1px solid #000 !important;" class="text-right">
+                                            <b><span t-field="o.amount_total" t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/></b>
+                                        </td>
+                                    </tr>
+                                    <tr style="border:1px solid #000 !important;">
+                                        <td style="border:1px solid #000 !important; " colspan="6" class="text-center"><b> Notes:</b></td>
+                                        <td style="border:1px solid #000 !important;" colspan="5" class="text-center"><b><t t-esc="o.company_id.name"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:1px solid #000 !important;" rowspan="4" colspan="6"><t t-esc="o.notes"/></td>
+                                        <td colspan="5">Signature:</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" class="text-center"><b>Authorised Signatory</b></td>
+                                    </tr>
+                                    <tr style="border:1px solid #000 !important;">
+                                        <td style="border:1px solid #000 !important;" colspan="5">Name: <!-- <t t-esc="o.user_id.name"/> --></td>
+                                    </tr>
+                                    <tr style="border:1px solid #000 !important;">
+                                        <td style="border:1px solid #000 !important;" colspan="5">Designation: </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </center>
+            </t>
+             </xpath>
+        </template>
+        <template id="custom_external_purchase_order_layouts_quo">
+            <!-- Multicompany -->
+            <center>
+            <t t-if="not o and doc">
+                <t t-set="o" t-value="doc"/>
+            </t>
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+            <t t-call="indian_gst_calculation.custom_external_layout_header_quo" />
+            <t t-raw="0" />
+<!--            <t t-call="indian_gst_calculation.custom_external_layout_footer" />-->
+        </center>
+        </template>
+
+        <template id="custom_external_layout_header_quo">
+            <div class="header">
+                <center>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 100px; margin-top:26px !important; padding-top:17px !important;"/>
+                    </div>
+                    <div class="col-xs-8 text-right" name="company_address" style="margin-top:20px !important; padding-top:5px !important;">
+                        <div>
+                            <span t-field="company.name" style="font-size:16pt;font-family:helvetica-neue-bold; display:block;color:#565656"/>
+                        </div>
+                        <div>
+                            <i class="fa fa-map-marker" style="font-size:12pt;color:#da607f;margin-right: 5px;"></i>
+                            <span t-field="company.street" style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000"/><span style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000">,</span>
+                            <span t-field="company.street2" style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000"/><span style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000">,</span>
+                            <span t-field="company.country_id.name" style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000"/><span style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000">,</span>
+                            <span t-field="company.zip" style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000"/><span style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal; display:inline-block;color:#000000">.</span>
+                        </div>
+                        <div>
+                            <i class="fa fa-envelope-o" style="font-size:12pt;color:#da607f;margin-right: 5px;"></i>
+                            <span t-field="company.email" style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000;"/>
+                            <i class="fa fa-globe" style="font-size:12pt;color:#da607f;margin-right: 5px; margin-left: 5px; margin-bottom:0px;"></i>
+                            <span t-field="company.website" style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000;"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row zero_min_height">
+                    <div class="col-xs-12">
+                        <div style="border-bottom: 1px solid black;"></div>
+                    </div>
+                </div>
+            </center>
+            </div>
+        </template>
+
+        <template id="report_purchasequotation">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="purchase.report_purchasequotation_document" t-lang="o.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_trf,access.trf,model_trf,,1,1,1,1
+access_document_details,access.document.details,model_document_details,,1,1,1,1
+access_scope_matrix,access.scope.matrix,model_scope_matrix,,1,1,1,1
+access_test_scope,access.test.scope,model_test_scope,,1,1,1,1

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_contract_form_inherited" model="ir.ui.view">
+        <field name="name">hr.contract.view.form.inherit</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="om_hr_payroll.hr_contract_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='da']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//group[@name='allowances']/div[2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//label[@for='travel_allowance']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//group[@name='allowances']/div[3]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//group[@name='allowances']/div[1]" position="after">
+                <field name="is_type_id" invisible="1"/>
+                <field name="hra_exemptions" invisible="1"/>
+                <label for="conveyance_allowance" attrs="{'invisible':[('is_type_id','=',True)]}"/>
+                <div class="o_row" attrs="{'invisible':[('is_type_id','=',True)]}">
+                    <field name="conveyance_allowance" nolabel="1"/>
+                    <span>/ month</span>
+                </div>
+            </xpath>
+            <xpath expr="//group[@name='allowances']" position="attributes">
+                <attribute name="attrs">{'invisible':[('is_type_id','=',True)]}</attribute>
+            </xpath>
+            <xpath expr="//group[@name='allowances']" position="after">
+                <group string="Monthly Deduction in Cash" name='deduction'>
+                    <label for="pf" attrs="{'invisible':[('is_type_id','=',True)]}"/>
+                    <div class="o_row" attrs="{'invisible':[('is_type_id','=',True)]}">
+                        <field name="pf" nolabel="1"/>
+                        <span>%</span>
+                    </div>
+                    <label for="pt" attrs="{'invisible':[('is_type_id','=',True)]}"/>
+                    <div class="o_row" attrs="{'invisible':[('is_type_id','=',True)]}">
+                        <field name="pt" nolabel="1"/>
+                        <span>/ month</span>
+                    </div>
+                    <label for="tds"/>
+                    <div class="o_row">
+                        <field name="tds" nolabel="1" attrs="{'invisible':[('is_type_id','=',True)]}"/>
+                        <field name="consultant_tds" nolabel="1" attrs="{'invisible':[('is_type_id','=',False)]}"/>
+                        <span attrs="{'invisible':[('is_type_id','=',True)]}">/ month</span>
+                        <span attrs="{'invisible':[('is_type_id','=',False)]}">%</span>
+                    </div>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='hr_responsible_id']" position="after">
+                <field name="pay_structure"/>
+            </xpath>
+        </field>
+    </record>
+    <!--Contract base view-->
+    <record id="hr_contract_view_form_custom" model="ir.ui.view">
+        <field name="name">hr.contract.form</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='wage']" position="attributes">
+                <attribute name="attrs">{'invisible':[('is_type_id','=',True)]}</attribute>
+            </xpath>
+            <xpath expr="//div[@name='wage']" position="attributes">
+                <attribute name="attrs">{'invisible':[('is_type_id','=',True)]}</attribute>
+            </xpath>
+            <xpath expr="//div[@name='wage']" position="after">
+                <label for="consultant_pay" attrs="{'invisible':[('is_type_id','=',False)]}"/>
+                <div class="o_row" attrs="{'invisible':[('is_type_id','=',False)]}">
+                    <field name="consultant_pay" nolabel="1"/>
+                    <span>/ month</span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

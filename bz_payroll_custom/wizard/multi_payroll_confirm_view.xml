@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="confirm_multi_payroll_form" model="ir.ui.view">
+        <field name="name">multi.payslip.confirm.wizard.form</field>
+        <field name="model">multi.payslip.confirm.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="payroll_ids" widget="many2many_tags"
+                        domain="[('state', '!=', 'done')]"/>
+                </group>
+                <footer>
+                    <button string="Confirm Payrolls" name="multi_payroll_confirm" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_confirm_multi_payroll" model="ir.actions.act_window">
+        <field name="name">Confirm Payrolls</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">multi.payslip.confirm.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_multi_payroll_confirm"
+              action="action_confirm_multi_payroll" groups="om_hr_payroll.group_hr_payroll_manager"
+              parent="om_hr_payroll.menu_hr_payroll_root" sequence="12"/>
+
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+    <record id="view_crm_sale_project_form" model="ir.ui.view">
+        <field name="name">view_crm_sale_project_form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_sale_quotations_new']" position="replace">
+                <button string="New Quotation" name="action_sale_quotations_new" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('type', '=', 'lead'), ('probability', '&lt;', 100)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

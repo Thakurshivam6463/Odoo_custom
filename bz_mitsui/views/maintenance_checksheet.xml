@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- create tree view -->
+    <record id="view_maintenance_checksheet_tree" model="ir.ui.view">
+        <field name="name">maintenance.checksheet.tree</field>
+        <field name="model">maintenance.checksheet</field>
+        <field name="arch" type="xml">
+            <tree expand="1">
+                <field name="check_point"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- create form view -->
+     <record id="view_maintenance_checksheet_form" model="ir.ui.view">
+        <field name="name">maintenance.checksheet.form</field>
+        <field name="model">maintenance.checksheet</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                             <field name="check_point"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+      <!-- create tree view -->
+     <!-- check point action -->
+    <record id="view_action_checksheet_tree" model="ir.ui.view">
+        <field name="name">action.checksheet.tree</field>
+        <field name="model">action.checksheet</field>
+        <field name="arch" type="xml">
+            <tree expand="1">
+                <field name="action_sheet"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- create form view -->
+     <record id="view_action_checksheet_form" model="ir.ui.view">
+        <field name="name">action.checksheet.form</field>
+        <field name="model">action.checksheet</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                             <field name="action_sheet"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <!-- Acton Model -->
+    <record id="action_maintenance_checksheet" model="ir.actions.act_window">
+        <field name="name">Maintenance CheckSheet</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">maintenance.checksheet</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                maintenance checksheet From!
+            </p>
+        </field>
+    </record>
+
+
+    <!-- Menu Item -->
+    <menuitem id="menu_maintenance_checksheet"
+              name=" Checksheet"
+              parent="maintenance.menu_maintenance_configuration"
+              action="action_maintenance_checksheet"
+              sequence="20"/>
+
+    <record id="action_checksheet_action" model="ir.actions.act_window">
+        <field name="name">Action CheckSheet</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">action.checksheet</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                action checksheet From!
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_action_checksheet"
+              name=" Check Point Action"
+              parent="maintenance.menu_maintenance_configuration"
+              action="action_checksheet_action"
+              sequence="30"/>
+
+</odoo>

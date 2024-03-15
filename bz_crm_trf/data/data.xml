@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="0">
+
+        <!-- Sequences for TRF Form -->
+        <record id="seq_trf_form" model="ir.sequence">
+            <field name="name">TRF Sequence</field>
+            <field name="code">trf</field>
+            <field name="prefix">MCIND/23-24/Solar/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for Scope Matrix Form -->
+        <record id="seq_scope_form" model="ir.sequence">
+            <field name="name">Scope Matrix Sequence</field>
+            <field name="code">scope.matrix</field>
+            <field name="prefix">Scope/23-24/Solar/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

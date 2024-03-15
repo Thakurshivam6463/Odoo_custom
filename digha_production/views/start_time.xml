@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+         <!-- master data for valueaddproduct -->
+        <record model="ir.ui.view" id="start_time_tree">
+            <field name="name">start.time.tree</field>
+            <field name="model">start.time</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="froms"/>
+                    <field name="to"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="start_time_form">
+            <field name="name">start.time.from</field>
+            <field name="model">start.time</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="froms"/>
+                                <field name="to"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="action_start_time">
+            <field name="name">Start Time</field>
+            <field name="res_model">start.time</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Sub Menu -->
+
+        <menuitem name="Time"
+                  id="menu_time"
+                  parent="menu_configuration"
+                  sequence="30"
+                  action="action_start_time"/>
+
+    </data>
+</odoo>

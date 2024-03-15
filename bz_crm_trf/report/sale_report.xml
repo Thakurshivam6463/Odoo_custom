@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <template id="sales_report_inherit" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//img" position="replace">
+                <h1>zxcfghj</h1>
+            </xpath>
+        </template>
+    </data>
+</odoo>

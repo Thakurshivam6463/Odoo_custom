@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="order_execution_list">
+        <field name="name">order.execution.list</field>
+        <field name="model">order.execution</field>
+        <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+        </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="order_execution_form">
+      <field name="name">order.execution.form</field>
+      <field name="model">order.execution</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+          </header>
+          <sheet>
+              <div class="oe_title">
+                    <h1>
+                      <field name="name" readonly="0"/>
+                    </h1>
+              </div>
+              <notebook>
+                  <page name="order_confirmation" string="Order Confirmation">
+                      <group>
+                          <group string="PI Issued">
+                              <field name="booked_by"/>
+                              <field name="pi_number"/>
+                              <field name="order_confirmation_date"/>
+                              <field name="processor"/>
+                          </group>
+                          <group string="PO From Buyer">
+                              <field name="po_number"/>
+                          </group>
+                      </group>
+                  </page>
+                  <page name="order_details" string="Order Details">
+                      <group string="Purchase Order">
+                          <group>
+                              <field name="po_date"/>
+                              <field name="consignee"/>
+                              <field name="order_detail_type"/>
+                              <field name="order_detail_assortment"/>
+                          </group>
+                          <group>
+                              <field name="packing_instructions"/>
+                              <field name="loading_instructions"/>
+                              <field name="payment_terms"/>
+                              <field name="shipment_date"/>
+                          </group>
+                      </group>
+                  </page>
+                  <page name="da_department" string="QA Department">
+                      <group>
+                          <group string="Code List">
+                              <field name="request_date"/>
+                              <field name="issued_date"/>
+                          </group>
+                          <group string="Test Reports">
+                              <field name="buyer_approval_date"/>
+                              <field name="third_party_lab"/>
+                              <field name="test_report"/>
+                              <field name="eia_sample_payment"/>
+                              <field name="letter_for_drawing_sample"/>
+                              <field name="arrival_eia_collect_sample"/>
+                              <field name="test_results"/>
+                          </group>
+                      </group>
+                  </page>
+                  <page name="label_header_cards" string="Label &amp; Header Cards">
+                      <group>
+                          <field name="draft_from_buyer"/>
+                          <field name="draft_from_printer"/>
+                          <field name="buyer_approval"/>
+                      </group>
+                  </page>
+                  <page name="packing_material" string="Packing Material">
+                      <group>
+                          <field name="labels_header_cards"/>
+                          <field name="polythene"/>
+                          <field name="chemical"/>
+                          <field name="carton"/>
+                      </group>
+                  </page>
+                  <page name="quality_inspection" string="Quality Inspection">
+                      <group>
+                          <field name="buyer_arrival"/>
+                          <field name="self_inspection"/>
+                          <field name="buyer_inspection"/>
+                      </group>
+                  </page>
+                  <page name="production_status" string="Production Status">
+                      <group>
+                          <field name="readiness_of_cargo"/>
+                          <field name="final_packed"/>
+                          <field name="container_loading"/>
+                      </group>
+                  </page>
+                  <page name="certificate" string="Certificate">
+                      <group>
+                           <field name="health_certificate"/>
+                           <field name="cfe_certificate"/>
+                      </group>
+                  </page>
+                  <page name="export" string="Export">
+                      <group>
+                          <group string="Approval for Loading">
+                              <field name="buyer_approval_online"/>
+                              <field name="buyer_approval_container"/>
+                          </group>
+                          <group string="Container">
+                              <field name="payment"/>
+                              <field name="container_lifted"/>
+                              <field name="container_arrival"/>
+                              <field name="invoice_number"/>
+                              <field name="dispatch_from_factory"/>
+                          </group>
+                      </group>
+                  </page>
+                  <page name="finance" string="Finance">
+                      <group>
+                          <field name="payment_terms_finance"/>
+                          <field name="adv_payment_date"/>
+                          <field name="funds_received_date"/>
+                          <field name="duty_draw_back_receipt"/>
+                          <field name="rodtep_script_generation"/>
+                      </group>
+                  </page>
+                  <page name="other" string="Others">
+                      <group>
+                          <group>
+                              <field name="order_execution_time"/>
+                              <field name="shipment_to_fund_transfer_time"/>
+                          </group>
+                          <group>
+                              <field name="agent_commission"/>
+                              <field name="po_to_production_timing"/>
+                              <field name="name_of_concern_persons"/>
+                          </group>
+                      </group>
+                      <group>
+                          <field name="remarks"/>
+                          <field name="reason"/>
+                      </group>
+                  </page>
+              </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="action_order_execution">
+      <field name="name">Order Execution</field>
+      <field name="res_model">order.execution</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="order_execution_list"/>
+    </record>
+
+    <!-- Sub Menu -->
+    <menuitem name="Order Execution"
+      id="menu_order_execution"
+      parent="production.menu_root_fish_management"
+      action="action_order_execution"/>
+
+  </data>
+</odoo>

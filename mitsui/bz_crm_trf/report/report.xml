@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="report_trf_pdf" model="ir.actions.report">
+        <field name="name">TRF PDF</field>
+        <field name="model">trf</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">bz_crm_trf.report_trf_pdf1</field>
+        <field name="report_file">bz_crm_trf.report_trf_pdf1</field>
+        <field name="binding_model_id" ref="model_trf"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_scope_matrix_pdf" model="ir.actions.report">
+        <field name="name">Scope Matrix PDF</field>
+        <field name="model">scope.matrix</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">bz_crm_trf.report_scope_pdf1</field>
+        <field name="report_file">bz_crm_trf.report_scope_pdf1</field>
+        <field name="binding_model_id" ref="model_scope_matrix"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_proposal_pdf" model="ir.actions.report">
+            <field name="name">Proposal</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">bz_crm_trf.report_proposal_pdf1</field>
+            <field name="report_file">bz_crm_trf.report_proposal_pdf1</field>
+            <!--<field name="print_report_name">(object.state in ('draft', 'sent') and 'Quotation - %s' % (object.name)) or 'Order - %s' % (object.name)</field>-->
+            <field name="binding_model_id" ref="model_sale_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+</odoo>

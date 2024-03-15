@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_testing_checklist_tree" model="ir.ui.view">
+        <field name="name">view.testing.checklist.tree</field>
+        <field name="model">testing.checklist</field>
+        <field name="arch" type="xml">
+            <tree string="Checklist" editable="bottom">
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_testing_checklist_filter" model="ir.ui.view">
+        <field name="name">view.dev.testing.checklist.filter</field>
+        <field name="model">testing.checklist</field>
+        <field name="arch" type="xml">
+            <search string="Checklist">
+                <field name="name"/>
+                <field name="code"/>
+            </search>
+        </field>
+    </record>
+
+
+    <record id="action_dev_testing_checklist" model="ir.actions.act_window">
+        <field name="name">Testing Checklist</field>
+        <field name="res_model">testing.checklist</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add Checklist
+            </p>
+        </field>
+    </record>
+
+    <menuitem name="Testing Checklist" id="menu_dev_model_testing_checklist" 
+              action='action_dev_testing_checklist'
+              parent='sale.menu_sale_config' sequence="100" />
+    
+
+</odoo>

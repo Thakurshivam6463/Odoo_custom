@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="maintenance_check_list_inherit" model="ir.ui.view">
+        <field name="name">maintenance.request.inherit</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position="after">
+                <notebook>
+                    <page name="maintenance_checklist" string="Maintenance Checklist">
+                        <form string="Maintenance Checklist">
+                            <sheet>
+                                <field name="manit_ids">
+                                    <tree editable="bottom">
+                                        <field name="checklist_id"/>
+                                        <field name="action_ids" widget="many2many_tags"/>
+                                        <field name="verification"/>
+                                        <field name="actions_taken"/>
+                                        <field name="maintenance"/>
+                                        <field name="intermidiate_check"/>
+                                        <field name="comments"/>
+                                    </tree>
+                                </field>
+                            </sheet>
+                        </form>
+                    </page>
+                </notebook>
+            </xpath>
+            <xpath expr="//div[3]" position="after">
+                <group>
+                    <field name="description"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

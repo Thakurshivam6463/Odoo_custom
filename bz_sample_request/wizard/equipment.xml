@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- create form view -->
+    <record id="wizard_equipment_view" model="ir.ui.view">
+        <field name="name">wizard.equipment</field>
+        <field name="model">wizard.equipment</field>
+        <field name="arch" type="xml">
+            <form string="Task">
+                <sheet>
+                    <group>
+                            <field name="project_id"/>
+                            <field name="customer"/>
+                            <field name="task_ids" widget="many2many_tags"/>
+                            <field name="assigned_to"/>
+                            <field name="deadline"/>
+                     </group>
+
+
+                    <footer>
+                        <button string=" Create" name="action_create_task" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Acton Model -->
+    <record id="action_create_equipment" model="ir.actions.act_window">
+        <field name="name">Create Equipment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.equipment</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_equipment_view"/>
+        <field name="target">new</field>
+    </record>
+
+
+</odoo>

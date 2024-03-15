@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fish_production,access.fish.production,model_fish_production,,1,1,1,1
+access_sea_food,access.sea.food,model_sea_food,,1,1,1,1
+access_grading_detail,access.grading.detail,model_grading_detail,,1,1,1,1
+access_grade_count,access.grade.count,model_grade_count,,1,1,1,1
+access_valueadd_product,access.valueadd.product,model_valueadd_product,,1,1,1,1
+access_start_time,access.start.time,model_start_time,,1,1,1,1
+access_soak_out,access.soak.out,model_soak_out,,1,1,1,1
+access_soak_detail,access.soak.detail,model_soak_detail,,1,1,1,1
+access_load_unload,access.load.unload,model_load_unload,,1,1,1,1
+access_production_details,access.production.details,model_production_details,,1,1,1,1
+access_cold_store,access.cold.store,model_cold_store,,1,1,1,1
+access_coldstore_details,access.coldstore.details,model_coldstore_details,,1,1,1,1
+access_freezer,access.freezer,model_freezer,,1,1,1,1
+
+

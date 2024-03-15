@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/field[@name='state']" position="replace">
+                <field name="state" widget="statusbar" statusbar_visible="draft,sale,sales_pic,sales_manager,general_manager"/>
+            </xpath>
+            <xpath expr="//header/button[@id='action_confirm']" position="replace">
+                <button name="action_confirm" id="action_confirm"
+                        string="Confirm" class="btn-primary" type="object"
+                        attrs="{'invisible': [('state', 'not in', ['sale'])]}"/>
+            </xpath>
+            <xpath expr="//header/button[@name='action_confirm'][2]" position="replace">
+                <button name="action_confirm"
+                        string="Confirm" type="object"
+                        attrs="{'invisible': [('state', 'in', ['sale', 'draft', 'sales_pic', 'sales_manager', 'general_manager', 'sent', 'sale', 'done', 'cancel'])]}"/>
+            </xpath>
+            <!--<xpath expr="//header/button[@name='action_quotation_send']" position="replace">
+                <button name="action_quotation_send" string="Send by Email" type="object" states="draft" class="btn-primary" invisible="1"/>
+            </xpath>-->
+            <!--<xpath expr="//header/button[@name='action_quotation_send'][2]" position="replace">
+                <button name="action_quotation_send" string="Send by Email" type="object" states="draft" class="btn-primary" invisible="1"/>
+            </xpath>-->
+
+            <xpath expr="//header/field[@name='authorized_transaction_ids']" position="after">
+                <button name="action_sales_pic" id="action_confirm_sales_pic"
+                    string="Send to Sales PIC" class="btn-primary" type="object"
+                    attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+                <button name="approve_sales_pic" id="action_confirm_sales_manager"
+                    string="Approve by Sales PIC" class="btn-primary" type="object"
+                    attrs="{'invisible': [('state', 'not in', ['sales_pic'])]}"/>
+                <button name="action_sales_manager" id="action_confirm_sales_manager"
+                    string="Approve by Sales Manager" class="btn-primary" type="object"
+                    attrs="{'invisible': [('state', 'not in', ['sales_manager'])]}"/>
+                <button name="action_general_manager" id="action_confirm_general_manager"
+                    string="Approve by General Manager" class="btn-primary" type="object"
+                    attrs="{'invisible': [('state', 'not in', ['general_manager'])]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

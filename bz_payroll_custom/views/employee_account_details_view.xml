@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_employees_accounts_details_tree" model="ir.ui.view">
+            <field name="name">employees.account.details.tree</field>
+            <field name="model">employees.accounts.details</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Account Details">
+                    <field name="employee_id"/>
+                    <field name="payee_id"/>
+                    <field name="account_number"/>
+                    <field name="ifsc_code"/>
+                </tree>
+            </field>
+    </record>
+
+    <record id="view_employees_accounts_details_form" model="ir.ui.view">
+            <field name="name">employees.account.details.form</field>
+            <field name="model">employees.accounts.details</field>
+            <field name="arch" type="xml">
+              <form string="Employee Account Details">
+                <sheet>
+                    <group string="Employee Account Details">
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="payee_id"/>
+                        </group>
+                        <group>
+                            <field name="account_number"/>
+                            <field name="ifsc_code"/>
+                        </group>
+                    </group>
+                </sheet>
+              </form>
+            </field>
+    </record>
+
+    <record id="action_employees_accounts_details_view" model="ir.actions.act_window">
+        <field name="name">Employees Accounts Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">employees.accounts.details</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_employee_account_details_view"
+              action="action_employees_accounts_details_view"
+              parent="om_hr_payroll.menu_hr_payroll_configuration"
+              name="Employee Account Details"
+              sequence="116"/>
+</odoo>

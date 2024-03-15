@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="create_multi_payroll_form" model="ir.ui.view">
+        <field name="name">multi.payslip.wizard.form</field>
+        <field name="model">multi.payslip.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <h2>
+                            <!--<label for="date_start" string="Period"/>-->
+                            <div>
+                                <field name="date_start" class="oe_inline"/>
+                                -
+                                <field name="date_end" class="oe_inline"/>
+                            </div>
+                        </h2>
+                    </group>
+                    <group>
+                        <field name="employee_ids" widget="many2many_tags"/>
+                        <field name="journal_id"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="Generate Payrolls" name="multi_payroll_create" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="btn btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_create_multi_payroll" model="ir.actions.act_window">
+        <field name="name">Generate Payrolls</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">multi.payslip.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_generate_payroll_menu"
+              action="action_create_multi_payroll" groups="om_hr_payroll.group_hr_payroll_manager"
+              parent="om_hr_payroll.menu_hr_payroll_root" sequence="10"/>
+
+</odoo>

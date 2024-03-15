@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="trf_inherit" model="ir.ui.view">
+        <field name="name">trf.inherit</field>
+        <field name="model">trf</field>
+        <field name="inherit_id" ref="bz_crm_trf.view_trf_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='Standard_to_be_followed']" position="replace">
+                 <field name="standard_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="scope_inherit" model="ir.ui.view">
+        <field name="name">scope.matrix.inherit</field>
+        <field name="model">scope.matrix</field>
+        <field name="inherit_id" ref="bz_crm_trf.view_scope_matrix_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form/group/group[1]/field[@name='quantity']" position="after">
+                 <field name="standard_id"/>
+
+            </xpath>
+        </field>
+    </record>
+
+     <record id="project_task_inherit" model="ir.ui.view">
+        <field name="name">project.task.template.inherit</field>
+        <field name="model">project.task.template</field>
+        <field name="inherit_id" ref="project_tasks_from_templates.project_tasks_from_templates"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                 <field name="standard_id"/>
+
+            </xpath>
+            <xpath expr="//field[@name='equipment_id']" position="replace">
+                 <field name="protocol_id"/>
+                 <field name="result_compilation" invisible="1"/>
+
+            </xpath>
+        </field>
+    </record>
+</odoo>

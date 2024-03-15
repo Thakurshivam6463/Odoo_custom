@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_purchase_indent,purchase.indent,model_purchase_indent,,1,1,1,0
+access_product_details,product.details,model_product_details,,1,1,1,1
+access_reject_remark,reject.remark,model_reject_remark,,1,1,1,1
+access_indent_quotation,Indent.quotation,model_indent_quotation,,1,1,1,1
+access_transfer_products,transfer.products,model_transfer_products,,1,1,1,1
+access_indent_quotation_line,indent.quotation.line,model_indent_quotation_line,,1,1,1,1
+access_account_cost_center,account.cost.center,model_account_cost_center,,1,1,1,1
+
+

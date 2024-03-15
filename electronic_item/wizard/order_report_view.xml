@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_report_order_form_custom" model="ir.ui.view">
+        <field name="name">order.report.wizard.form.custom</field>
+        <field name="model">order.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Print orders">
+                <group>
+                    <group>
+                        <field name="product_id"/>
+                    </group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_print_report" type="object" string="Print PDF" class="btn-primary"/>
+                    <button name="action_print_excel_report" type="object" string="Print Excel" class="btn-primary"/>
+                    <button string="Cancel" class="btn-primary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_report_order_new" model="ir.actions.act_window">
+        <field name="name">order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">order.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_order_form_custom"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_reporting"
+              name="Reporting"
+              parent="menu_electronic_root"
+              sequence="40"/>
+
+    <menuitem id="electronic_order_report_custom"
+              name="Orders Custom"
+              parent="menu_reporting"
+              action="action_report_order_new"
+              sequence="10"/>
+
+    <!--<menuitem id="electronic_product_report_custom"
+              name="product Custom"
+              parent="menu_reporting"
+              action="action_report_product"
+              sequence="10"/>-->
+
+</odoo>

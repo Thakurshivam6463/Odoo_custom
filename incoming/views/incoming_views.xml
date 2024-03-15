@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="incom_form_inherit" model="ir.ui.view">
+        <field name="name">incom.form.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="l_no"/>
+                <field name="testing"/>
+             </xpath>
+            <xpath expr="//notebook//page[@name='signatures']" position="after">
+                <!--  sample incoming  -->
+                <page name="incoming" string="Incoming">
+                    <group>
+                        <group>
+                            <field name="test_request_no"/>
+                            <field name="time_of_receiving"/>
+                            <field name="date_of_unpacking"/>
+                            <field name="no_of_samples_ordered"/>
+                            <field name="number_of_samples_received"/>
+                        </group>
+                        <group>
+                            <field name="manufacturer"/>
+                            <field name="cell_material"/>
+                            <field name="model_type"/>
+                            <field name="no_of_cells"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

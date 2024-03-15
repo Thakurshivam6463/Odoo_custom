@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_custom_products,custom_products_name,indian_gst_calculation.model_custom_products,,1,1,1,1
+access_gst_number,access_gst_number,indian_gst_calculation.model_gst_number,,1,1,1,1

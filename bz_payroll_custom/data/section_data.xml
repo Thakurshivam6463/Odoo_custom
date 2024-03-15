@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--Section Data -->
+        <record id="under_sec_80d" model="investment.declaration.sections">
+            <field name="section">Under Sec 80D</field>
+            <field name="max_limit">75000</field>
+            <field name="code">under_sec_80d</field>
+        </record>
+
+        <record id="under_sec_80ddb" model="investment.declaration.sections">
+            <field name="section">Under Sec 80DDB</field>
+            <field name="max_limit">40000</field>
+            <field name="code">under_sec_80ddb</field>
+        </record>
+
+        <record id="under_sec_80e" model="investment.declaration.sections">
+            <field name="section">Under Sec 80E</field>
+            <field name="max_limit">No Limit</field>
+            <field name="code">under_sec_80e</field>
+        </record>
+
+        <record id="under_sec_80u" model="investment.declaration.sections">
+            <field name="section">Under Sec 80U</field>
+            <field name="max_limit">75000</field>
+            <field name="code">under_sec_80u</field>
+        </record>
+
+        <record id="under_sec_80dd" model="investment.declaration.sections">
+            <field name="section">Under Sec 80DD</field>
+            <field name="max_limit">75000</field>
+            <field name="code">under_sec_80dd</field>
+        </record>
+
+        <record id="under_sec_80ccc" model="investment.declaration.sections">
+            <field name="section">Under Sec 80CCC</field>
+            <field name="max_limit"></field>
+            <field name="code">under_sec_80ccc</field>
+        </record>
+
+        <record id="under_sec_80c" model="investment.declaration.sections">
+            <field name="section">Under Sec 80C</field>
+            <field name="max_limit">150000</field>
+            <field name="code">under_sec_80c</field>
+        </record>
+
+        <record id="under_sec_80ccd" model="investment.declaration.sections">
+            <field name="section">80CCD(1B)</field>
+            <field name="max_limit">50000</field>
+            <field name="code">under_sec_80ccd</field>
+        </record>
+
+        <record id="under_sec_24b" model="investment.declaration.sections">
+            <field name="section">Under Sec 24(b)</field>
+            <field name="max_limit">200000</field>
+            <field name="code">under_sec_24b</field>
+        </record>
+
+        <record id="under_sec_24a" model="investment.declaration.sections">
+            <field name="section">Under Sec 24(a)</field>
+            <field name="max_limit">30000</field>
+            <field name="code">under_sec_24a</field>
+        </record>
+
+        <!--Section Line Data -->
+        <record id="medical_insurance_premium_data" model="investment.declaration.sections.line">
+            <field name="expense">Medical Insurance Premium</field>
+            <field name="section_id" ref="under_sec_80d"/>
+            <field name="description">Medical Insurance Premium (If the policy covers a senior citizen then exemption is Rs.50,000/-)
+              (Upto 25000 for self, additional 25000 for parents &amp; add 25000 for senior citizen parents)</field>
+        </record>
+
+        <record id="medical_treatment_of_specific_diseases_data" model="investment.declaration.sections.line">
+            <field name="expense">Medical treatment of specify Diseases</field>
+            <field name="section_id" ref="under_sec_80ddb"/>
+            <field name="description">Medical treatment of specify Diseases of Self &amp; Dependents</field>
+        </record>
+
+        <record id="repayment_of_loan_data" model="investment.declaration.sections.line">
+            <field name="expense">Repayment of Loan</field>
+            <field name="section_id" ref="under_sec_80e"/>
+            <field name="description">Repayment of Loan for self (including Relative) higher education (only Interest )</field>
+        </record>
+
+        <record id="handicapped_data" model="investment.declaration.sections.line">
+            <field name="expense">Handicapped</field>
+            <field name="section_id" ref="under_sec_80u"/>
+            <field name="description">Income tax Deductions for Physical Disability</field>
+        </record>
+
+        <record id="handicapped_department_data" model="investment.declaration.sections.line">
+            <field name="expense">Treatment of Handicapped Dependent</field>
+            <field name="section_id" ref="under_sec_80dd"/>
+            <field name="description">Income tax Deductions for Physical Disability</field>
+        </record>
+
+        <record id="pension_fund_data" model="investment.declaration.sections.line">
+            <field name="expense">Contribution to Pension Fund</field>
+            <field name="section_id" ref="under_sec_80ccc"/>
+            <field name="description">Contributions made to any annuity or pension plan of a life insurance company</field>
+        </record>
+
+        <record id="ppf_data" model="investment.declaration.sections.line">
+            <field name="expense">Public Provident Fund</field>
+            <field name="section_id" ref="under_sec_80c"/>
+            <field name="description">Public Provident Fund</field>
+        </record>
+
+        <record id="lic_data" model="investment.declaration.sections.line">
+            <field name="expense">Life Insurance Premium</field>
+            <field name="section_id" ref="under_sec_80c"/>
+            <field name="description">Life Insurance Premium</field>
+        </record>
+
+        <record id="ulip_data" model="investment.declaration.sections.line">
+            <field name="expense">ULIP</field>
+            <field name="section_id" ref="under_sec_80c"/>
+            <field name="description">ULIP</field>
+        </record>
+
+        <record id="repayment_of_housing_loan_data" model="investment.declaration.sections.line">
+            <field name="expense">Repayment of Housing Loan</field>
+            <field name="section_id" ref="under_sec_80c"/>
+            <field name="description">Repayment of Housing Loan (Principle Only)     * If the loan is in joint name with
+                spouse then give declaration that other one is not claiming the deduction of the same </field>
+        </record>
+
+        <record id="mutual_fund_data" model="investment.declaration.sections.line">
+            <field name="expense">Mutual Fund</field>
+            <field name="section_id" ref="under_sec_80c"/>
+            <field name="description">Mutual Fund - Must be in ELSS (With 3 years of lock in period)</field>
+        </record>
+
+        <record id="children_tuition_free_data" model="investment.declaration.sections.line">
+            <field name="expense">Children-Tuition Fee</field>
+            <field name="section_id" ref="under_sec_80c"/>
+            <field name="description">Children-Tuition Fee - Restricted to a max of 2 children</field>
+        </record>
+
+        <record id="fixed_deposit_in_scheduled_bank_data" model="investment.declaration.sections.line">
+            <field name="expense">Fixed Deposit in Scheduled Bank</field>
+            <field name="section_id" ref="under_sec_80c"/>
+            <field name="description">Fixed Deposit in Scheduled Bank (5 yr lock-in) -  Must be written on FD Tax Saving))</field>
+        </record>
+
+        <record id="deposit_in_nsc_data" model="investment.declaration.sections.line">
+            <field name="expense">Deposit in NSC</field>
+            <field name="section_id" ref="under_sec_80c"/>
+            <field name="description">Deposit in NSC</field>
+        </record>
+
+        <record id="deposit_in_senior_citizen_data" model="investment.declaration.sections.line">
+            <field name="expense">Deposit in Senior citizen saving scheme</field>
+            <field name="section_id" ref="under_sec_80c"/>
+            <field name="description">Deposit in Senior citizen saving scheme</field>
+        </record>
+
+        <record id="invested_in_equity_share_data" model="investment.declaration.sections.line">
+            <field name="expense">Invested in Debentures/equity shares</field>
+            <field name="section_id" ref="under_sec_80c"/>
+            <field name="description">Invested in Debentures/equity shares in a public company engaged in infrastructure </field>
+        </record>
+
+        <record id="deposit_scheme_of_public_sector_data" model="investment.declaration.sections.line">
+            <field name="expense">Subscription to any deposit scheme of a public sector company</field>
+            <field name="section_id" ref="under_sec_80c"/>
+            <field name="description">Subscription to any deposit scheme of a public sector company --engaged in providing long-term finance for
+                construction/purchase of houses in India for residential purpose</field>
+        </record>
+
+        <record id="subscription_to_home_loan_acc_scheme_data" model="investment.declaration.sections.line">
+            <field name="expense">Subscription to Home loan account scheme</field>
+            <field name="section_id" ref="under_sec_80c"/>
+            <field name="description">Subscription to Home loan account scheme of National housing bank</field>
+        </record>
+
+        <record id="specified_bond_of_nabard_data" model="investment.declaration.sections.line">
+            <field name="expense">Subscription to any specified bonds of NABARD</field>
+            <field name="section_id" ref="under_sec_80c"/>
+            <field name="description">Subscription to any specified bonds of NABARD</field>
+        </record>
+
+        <record id="deposit_in_sukanya_samriddhi_account_data" model="investment.declaration.sections.line">
+            <field name="expense">Deposit in Sukanya samriddhi account</field>
+            <field name="section_id" ref="under_sec_80c"/>
+            <field name="description">Deposit in Sukanya samriddhi account</field>
+        </record>
+
+        <record id="contribution_to_pension_scheme_nps_data" model="investment.declaration.sections.line">
+            <field name="expense">Contribution to Pension Scheme (NPS)</field>
+            <field name="section_id" ref="under_sec_80ccd"/>
+            <field name="description">Contribution to Pension Scheme (NPS)</field>
+        </record>
+
+        <record id="interest_on_housing_loan_data" model="investment.declaration.sections.line">
+            <field name="expense">Interest on Housing Loan</field>
+            <field name="section_id" ref="under_sec_24b"/>
+            <field name="description">Interest on Housing Loan</field>
+        </record>
+
+        <record id="interest_loan_taken_before_two_thousand_data" model="investment.declaration.sections.line">
+            <field name="expense">Interest if the loan is taken before 01/04/99</field>
+            <field name="section_id" ref="under_sec_24a"/>
+            <field name="description">Interest on Housing Loan</field>
+        </record>
+
+    </data>
+</odoo>

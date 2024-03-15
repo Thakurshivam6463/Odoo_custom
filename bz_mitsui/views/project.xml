@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="project_form_inherited" model="ir.ui.view">
+        <field name="name">project.form.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="ulr"/>
+                <field name="title"/>
+                <field name="attachment" widget="many2many_binary" string="Add Attachments"/>
+                <field name="ilac_logo"/>
+                <field name="tc"/>
+                <field name="pi"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="signatures" string="Signatures">
+                    <group>
+                        <group>
+                            <field name="prepared_by_name"/>
+                            <field name="prepared_by"/>
+                            <field name="authorized_by_name"/>
+                            <field name="authorized_by"/>
+                        </group>
+                        <group>
+                            <field name="verified_by_name"/>
+                            <field name="verified_by"/>
+                            <field name="issued_by_name"/>
+                            <field name="issued_by"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="protocol_form_inherit" model="ir.ui.view">
+        <field name="name">protocol.form.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_last_stage_update']" position="after">
+                <field name="attachment"/>
+                <field name="abbreviations_id"/>
+                <field name="protocol_id"/>
+            </xpath>
+            <xpath expr="//page[@name='extra_info']" position="after">
+                <page name="result_compilation" string="Result Compilation">
+                    <field name="result_compilation" nolabel="1" placeholder="Describe your result..." type="html"/>
+                    <div class="d-none oe_clear"/>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='email_cc']" position="replace">
+                <field name="sequence" groups="base.group_no_one" invisible="1"/>
+                <field name="email_cc" groups="base.group_no_one" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='sequence']" position="replace">
+                <field name="sequence" groups="base.group_no_one" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='date_deadline']" position="replace">
+                <field name="date_deadline" attrs="{'invisible': [('is_closed', '=', True)]}" invisible="1"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="maintenance_check_list_inherit" model="ir.ui.view">
+        <field name="name">maintenance.request.inherit</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='maintenance_type']" position="after">
+                 <field name="planned_start"/>
+                <field name="planned_end"/>
+                <field name="actul_start"/>
+                <field name="actul_end"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

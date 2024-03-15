@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+    <record id="view_project_project_form" model="ir.ui.view">
+        <field name="name">view_project_project_testing_form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <field name="sale_id" invisible="1"/>
+                <field name="is_create_testing" invisible="1"/>
+                <button name="create_testing" string='Create Testing'
+                        class="oe_highlight" type="object"
+                        attrs="{'invisible':['|',('sale_id','=',False),('is_create_testing','=',True)]}"/>
+            </xpath>
+             
+
+
+        </field>
+    </record>
+
+    <record id="view_project_task_checklist_search" model="ir.ui.view">
+        <field name="name">view_project.task.checklist.search</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_search_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='unassigned']" position="after">
+                <field name="priority"/>
+                <filter string="Very Low" name="0" domain="[('priority', '=', 'o')]"/>
+                <filter string="Low" name="1" domain="[('priority', '=', '1')]"/>
+                <filter string="Normal" name="2" domain="[('priority', '=', '2')]"/>
+                <filter string="High" name="3" domain="[('priority', '=', '3')]"/>
+            </xpath>
+
+            <xpath expr="//group" position="inside">
+                <filter string="Priority" name="priority" domain="[]" context="{'group_by': 'priority'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_project_task_checklist_tree" model="ir.ui.view">
+        <field name="name">view_project.task.checklist.tree</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_tree2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='project_id']" position="after">
+                <field name="priority" widget="priority"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_project_task_checklist_form" model="ir.ui.view">
+        <field name="name">view_project.task.checklist.form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sale_line_id']" position="after">
+                <field name="priority" widget="priority"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+               <!-- <page string="Checklist">
+                    <group>
+                        <group>
+                            <field name="checklist_progress" widget="percentpie" nolabel="1"/>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                    <field name="checklist_lines">
+                        <tree editable="bottom" create="0" delete="0">
+                            <field name="checklist_id" readonly="1"/>
+                            <field name="is_check"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="checklist_id"/>
+                                </group>
+                                <group>
+                                    <field name="is_check"/>
+                                </group>
+                            </group>
+                        </form>
+                    </field>
+                </page>-->
+                <!--<page string='Testing Result'>
+                    <field name="result_lines">
+                        <tree editable="top">
+                            <field name="name"/>
+                            <field name="result"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="name"/>
+                                </group>
+                                <group>
+                                    <field name="result"/>
+                                </group>
+                            </group>
+                        </form>
+                    </field>
+                </page>-->
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

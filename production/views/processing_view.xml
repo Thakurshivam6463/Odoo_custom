@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="fish_processing_list">
+      <field name="name">fish.processing.list</field>
+      <field name="model">fish.processing</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="number"/>
+          <field name="user_id"/>
+          <field name="create_date"/>
+          <field name="processing_date"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="fish_processing_form_new">
+      <field name="name">fish.processing.form</field>
+      <field name="model">fish.processing</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+          </header>
+          <sheet>
+            <div class="oe_title">
+                <h1>
+                  <field name="number" readonly="0"/>
+                </h1>
+            </div>
+            <group>
+              <group>
+                  <field name="user_id"/>
+                  <field name="create_date"/>
+                  <field name="processing_date"/>
+                  <field name="note"/>
+              </group>
+            </group>
+
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="action_fish_processing">
+      <field name="name">Processing</field>
+      <field name="res_model">fish.processing</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="fish_processing_list"/>
+    </record>
+
+    <!-- Sub Menu -->
+    <menuitem name="Processing" 
+      id="menu_fish_processing" 
+      parent="menu_root_fish_management"
+      action="action_fish_processing"/>
+
+  </data>
+</odoo>

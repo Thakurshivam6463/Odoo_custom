@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_so_blanket_tree" model="ir.ui.view">
+            <field name="name">so.blanket.tree</field>
+            <field name="model">so.blanket</field>
+            <field name="arch" type="xml">
+                <tree string="SO Blanket">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="payment_term_id"/>
+                    <field name="pricelist_id"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="show" readonly="1"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+    </record>
+
+    <record id="view_so_blanket_form" model="ir.ui.view">
+            <field name="name">so.blanket.form</field>
+            <field name="model">so.blanket</field>
+            <field name="arch" type="xml">
+              <form string="SO Blanket">
+                <header>
+                    <button name="action_state_open" type="object"
+                            string="Open" class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_create_quotation" type="object"
+                            string="Create Sale Quotation" class="oe_highlight"
+                            attrs="{'invisible': [('state', 'not in', ['open'])]}"/>
+                    <button name="action_cancel" type="object" string="Cancel" attrs="{'invisible': [('state', 'not in', ['draft', 'open'])]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,open,expired,canceled"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object"
+                            name="action_view_quotation"
+                            class="oe_stat_button"
+                            icon="fa-star"
+                            attrs="{'invisible': [('quotation_count', '=', 0)]}" groups="base.group_user">
+                            <field name="quotation_count" widget="statinfo" string="Quotation"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="partner_invoice_id"/>
+                            <field name="partner_shipping_id"/>
+                        </group>
+                        <group>
+                            <field name="pricelist_id"/>
+                            <field name="payment_term_id"/>
+                            <field name="expiry_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Order Lines" name="order_lines">
+                            <field name="order_line" widget="section_and_note_one2many" mode="tree">
+                                <tree string="Blanket Order Lines" editable="bottom">
+                                    <field name="product_uom_category_id" invisible="1"/>
+                                    <field name="product_id"/>
+                                    <field name="name"/>
+                                    <field name="product_uom_qty"/>
+                                    <field name="remaining_qty" readonly="1"/>
+                                    <field
+                                        name="qty_invoiced"
+                                        string="Invoiced"
+                                        optional="show"
+                                    />
+                                    <field name="product_uom"/>
+                                    <field
+                                        name="tax_id"
+                                        widget="many2many_tags"
+                                        options="{'no_create': True}"
+                                        attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"
+                                        optional="show"
+                                    />  <!--domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"-->
+                                    <field name="price_unit" attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+                                    <field name="price_subtotal" widget="monetary"/>
+                                    <field name="price_total" widget="monetary"/>
+                                    <field name="company_id" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Other Info" name="other_information">
+                            <group>
+                                <field name="fiscal_position_id" options="{'no_create': True}"/>
+                                <field name="user_id" domain="[('share', '=', False)]" widget="many2one_avatar_user"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+              </form>
+            </field>
+    </record>
+
+    <record id="view_blanket_order_filter" model="ir.ui.view">
+            <field name="name">so.blanket.list.select</field>
+            <field name="model">so.blanket</field>
+            <field name="priority" eval="15"/>
+            <field name="arch" type="xml">
+                <search string="Search Blanket Order">
+                    <field name="state"/>
+                    <field name="name" string="Order" filter_domain="['|', '|', ('name', 'ilike', self), ('client_order_ref', 'ilike', self), ('partner_id', 'child_of', self)]"/>
+                    <field name="partner_id" operator="child_of" context="{'active_test': False}"/>
+                    <filter string="New" name="draft" domain="[('state','=','draft')]"/>
+                    <filter string="Open" name="open" domain="[('state','=',('open'))]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="customer" string="Customer" domain="[]" context="{'group_by': 'partner_id'}"/>
+                        <filter name="state" string="State" domain="[]" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+    </record>
+
+    <record id="action_so_blanket_view" model="ir.actions.act_window">
+        <field name="name">Blanket Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">so.blanket</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_blanket_order_filter"/>
+    </record>
+
+    <menuitem id="menu_so_blanket_view_form" action="action_so_blanket_view" parent="sale.sale_order_menu" name="Blanket Order" sequence="51"/>
+</odoo>

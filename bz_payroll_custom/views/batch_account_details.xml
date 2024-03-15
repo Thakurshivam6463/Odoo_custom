@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_batch_account_details_tree" model="ir.ui.view">
+            <field name="name">batch.account.details.tree</field>
+            <field name="model">batch.account.details</field>
+            <field name="arch" type="xml">
+                <tree string="Batch Account Details">
+                    <field name="debit_customer_id"/>
+                    <field name="debit_branch_id"/>
+                    <field name="debit_account_no"/>
+                    <field name="serial_no"/>
+                </tree>
+            </field>
+    </record>
+
+    <record id="view_batch_account_details_form" model="ir.ui.view">
+            <field name="name">batch.account.details.form</field>
+            <field name="model">batch.account.details</field>
+            <field name="arch" type="xml">
+              <form string="Batch Account Details">
+                <header>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="debit_customer_id"/>
+                            <field name="debit_branch_id"/>
+                            <field name="debit_account_no"/>
+                        </group>
+                        <group>
+                            <field name="serial_no"/>
+                        </group>
+                    </group>
+                </sheet>
+              </form>
+            </field>
+    </record>
+
+    <record id="action_batch_account_details_view" model="ir.actions.act_window">
+        <field name="name">Batch Account Details</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">batch.account.details</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_batch_account_details_view" action="action_batch_account_details_view" parent="om_hr_payroll.menu_hr_payroll_configuration" name="Batch Account Details" sequence="115"/>
+</odoo>

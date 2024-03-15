@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_electronic_product,access.electronic.product,model_electronic_product,,1,1,1,1
+access_electronic_order,access.electronic.order,model_electronic_order,,1,1,1,1
+access_create_order_wizard,access.create.order.wizard,model_create_order_wizard,,1,1,1,1
+access_order_report_wizard,access.order.report.wizard,model_order_report_wizard,,1,1,1,1

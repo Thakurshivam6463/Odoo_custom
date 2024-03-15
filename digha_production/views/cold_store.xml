@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="cold_store_tree">
+            <field name="name">cold.store.tree</field>
+            <field name="model">cold.store</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="system_rec_no"/>
+                    <field name="company"/>
+                    <field name="unit"/>
+                    <field name="cold_store_date"/>
+                    <field name="cold_store_supervisor"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cold_store_from">
+            <field name="name">cold.store.from</field>
+            <field name="model">cold.store</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    <button id="button_submit" name="action_submit" string="Submit"
+                            class="btn-primary"
+                            states="draft" type="object"/>
+                    <button id="button_complete" name="action_complete"
+                            string="Complete" class="btn-primary"
+                            states="submit" type="object"/>
+                        <button id="button_verified" name="action_verified"
+                            string="Verified" class="btn-primary"
+                            states="complete" type="object"/>
+                    <button id="button_cancel" name="action_cancel" string="Cancel"
+                            states="draft,submit,complete" type="object"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,submit,complete,verified,cancel"/>
+                </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="company"/>
+                                <field name="unit"/>
+                                <field name="cold_store_date"/>
+                                <field name="cold_store_supervisor"/>
+                            </group>
+                            <group>
+                                <field name="system_rec_no"/>
+                                <field name="create_date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Cold Store Details">
+                                    <field name="cold_store_details_ids" widget="section_and_note_one2many">
+                                        <tree string="Cold Store Details">
+                                            <field name="lot_number"/>
+                                            <field name="product_id"/>
+                                            <field name="freezing"/>
+                                            <field name="cooking"/>
+                                            <field name="brand"/>
+                                            <field name="glaze"/>
+                                            <field name="pack_by"/>
+                                            <field name="packing_style"/>
+                                            <field name="store_location"/>
+                                            <field name="rack_pallet"/>
+                                            <field name="available_capacity"/>
+                                            <field name="no_of_mc"/>
+                                            <field name="loose"/>
+                                            <field name="place_qty"/>
+                                            <field name="po_no"/>
+                                            <field name="remark"/>
+                                        </tree>
+                                    </field>
+
+                            </page>
+                            <page string="Note" name="note">
+                                <group>
+                                    <field name="notes"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+          <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="action_cold_store">
+            <field name="name">Cold Store</field>
+            <field name="res_model">cold.store</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Sub Menu -->
+        <menuitem name="Cold Store"
+                  id="menu_cold_store"
+                  parent="menu_sea_production"
+                  action="action_cold_store"/>
+
+    </data>
+</odoo>

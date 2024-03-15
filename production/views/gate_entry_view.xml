@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- Top menu item -->
+    <menuitem name="Fish Management" id="menu_root_fish_management"/>
+    
+    <record model="ir.ui.view" id="gate_entry_list">
+      <field name="name">new.gate.entry.list</field>
+      <field name="model">new.gate.entry</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="gate_paas_number"/>
+          <field name="supplier_id"/>
+          <field name="rec_type"/>
+          <field name="vehicle_id"/>
+          <field name="vehicle_number"/>
+          <field name="driver_id"/>
+          <field name="total_carates"/>
+          <field name="entry_date"/>
+          <field name="seal_no"/>
+          <field name="supervisor_name"/>
+          <field name="status"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="gate_entry_form_new">
+      <field name="name">new.gate.entry.form</field>
+      <field name="model">new.gate.entry</field>
+      <field name="arch" type="xml">
+        <form>
+            <header>
+                  <button name="generate_gate_pass" string="Batch Code Generations" type="object" class="oe_highlight" attrs="{'invisible': [('status', '==', 'batch_code_generated')]}"/>
+                  <field name="status" widget="statusbar" statusbar_visible="draft,batch_code_generated"/>
+            </header>
+          <sheet>
+            <div class="oe_title">
+                <h1>
+                  <field name="gate_paas_number" readonly="1" string="Batch No."/>
+                </h1>
+            </div>
+            <group>
+              <group>
+                  <field name="supplier_id"/>
+                  <field name="rec_type"/>
+                  <field name="vehicle_id"/>
+                  <field name="vehicle_number"/>
+                  <field name="driver_id"/>
+                  <field name="driver_mobile_number"/>
+              </group>
+              <group>
+                  <field name="materials_carates"/>
+                  <field name="ice_carates"/>
+                  <field name="empty_carates"/>
+                  <field name="total_carates"/>
+                  <field name="entry_date"/>
+                  <field name="seal_no"/>
+                  <field name="supervisor_name"/>
+                  <field name="rec_from"/>
+                  <field name="rec_state"/>
+              </group>
+            </group>
+            <notebook>
+                <page string="Material Details">
+                    <field name="material_details_ids">
+                        <tree editable="bottom">
+                            <field name="species_id"/>
+                            <field name="grams"/>
+                            <field name="grade_id"/>
+                            <field name="count_id"/>
+                            <field name="weight" sum="Total"/>
+                            <field name="uom_id"/>
+                            <field name="no_of_carates" sum="Total" />
+                            <!-- <field name="quality_inspections" />
+                            <field name="photos" /> -->
+                            <field name="gate_entry_id" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="action_gate_entry">
+      <field name="name">Gate Entry</field>
+      <field name="res_model">new.gate.entry</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="gate_entry_list"/>
+    </record>
+
+    <menuitem name="Gate Entry"
+      id="menu_gate_entry"
+      parent="menu_root_fish_management"
+      action="action_gate_entry"
+      sequence="1"/>
+
+  </data>
+</odoo>

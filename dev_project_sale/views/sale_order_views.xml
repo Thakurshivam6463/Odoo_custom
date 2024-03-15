@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+    <record id="view_sale_order_testing_form" model="ir.ui.view">
+        <field name="name">view_sale_testing_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string='Testing Details'>
+                    <field name="testing_lines">
+                    <tree editable="bottom">
+                        <field name="sequence" widget="handle"/>
+                        <field name="testing_id" required="1"/>
+                        <field name="checklist_ids" widget="many2many_tags" required="1"/>
+                        <field name="location_id"/>
+                    </tree>
+                    <form>
+                        <group>
+                            <group>
+                                <field name="testing_id"/>
+                            </group>
+                            <group>
+                                <field name="checklist_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                    </form>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

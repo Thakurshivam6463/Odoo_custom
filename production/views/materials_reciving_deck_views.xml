@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="materials_reciving_deck_list">
+      <field name="name">materials.reciving.deck.list</field>
+      <field name="model">materials.reciving.deck</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="number"/>
+          <field name="partner_id"/>
+          <field name="arrival_time_gap"/>
+          <field name="gate_pass_id"/>
+          <field name="barcode"/>
+          <field name="vehicle_number"/>
+          <field name="date_of_dispatch"/>
+          <field name="lot_number"/>
+          <field name="quality_status"/>
+          <field name="status"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="materials_reciving_deck_form_new">
+      <field name="name">materials.reciving.deck.form</field>
+      <field name="model">materials.reciving.deck</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="action_complete_received" string="Receiving of Materials Complete" type="object" class="oe_highlight" attrs="{'invisible': [('status', '!=', 'operation')]}"/>
+            <button name="action_operation_check" string="Send For Separation Operation" type="object" class="oe_highlight" attrs="{'invisible': [('status', '!=', 'quality')]}"/>
+            <button name="create_batchs" string="Create Batch" type="object" class="oe_highlight" attrs="{'invisible': ['|',('status', '!=', 'quality'),('batch_id','!=',False)]}"/>
+            <button name="action_quality_check" string="Send For Quality" type="object" class="oe_highlight" attrs="{'invisible': [('status', '!=', 'received')]}"/>
+            <button name="batch_id_genrataion" string="Batch ID genrataion" type="object" class="oe_highlight" attrs="{'invisible': [('status', '!=', 'complete')]}"/>
+            <field name="status" widget="statusbar" statusbar_visible="received,quality,operation,complete,done"/>
+          </header>
+          <sheet>
+            <div class="oe_title">
+                <h1>
+                  <field name="number" readonly="1"/>
+                </h1>
+            </div>
+            <group>
+              <group>
+                  <field name="materials_reciving_time" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                  <field name="arrival_time_gap" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                  <field name="gate_pass_id" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                  <field name="barcode" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                  <field name="vehicle_number" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                  <field name="date_of_dispatch" attrs="{'readonly': [('status', '=', 'done')]}"/>
+              </group>
+              <group>
+                  <field name="partner_id" attrs="{'readonly': [('status', '=', 'done')]}"/>
+                  <field name="quality_status" readonly="1" invisible="1"/>
+                  <field name="batch_id" readonly="1"/>
+              </group>
+            </group>
+            <notebook>
+                <page string="Number Of Caret">
+                    <field name="number_of_cartes_ids">
+                        <tree editable="bottom">
+                            <field name="number_gp"/>
+                            <field name="supplier_doc"/>
+                            <field name="token_genration"/>
+                            <field name="real_time_count"/>
+                            <field name="materials_rec_id" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+                <page string="Materials Quality">
+                    <field name="materials_quality_ids">
+                        <tree editable="bottom">
+                            <field name="materials_type"/>
+                            <field name="suppier_quality_id"/>
+                            <field name="reciving_quality_id"/>
+                            <field name="supplier_weight"/>
+                            <field name="received_weight"/>
+                            <field name="materials_rec_id" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+                <page string="Carete Empty Weight">
+                    <field name="carete_empty_weight_ids">
+                        <tree editable="bottom">
+                            <field name="sequence" widget="handle"/>
+                            <field name="sequence_rel"/>
+                            <field name="uom_id"/>
+                            <field name="empty_carte_weight"/>
+                            <field name="materials_rec_id" invisible="1"/>
+                        </tree>
+                    </field>
+                    <group>
+                        <field name="carete_empty_weight_avg" readonly="1"/>
+                    </group>
+                </page>
+                <page string="Materials Weight">
+                    <field name="materials_weight_ids">
+                        <tree editable="bottom" delete='false'>
+                            <field name="sequence" widget="handle"/>
+                            <field name="sequence_rel"/>
+                            <field name="weight"/>
+                            <field name="empty_carte_avg_weight" readonly="1"/>
+                            <field name="materials_weight" sum="Total"/>
+                            <field name="materials_rec_id" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="action_materials_reciving_deck">
+      <field name="name">Materials Receiving Deck</field>
+      <field name="res_model">materials.reciving.deck</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="materials_reciving_deck_list"/>
+    </record>
+
+
+    <!-- Sub Menu -->
+    <menuitem name="Materials Receiving Deck" 
+      id="menu_materials_reciving_deck" 
+      parent="menu_root_fish_management"
+      action="action_materials_reciving_deck"/>
+
+  </data>
+</odoo>

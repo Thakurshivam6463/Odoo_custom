@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- create tree view -->
+    <record id="view_trf_form_tree" model="ir.ui.view">
+        <field name="name">trf.tree</field>
+        <field name="model">trf</field>
+        <field name="arch" type="xml">
+            <tree expand="1">
+                <field name="reference"/>
+                <field name="name"/>
+                <field name="contact_persons_name"/>
+                <field name="contact_person_Designation"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- create form view -->
+    <record id="view_trf_form_view" model="ir.ui.view">
+        <field name="name">trf.form</field>
+        <field name="model">trf</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button id="button_sales_pic" name="action_sales_pic" string="Approve by Sales PIC"
+                            class="btn-primary"
+                            states="draft" type="object"/>
+                    <button id="button_technical_manager" name="action_technical_manager"
+                            string="Approved by Technical Manager" class="btn-primary"
+                            states="sales_pic" type="object"/>
+                    <button id="button_technical_head" name="action_technical_head" string="Approved by Technical Head"
+                            class="btn-primary"
+                            states="technical_manager" type="object"/>
+                    <button id="button_lab_manager" name="action_lab_manager" string="Approved by Lab Manager"
+                            class="btn-primary"
+                            states="technical_head" type="object"/>
+                    <button id="button_reject" name="action_reject" string="Reject"
+                            states="sales_pic,technical_manager,technical_head" confirm="Are you sure that you need to reject ?" type="object"/>
+                    <button string="Scope Matrix" name="action_scope_matrix_form" type="object" class="oe_highlight" states="draft"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,sales_pic,technical_manager,technical_head,lab_manager,reject"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_scope_view" type="object"
+                                class="oe_stat_button" icon="fa-star">
+                            <div class="o_stat_info">
+                                <field name="scope_count" class="o_stat_value"/>
+                                <span class="o_stat_text" attrs="{'invisible': [('scope_count', '&lt;', 2)]}">Scope
+                                    matrices
+                                </span>
+                                <span class="o_stat_text" attrs="{'invisible': [('scope_count', '&gt;', 1)]}">Scope
+                                    matrix
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="reference" readonly="1"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="contact_persons_name"/>
+                            <field name="contact_person_Designation"/>
+                            <field name="contact_persons_phone_number"/>
+                            <field name="email"/>
+                            <field name="doc_no"/>
+                        </group>
+                        <group>
+                            <span class="o_form_label o_td_label" name="address_name">
+                                <b>Address Of Organisation</b>
+                            </span>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..." class="o_address_street"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                <field name="city" placeholder="City" class="o_address_city"/>
+                                <field name="state_id" class="o_address_state" placeholder="State"
+                                       options="{'no_open': True, 'no_quick_create': True}"/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                <field name="country" placeholder="Country" class="o_address_country"
+                                       options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+                            </div>
+                            <field name="date"/>
+                            <field name="rev_no"/>
+                        </group>
+                    </group>
+                    <notebook>
+                         <page string="Drawings Catalogs Operating Manual Provided" name="document_detail">
+                            <group>
+                                <group>
+                                    <separator/>
+                                    <field name="drawings_catalogs_operating_manual_provided"/>
+                                    <field name="test_reports_required_One_for_all_tests"/>
+                                    <field name="whether_sample_will_be_collected_back"/>
+                                    <field name="noc_if_not_the_original_manufacture"/>
+                                    <field name="user_id" invisible="1"/>
+                                </group>
+                                <group>
+                                    <separator/>
+                                    <field name="type_of_testing_requested"/>
+                                    <field name="tranport_intimation"/>
+                                    <field name="delivery_challan"/>
+                                    <field name="transit_insurance_intimation"/>
+                                    <field name="witnessing_required"/>
+                                </group>
+                            </group>
+                            <!--<group>
+                                <field name="requirement_of_statement_of_confirmty" width="200%"/>
+                                <field name="decision_on_compliance"
+                                       attrs="{'invisible': [('requirement_of_statement_of_confirmty', '=', False)]}"/>
+                                <field name="for_the_tolerance"
+                                       attrs="{'invisible': [('requirement_of_statement_of_confirmty', '=', False)]}"/>
+                                <field name="if_measurement_uncertainty"
+                                       attrs="{'invisible': [('requirement_of_statement_of_confirmty', '=', False)]}"/>
+                            </group>-->
+                            <group>
+                                <label string="Requirement of Statement of Confirmty:"
+                                       for="requirement_of_statement_of_confirmty" class="oe_inline"/>
+                                <div>
+                                    <field name="requirement_of_statement_of_confirmty" nolabel="1" class="oe_inline"
+                                           modifiers="{}"/>
+                                </div>
+                                <div attrs="{'invisible': [('requirement_of_statement_of_confirmty', '=', False)]}">
+<!--                                    <label string="Decision on Compliance to specification will be based on the tolerance mentioned in the Standard specification."-->
+<!--                                           for="decision_on_compliance" class="oe_inline"/>-->
+                                    <div>
+                                        <field name="statement_of_confirmty" widget="radio"/>
+                                    </div>
+                                    <!--<label string="For the tolerance specified by the customer, same will be considered for decision criteria_____kindly allow the customer to mention the criteria (Note: Deviations requested by the customer shall not impact the integrity of the laboratory or the validity of the results)."
+                                           for="for_the_tolerance" class="oe_inline"/>
+                                    <div>
+                                        <field name="for_the_tolerance" nolabel="1" class="oe_inline" modifiers="{}"/>
+                                    </div>
+                                    <label string="If Measurement Uncertainty to be considered for decision on compliance, MCIND's calculated Measurement Uncertainty at confidence level of approximately 95% will be acceptable."
+                                           for="if_measurement_uncertainty" class="oe_inline"/>
+                                    <div>
+                                        <field name="if_measurement_uncertainty" nolabel="1" class="oe_inline"
+                                               modifiers="{}"/>
+                                    </div>-->
+                                </div>
+                            </group>
+                        </page>
+                        <page string="Sample Document Details" name="document_details">
+                            <field name="document_details_ids">
+                                <tree>
+                                    <field name="product_no"/>
+                                    <field name="product_category"/>
+                                    <field name="sample_specifications"/>
+                                    <field name="system_voltage"/>
+                                    <field name="sample_technology"/>
+                                    <field name="sample_type"/>
+                                    <field name="no_of_sample"/>
+                                    <field name="year_of_make"/>
+                                </tree>
+                                <form create="0" edit="0">
+                                    <group>
+                                        <group>
+                                            <field name="product_no"/>
+                                            <field name="sample_specifications"/>
+                                            <field name="sample_dimensions"/>
+                                            <field name="sample_type"/>
+                                            <field name="connectors_type_and_availability"/>
+                                            <field name="decision_rule_agreed_with_customer"/>
+                                            <field name="year_of_make"/>
+                                        </group>
+                                        <group>
+                                            <field name="product_category"/>
+                                            <field name="Standard_to_be_followed"/>
+                                            <field name="system_voltage"/>
+                                            <field name="sample_technology"/>
+                                            <field name="no_of_sample"/>
+                                            <field name="make"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Solar PV Lab use" name="document_detail" attrs="{'invisible': [('state', '!=','sales_pic')]}">
+                            <group>
+                                <group>
+                                    <field name="sample_quantity_received" attrs="{'required': [('state','=', 'sales_pic')]}"/>
+                                    <field name="samples_received_in_good_condition"/>
+                                    <field name="test_method_competency_available"/>
+                                </group>
+                                <group>
+                                    <field name="if_no_does_the_completion_requires_sub_contracting"/>
+                                    <field name="report_duration_feasible"/>
+                                </group>
+                            </group>
+                        </page>
+
+                    </notebook>
+                </sheet>
+                <!-- Chatter box -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search view-->
+    <record id="view_trf_search" model="ir.ui.view">
+        <field name="name">trf.search</field>
+        <field name="model">trf</field>
+        <field name="arch" type="xml">
+            <search string="TRF">
+                <field name="name"/>
+                <separator/>
+                <filter string="Sales PIC" name="sales_pic" domain="[('state','=','sales_pic')]"/>
+                <filter string="Technical Manager" name="technical_manager"
+                        domain="[('state','=','technical_manager')]"/>
+                <filter string="Technical head" name="technical_head" domain="[('state','=','technical_head')]"/>
+                <filter string="Lab Manager" name="lab_manager" domain="[('state','=','lab_manager')]"/>
+                <filter string="Rejected" name="reject" domain="[('state','=','reject')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Customer" name="name" domain="[]" context="{'group_by':'name'}"/>
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+    <!-- Acton Model -->
+    <record id="action_trf" model="ir.actions.act_window">
+        <field name="name">TRF</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">trf</field>
+        <field name="view_mode">tree,form</field>
+        <!--<field name="context">{'search_default_patient_name':1}</field>-->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                TRF From!
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_trf_root"
+              name="TRF"
+              web_icon="bz_crm_trf,static/description/trf.png"
+              sequence="10"/>
+
+    <menuitem id="menu_trf_form_root"
+              name="TRF"
+              parent="menu_trf_root"
+              sequence="10"/>
+    <menuitem id="trf"
+              name="Trf"
+              parent="menu_trf_form_root"
+              action="action_trf"
+              sequence="10"/>
+</odoo>

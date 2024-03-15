@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <template id="website_search_inherit" inherit_id="website.website_search_box" name="Website Searchbox">
+        <xpath expr="//t[@t-set='search_placeholder']" position="replace">
+            <t t-set="search_placeholder">Sub Services</t>
+        </xpath>
+    </template>
+
+    <!--<template id="remove_price" inherit_id="website_sale.product_price">
+        <xpath expr="//div[@class='product_price d-inline-block mt-2 mb-3']" position="replace">
+        </xpath>
+    </template>
+
+    <template id="remove_price_1" inherit_id="website_sale.products_item">
+        <xpath expr="//div[@class='product_price mb-1']" position="replace">
+        </xpath>
+    </template>
+
+    <template id="remove_my_cart" inherit_id="website_sale.header_cart_link">
+       &lt;!&ndash; <xpath expr="//li[@t-attf-class='#{_item_class} divider d-none']" position="replace">
+        </xpath>&ndash;&gt;
+        <xpath expr="//a[@t-attf-class='#{_link_class}']" position="replace">
+        </xpath>
+    </template>-->
+</data>
+</odoo>

@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- create tree view -->
+    <record id="view_protocol_form_tree" model="ir.ui.view">
+        <field name="name">protocol.tree</field>
+        <field name="model">protocol.form</field>
+        <field name="arch" type="xml">
+            <tree expand="1">
+                <!-- <field name="project_id_trf_no"/> -->
+                <!--                <field name="customer_name"/>-->
+                <!--                <field name="date"/>-->
+                <!--                <field name="mcind_no"/>-->
+                <!--                <field name="project_type"/>-->
+                <!--                <field name="operator_test_engineer_name"/>-->
+                <field name="process_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- create form view -->
+    <record id="view_protocol_form_view" model="ir.ui.view">
+        <field name="name">protocol.form</field>
+        <field name="model">protocol.form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group>
+                        <group>
+                            <field name="process_type"/>
+<!--                            <field name="name"/>-->
+                        </group>
+                        <group>
+                            <h4>Environmental Condition</h4>
+                            <field name="ambient_temperature"/>
+                            <field name="humidity"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Other Info" name="other_info">
+                            <group>
+                                <group>
+                                    <field name="standard"
+                                    />
+                                    <field name="test_current_125_isc"
+                                           attrs="{'invisible': [('process_type', 'not in', ['bypass_diode_thermal_test'])]}"
+                                    />
+                                    <field name="resistance"
+                                           attrs="{'invisible': [('process_type', 'not in', ['accessibility_test',
+                                    'ground_continuity_test','insulation_resistance_test','wet_leakage_current'
+                                    ] )]}"
+                                    />
+                                    <field name="system_voltage"
+                                           attrs="{'invisible': [('process_type', 'not in', ['insulation_thickness_test'])]}"
+                                    />
+                                    <field name="humidity"
+                                           attrs="{'invisible': [('process_type', 'not in', ['accessibility_test'
+                                    ,'dmtl', 'ground_continuity_test', 'impulse_voltage_test', 'insulation_resistance_test',
+                                    'partial_discharge_test','peel_test','potential_induced_test','reverse_current_test',
+                                    'smlt'
+                                    ] )]}"
+                                    />
+                                    <field name="no_thickness_layers"
+                                           attrs="{'invisible': [('process_type', 'not in', ['insulation_thickness_test'])]}"
+                                    />
+                                    <field name="no_of_cell"
+                                           attrs="{'invisible': [('process_type', 'not in', ['ir_thermography_test'])]}"
+                                    />
+                                    <field name="impact_diameter"
+                                           attrs="{'invisible': [('process_type', 'not in', ['module_breakage_test'])]}"
+                                    />
+                                    <field name="test_current_135"
+                                           attrs="{'invisible': [('process_type', 'not in', ['reverse_current_test'])]}"
+                                    />
+                                    <field name="angle"
+                                           attrs="{'invisible': [('process_type', 'not in', ['rot_retention_test'])]}"
+                                    />
+                                    <field name="torque"
+                                           attrs="{'invisible': [('process_type', 'not in', ['rot_anchorage_torque'])]}"
+                                    />
+                                    <field name="diode_voltage"
+                                           attrs="{'invisible': [('process_type', 'not in', ['bypass_diode_thermal_test'])]}"
+                                    />
+                                    <field name="recovery_time"
+                                           attrs="{'invisible': [('process_type', 'not in', ['damp_test','humidity_test'])]}"
+                                    />
+                                    <field name="avg_current_A"
+                                           attrs="{'invisible': [('process_type', 'not in', ['humidity_test','thermal_test'])]}"
+                                    />
+                                    <field name="relative_humidity"
+                                           attrs="{'invisible': [('process_type', 'not in', ['humidity_test','damp_test'
+                                    ])]}"
+                                    />
+                                    <field name="force_load_N"
+                                           attrs="{'invisible': [('process_type', 'not in', ['conduit_test'])]}"
+                                    />
+                                    <field name="IV_point"
+                                           attrs="{'invisible': [('process_type', 'not in', ['determination_test','performance_af_test',
+                                    'performance_stc_test','performance_nmot_test', 'bifaciality_test','bypass_test'
+                                    ])]}"
+                                    />
+                                    <field name="ff"
+                                           attrs="{'invisible': [('process_type', 'not in', ['determination_test'
+                                    ,'performance_af_test','performance_stc_test','performance_nmot_test','bifaciality_test'
+                                    ])]}"
+                                    />
+                                    <field name="efficiency"
+                                           attrs="{'invisible': [('process_type', 'not in', ['determination_test','performance_af_test',
+                                    'performance_stc_test','performance_nmot_test','bifaciality_test'
+                                    ])]}"
+                                    />
+                                    <field name="max_time_duration"
+                                           attrs="{'invisible': [('process_type', 'not in', ['damp_test','humidity_test','thermal_test','hot_spot_test'])]}"
+                                    />
+                                    <field name="width"
+                                           attrs="{'invisible': [('process_type', 'not in', ['peel_test'])]}"
+                                    />
+                                    <field name="stc_measured_parameters"
+                                           attrs="{'invisible': [('process_type', 'not in', ['thermal_test'])]}"
+                                    />
+                                    <field name="conduit_diameter"
+                                           attrs="{'invisible': [('process_type', 'not in', ['conduit_test'])]}"
+                                    />
+                                    <field name="immp"
+                                           attrs="{'invisible': [('process_type', 'not in', ['determination_test','performance_af_test',
+                                    'performance_stc_test','performance_stc_test','bifaciality_test','performance_nmot_test'
+                                    ])]}"
+                                    />
+                                    <field name="distance"
+                                           attrs="{'invisible': [('process_type', 'not in', ['hail_test'])]}"
+                                    />
+                                    <field name="time_pulse_duration"
+                                           attrs="{'invisible': [('process_type', 'not in', ['impulse_voltage_test'])]}"
+                                    />
+                                    <field name="broken_particle_size"
+                                           attrs="{'invisible': [('process_type', 'not in', ['module_breakage_test'])]}"
+                                    />
+                                    <field name="extinction_voltage"
+                                           attrs="{'invisible': [('process_type', 'not in', ['partial_discharge_test'])]}"
+                                    />
+                                    <field name="length_of_measurement"
+                                           attrs="{'invisible': [('process_type', 'not in', ['peel_test'])]}"
+                                    />
+                                    <field name="irradiance_50"
+                                           attrs="{'invisible': [('process_type', 'not in', ['reverse_current_test'])]}"
+                                    />
+                                    <field name="total_no_cycle"
+                                           attrs="{'invisible': [('process_type', 'not in', ['smlt'])]}"
+                                    />
+                                    <field name="marking"
+                                           attrs="{'invisible': [('process_type', 'not in', ['visual_inspection'])]}"
+                                    />
+                                    <field name="water_temperature"
+                                           attrs="{'invisible': [('process_type', 'not in', ['wet_leakage_current'])]}"
+                                    />
+                                    <field name="alternative_name1"
+                                           attrs="{'invisible': [('process_type', 'not in', ['coefficient_test'])]}"
+                                    />
+                                    <field name="alternative_name2"
+                                           attrs="{'invisible': [('process_type', 'not in', ['coefficient_test'])]}"
+                                    />
+                                    <field name="alternative_name3"
+                                           attrs="{'invisible': [('process_type', 'not in', ['coefficient_test'])]}"
+                                    />
+                                    <field name="insulation_thickness"
+                                           attrs="{'invisible': [('process_type', 'not in', ['insulation_thickness_test'])]}"
+                                    />
+                                    <field name="charge_intensity"
+                                           attrs="{'invisible': [('process_type', 'not in', ['partial_discharge_test'])]}"
+                                    />
+                                </group>
+                                <group>
+                                    <field name="voltage"
+                                           attrs="{'invisible': [('process_type', 'not in', ['ground_continuity_test','accessibility_test'
+                                    ] )]}"
+                                    />
+                                    <field name="module_temperature"
+                                           attrs="{'invisible': [('process_type', 'not in', ['bypass_diode_thermal_test'
+                                    ,'reverse_current_test',
+                                    ] )]}"
+                                    />
+                                    <field name="test_time"
+                                           attrs="{'invisible': [('process_type', 'not in', ['rot_retention_test','rot_cord_test','rot_anchorage_torque'
+                                    ] )]}"
+                                    />
+                                    <field name="no_of_cycles"
+                                           attrs="{'invisible': [('process_type', 'not in', ['damp_test'] )]}"
+                                    />
+                                    <field name="time_ave"
+                                           attrs="{'invisible': [('process_type', 'not in', ['humidity_test','thermal_test'] )]}"
+                                    />
+                                    <field name="applied_weight_Kg"
+                                           attrs="{'invisible': [('process_type', 'not in', ['conduit_test'] )]}"
+                                    />
+                                    <field name="time_duration"
+                                           attrs="{'invisible': [('process_type', 'not in', ['susceptibility_test','susceptibility_test'] )]}"
+                                    />
+                                    <field name="ambient_temperature"
+                                           attrs="{'invisible': [('process_type', 'not in', ['dmtl','insulation_thickness_test', 'wet_leakage_current'] )]}"
+                                    />
+                                    <field name="number_of_cell"
+                                           attrs="{'invisible': [('process_type', 'not in', ['el'] )]}"
+                                    />
+                                    <field name="temperature"
+                                           attrs="{'invisible': [('process_type', 'not in', ['accessibility_test', 'damp_test',
+                                    'humidity_test', 'thermal_test','hot_spot_test','insulation_resistance_test','partial_discharge_test'
+                                    ,'peel_test','potential_induced_test','smlt','uv_preconditioning_test'
+                                    ] )]}"
+                                    />
+                                    <field name="diode_case_temperature"
+                                           attrs="{'invisible': [('process_type', 'not in', ['bypass_diode_thermal_test'] )]}"
+                                    />
+                                    <field name="module_dimension"
+                                           attrs="{'invisible': [('process_type', 'not in', ['visual_inspection'] )]}"
+                                    />
+                                    <field name="voc"
+                                           attrs="{'invisible': [('process_type', 'not in', ['determination_test'
+                                    ,'performance_af_test', 'performance_stc_test', 'performance_nmot_test','bifaciality_test','bypass_test'
+                                    ] )]}"
+                                    />
+                                    <field name="sweep_direction"
+                                           attrs="{'invisible': [('process_type', 'not in', ['determination_test'
+                                    ,'performance_af_test','performance_stc_test','performance_nmot_test','coefficient_test','bifaciality_test','bypass_test'
+                                    ] )]}"
+                                    />
+                                    <field name="test_current_25_i"
+                                           attrs="{'invisible': [('process_type', 'not in', ['ground_continuity_test'] )]}"
+                                    />
+                                    <field name="weight"
+                                           attrs="{'invisible': [('process_type', 'not in', ['hail_test'] )]}"
+                                    />
+                                    <field name="application_class"
+                                           attrs="{'invisible': [('process_type', 'not in', ['impulse_voltage_test'] )]}"
+                                    />
+                                    <field name="trade_size_conduit"
+                                           attrs="{'invisible': [('process_type', 'not in', ['conduit_test',] )]}"
+                                    />
+                                    <field name="velocity"
+                                           attrs="{'invisible': [('process_type', 'not in', ['susceptibility_test', 'hail_test'] )]}"
+                                    />
+                                    <field name="impulse_voltage_volt"
+                                           attrs="{'invisible': [('process_type', 'not in', ['impulse_voltage_test'] )]}"
+                                    />
+                                    <field name="average_pressure"
+                                           attrs="{'invisible': [('process_type', 'not in', ['dmtl', 'smlt'] )]}"
+                                    />
+                                    <field name="applied_current"
+                                           attrs="{'invisible': [('process_type', 'not in', ['el', 'ir_thermography_test'] )]}"
+                                    />
+                                    <field name="impactor_height"
+                                           attrs="{'invisible': [('process_type', 'not in', ['module_breakage_test'])]}"
+                                    />
+                                    <field name="module_area"
+                                           attrs="{'invisible': [('process_type', 'not in', ['outdoor_exposure_test','wet_leakage_current'])]}"
+                                    />
+                                    <field name="no_of_diode"
+                                           attrs="{'invisible': [('process_type', 'not in', ['bypass_test'] )]}"
+                                    />
+                                    <field name="irradiance"
+                                           attrs="{'invisible': [('process_type', 'not in', ['bypass_test','hot_spot_test'
+                                    ,'determination_test', 'performance_af_test', 'performance_stc_test', 'performance_nmot_test',
+                                    'coefficient_test', 'bifaciality_test'
+                                    ] )]}"
+                                    />
+                                    <field name="p_max"
+                                           attrs="{'invisible': [('process_type', 'not in', ['determination_test','performance_af_test'
+                                    , 'performance_stc_test', 'performance_nmot_test', 'bifaciality_test'
+                                    ] )]}"
+                                    />
+                                    <field name="sweep_duration"
+                                           attrs="{'invisible': [('process_type', 'not in', ['bypass_test', 'determination_test'
+                                    ,'performance_af_test', 'performance_stc_test', 'performance_nmot_test', 'coefficient_test',
+                                    'bifaciality_test'
+                                    ] )]}"
+                                    />
+                                    <field name="isc"
+                                           attrs="{'invisible': [('process_type', 'not in', ['determination_test',
+                                    'performance_af_test','performance_stc_test','performance_nmot_test','bifaciality_test'
+                                    ] )]}"
+                                    />
+                                    <field name="load_IV_voltage"
+                                           attrs="{'invisible': [('process_type', 'not in', ['coefficient_test','bypass_test'
+                                    ,'determination_test','performance_af_test','performance_stc_test','performance_stc_test','bifaciality_test','performance_nmot_test'
+                                    ] )]}"
+                                    />
+                                    <field name="diameter"
+                                           attrs="{'invisible': [('process_type', 'not in', ['hail_test'] )]}"
+                                    />
+                                    <field name="maximum_system_voltage"
+                                           attrs="{'invisible': [('process_type', 'not in', ['impulse_voltage_test','partial_discharge_test'] )]}"
+                                    />
+                                    <field name="leakage_current"
+                                           attrs="{'invisible': [('process_type', 'not in', ['insulation_resistance_test'
+                                    ,'potential_induced_test'
+                                    ] )]}"
+                                    />
+                                    <field name="module_application_class"
+                                           attrs="{'invisible': [('process_type', 'not in', ['insulation_thickness_test'] )]}"
+                                    />
+                                    <field name="applied_voltage"
+                                           attrs="{'invisible': [('process_type', 'not in', ['el', 'ir_thermography_test','potential_induced_test'] )]}"
+                                    />
+                                    <field name="no_of_blocking"
+                                           attrs="{'invisible': [('process_type', 'not in', ['bypass_test'] )]}"
+                                    />
+                                    <field name="impactor_weight"
+                                           attrs="{'invisible': [('process_type', 'not in', ['module_breakage_test'] )]}"
+                                    />
+                                    <field name="irradiation_dosage"
+                                           attrs="{'invisible': [('process_type', 'not in', ['uv_preconditioning_test','outdoor_exposure_test'] )]}"
+                                    />
+                                    <field name="visible_defect"
+                                           attrs="{'invisible': [('process_type', 'not in', ['visual_inspection'] )]}"
+                                    />
+                                    <field name="water_resistivity"
+                                           attrs="{'invisible': [('process_type', 'not in', ['wet_leakage_current'] )]}"
+                                    />
+                                    <field name="maximum_over_current_protection"
+                                           attrs="{'invisible': [('process_type', 'not in', ['reverse_current_test','ground_continuity_test'] )]}"
+                                    />
+                                    <field name="force"
+                                           attrs="{'invisible': [('process_type', 'not in', ['accessibility_test','susceptibility_test'
+                                    ,'rot_retention_test','rot_cord_test'
+                                    ] )]}"
+                                    />
+                                    <field name="total_no_cycle"
+                                           attrs="{'invisible': [('process_type', 'not in', ['dmtl'] )]}"
+                                    />
+                                    <field name="diameter_of_wire"
+                                           attrs="{'invisible': [('process_type', 'not in', ['rot_cord_test','rot_anchorage_torque'] )]}"
+                                    />
+                                    <field name="uv_wave_length_irradiance"
+                                           attrs="{'invisible': [('process_type', 'not in', ['uv_preconditioning_test'] )]}"
+                                    />
+                                    <field name="diode_junction_temperature"
+                                           attrs="{'invisible': [('process_type', 'not in', ['bypass_diode_thermal_test'] )]}"
+                                    />
+                                    <field name="diode_power_drop"
+                                           attrs="{'invisible': [('process_type', 'not in', ['bypass_diode_thermal_test'] )]}"
+                                    />
+                                    <field name="thermal_resistance_between_diode_junction"
+                                           attrs="{'invisible': [('process_type', 'not in', ['bypass_diode_thermal_test'] )]}"
+                                    />
+                                    <field name="temperature_during_recovery_period"
+                                           attrs="{'invisible': [('process_type', 'not in', ['damp_test'] )]}"
+                                    />
+                                    <field name="max_allowed_cycle_time"
+                                           attrs="{'invisible': [('process_type', 'not in', ['humidity_test','thermal_test'] )]}"
+                                    />
+                                    <field name="temperature_during_humidity_period"
+                                           attrs="{'invisible': [('process_type', 'not in', ['humidity_test'] )]}"
+                                    />
+                                    <field name="total_no_hours"
+                                           attrs="{'invisible': [('process_type', 'not in', ['thermal_test'] )]}"
+                                    />
+                                    <field name="no_of_thermal_cycles"
+                                           attrs="{'invisible': [('process_type', 'not in', ['thermal_test'] )]}"
+                                    />
+                                    <field name="time_duration_s"
+                                           attrs="{'invisible': [('process_type', 'not in', ['conduit_test'] )]}"
+                                    />
+                                    <field name="vmmp"
+                                           attrs="{'invisible': [('process_type', 'not in', ['determination_test','performance_af_test',
+                                    'performance_stc_test','performance_nmot_test','bifaciality_test'
+                                    ] )]}"
+                                    />
+                                    <field name="max_system_voltage"
+                                           attrs="{'invisible': [('process_type', 'not in', ['wet_leakage_current'] )]}"
+                                    />
+                                    <field name="name_plate_verification"
+                                           attrs="{'invisible': [('process_type', 'not in', ['visual_inspection'] )]}"
+                                    />
+                                    <field name="current"
+                                           attrs="{'invisible': [('process_type', 'not in', ['wet_leakage_current'] )]}"
+                                    />
+                                </group>
+                            </group>
+                        </page>
+                        <page name="equipment_details" string="Equipment Details">
+<!--                            <form string="Equipment List">-->
+                                <sheet>
+                                    <field name="equipment_list_ids">
+                                        <tree editable="bottom">
+                                            <field name="equipment_name"/>
+                                            <field name="equipment_id"/>
+                                            <field name="calibration_due_date"/>
+                                        </tree>
+                                    </field>
+                                </sheet>
+<!--                            </form>-->
+                        </page>
+                        <page name="description" string="Result Compilation">
+                            <field name="description" nolabel="1" placeholder="Describe your task..." type="html"/>
+                            <div class="d-none oe_clear"/>
+                        </page>
+                        <page string="Remarks" name="remarks">
+                            <group>
+                                <field name="remarks"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <!-- Chatter box -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search view-->
+    <!-- <record id="view_protocol_search" model="ir.ui.view">
+         <field name="name">protocol.search</field>
+         <field name="model">protocol.form</field>
+         <field name="arch" type="xml">
+             <search string="Protocol">
+                 <field name="customer_name"/>
+                 &lt;!&ndash; <field name="project_id_trf_no"/> &ndash;&gt;
+                 <field name="mcind_no"/>
+                 <separator/>
+                 <group expand="0" string="Group By">
+                     <filter string="Customer Name" name="customer_name" domain="[]" context="{'group_by': 'customer_name'}"/>
+                     <filter string="Project Id Trf No" name="project_id_trf_no" domain="[]" context="{'group_by': 'project_id_trf_no'}"/>
+                     <filter string="MCIND No" name="mcind_no" domain="[]" context="{'group_by': 'mcind_no'}"/>
+
+                 </group>
+
+             </search>
+         </field>
+     </record>-->
+
+    <!-- Acton Model -->
+    <record id="action_protocol" model="ir.actions.act_window">
+        <field name="name">Protocol</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">protocol.form</field>
+        <field name="view_mode">tree,form</field>
+        <!--<field name="context">{'search_default_patient_name':1}</field>-->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Protocol From!
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+
+    <menuitem id="protocol"
+              name="Protocol"
+              parent="project.menu_project_config"
+              action="action_protocol"
+              sequence="10"/>
+</odoo>

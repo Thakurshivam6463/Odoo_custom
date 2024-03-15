@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_header_custom">
+        <div class="header">
+            <div class="text-center" style="border-botton: 1px solid black;">
+                <h1> Custom Header</h1>
+            </div>
+        </div>
+
+    </template>
+
+</odoo>

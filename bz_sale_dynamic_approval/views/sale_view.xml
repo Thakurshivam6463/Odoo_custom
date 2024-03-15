@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="form_sale_dev_sale_dynamic_approval" model="ir.ui.view">
+		<field name="name">form.sale.dev.sale.dynamic.approval</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='partner_id']" position="after">
+                <field name="is_dynamic_approver" invisible="1"/>
+            </xpath>
+			<xpath expr="//header//button[@name='action_confirm']" position="before">
+                <button name="dynamic_approval" string="Approve Order" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('is_dynamic_approver', '=', False), ('state', '!=', 'dynamic_approval')]}"/>
+            </xpath>
+		</field>
+	</record>
+</odoo>

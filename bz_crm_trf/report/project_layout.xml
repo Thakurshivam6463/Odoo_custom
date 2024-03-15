@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_project_pdf_layout">
+
+        <!-- header-->
+
+        <div class="header">
+            <t t-foreach="docs" t-as="o">
+                <div class="row">
+                    <div class="text-left" style="report_header_style;font-family:Calibri (Body);">
+                        <p>ULR No. -
+                            <span t-esc="o.ulr"/>
+                        </p>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6" style="width:50%; report_header_style;text-align:left;">
+                            <tr t-if="o.ilac_logo">
+                                <img src='/bz_crm_trf/static/description/ilac.png'/>
+                            </tr>
+                            <tr t-if="o.tc">
+                                <img src='/bz_crm_trf/static/description/tc.png'/>
+                            </tr>
+                        </div>
+                        <div class="col-6" style="width:50%; report_header_style;text-align:right;">
+                            <img src='/bz_crm_trf/static/description/MCIDlogo.png'/>
+                        </div>
+                    </div>
+                </div>
+
+            </t>
+        </div>
+        <div class="container">
+            <div class="footer o_standard_footer">
+                <t t-foreach="docs" t-as="o">
+                    <div class="row">
+                        <div class="col-4"
+                             style="border-top: 1px solid black;text-align:left; font-family:Calibri (Body);">
+                            <span>Page No
+                                <!--                            <span t-esc="o.url_noo"/>-->
+                            </span>
+                            <span class="page"/>
+
+                        </div>
+                        <div class="col-4"
+                             style="border-top: 1px solid black;text-align:center;font-family:Calibri (Body);">
+                            <p>Report:
+                                <span t-esc="o.name"/>
+                            </p>
+                        </div>
+                        <div class="col-4"
+                             style="border-top: 1px solid black;text-align:right;font-family:Calibri (Body);">
+                            <p>Formate No
+                                <!--                            <span t-esc="o.url_noo"/>-->
+                            </p>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </div>
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <!-- page-1-->
+                    <div class="page">
+                        <div class="page1" style="text-align:right;">
+                            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.barcode, 600, 100)"
+                                 style="width:350px;height:60px;"/><!--align="right"-->
+                        </div>
+                        <h1 style="text-align:right;font-family:Calibri (Body);">
+                            <b>
+                                <span t-esc="o.title"/>
+                            </b>
+                        </h1>
+                        <h3 style="text-align:right;font-family:Calibri (Body);">Test Report Number:
+                            <span t-esc="o.name"/>
+                        </h3>
+                        <h3 style="text-align:right;font-family:Calibri (Body);">Issue Date:
+                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"
+                                  t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                        </h3>
+                    </div>
+                    <table class="table table-sm table-bordered solid"
+                           style="border: 1px solid #000;font-family:Calibri (Body);">
+                        <tr>
+                            <td style="width:50%;border: 1px solid #000;">
+                                <h3>Customer</h3>
+                            </td>
+                            <td style="width:50%;border: 1px solid #000;">
+                                <h3>Laboratory</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50%;border: 1px solid #000;">
+                                <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.name"/>
+                                <br/>
+                                <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.street"/>,
+                                <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.street2"/>,
+                                <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.city"/>,
+                                <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.state_id.name"/>,
+                                <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.zip"/>,
+                                <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.country.name"/>
+                            </td>
+                            <td style="width:50%;border: 1px solid #000;">
+                                <p>Solar PV Laboratory
+                                    <br/>
+                                    Mitsui Chemicals India Private Limited
+                                    <br/>
+                                    <b>Lab Address:</b>
+                                    Plot no. 5 &amp; 6, Swastik Industrial
+                                    <br/>
+                                    Estate, Sarkhej-Bavla Highway, Village: Sari,Tal:
+                                    <br/>
+                                    Sanand, Ahmedabad, INDIA
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-sm table-bordered solid"
+                           style="border: 1px solid #000; font-family:Calibri (Body);">
+                        <tr>
+                            <td style="width:50%;border: 1px solid #000;">
+                                <h3>Contact Person</h3>
+                            </td>
+                            <td style="width:50%;border: 1px solid #000;">
+                                <h3>Contact Person</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:50%;border: 1px solid #000;">
+                                <p>
+                                    <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.contact_persons_name.name"/>
+                                    <br/>
+                                    <!--<span t-esc="o.user_id.phone"/><br/>
+                                    <span t-esc="o.user_id.login"/>-->
+                                </p>
+                            </td>
+                            <td style="width:50%;border: 1px solid #000;">
+                                <p>Mr. Puneet Kumar
+                                    <br/>
+                                    +91 9971742221
+                                    <br/>
+                                    puneet.kumar@mitsuichemicals.com
+                                </p>
+
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6" style="width:50%; report_header_style;text-align:left;">
+                                <img t-attf-src="data:image/png;base4,{{o.attachment}}"
+                                     style="width:150px; height:150px;object-fit:cover" alt="QR Code- Box"/>
+                                <img t-attf-src="data:image/png;base4,{{o.attachment}}"
+                                     style="width:150px; height:150px;object-fit:cover" alt="QR Code- Box"/>
+                            </div>
+                            <div class="col-6" style="width:50%;height:200px; report_header_style;text-align:center;">
+                                <tr t-if="o.pi">
+                                    <img src='/bz_crm_trf/static/description/PI-2.png'/>
+                                </tr>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row" style="padding-left:10px;">
+                            <div class="col-4"
+                                 style="border-right: 1px solid black;padding-left:5px; font-family:Calibri (Body);">
+                                <p>Solar PV Laboratory
+                                    <br/>
+                                    Mitsui Chemicals India Private Limited
+                                    <br/>
+                                    <b>Lab Address:</b>
+                                    Plot no. 5 &amp; 6, Swastik Industrial
+                                    <br/>
+                                    Estate, Sarkhej-Bavla Highway, Village: Sari,Tal:
+                                    <br/>
+                                    Sanand, Ahmedabad, INDIA
+                                </p>
+                            </div>
+                            <div class="col-4" style="border-right: 1px solid black;padding-left:5px;">
+
+                            </div>
+                            <div class="col-4" style="padding-left:5px; font-family:Calibri (Body);">
+                                <p>
+                                    Lab Management:
+                                    <br/>
+                                    Mr. Yogendra Sisodia – Lab Manager
+                                    <br/>
+                                    Mr. Asim Bisayee – Technical Manager
+                                    <br/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="page-break-after:always;"/>
+
+                    <p></p>
+                    <!-- page-2-->
+                    <p style="margin-top:10px;">
+                        <b style="font-family:Calibri (Body);">Report details</b>
+                    </p>
+                    <table class="table table-sm table-bordered solid"
+                           style="border: 1px solid #000; font-family:Calibri (Body);">
+                        <tr>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Report number
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.name"/>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Order date
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.sale_order_id.date_order"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Order number
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.sale_order_id.name"/>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Sample Receive Date
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.sample_id.time_of_receiving"/>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Test start Date
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.ks_project_start"/>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Test end date
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.ks_project_end"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <p></p>
+                    <p>
+                        <b style="font-family:Calibri (Body);">Customer Information</b>
+                    </p>
+                    <table class="table table-sm table-bordered solid"
+                           style="border: 1px solid #000; font-family:Calibri (Body);">
+                        <tr>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Customer
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.name"/>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Street address
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.street"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Responsible person
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.contact_persons_name.name"/>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                City / State
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.city"/>
+                                <br/>
+                                <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.state_id.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Phone number
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.contact_persons_phone_number"/>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Pin code
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.zip"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                E-Mail
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.email"/>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Country
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.sale_order_id.scope_matrix_id.trf_id.country.name"/>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <p></p>
+                    <p>
+                        <b style="font-family:Calibri (Body);">Lab information</b>
+                    </p>
+                    <table class="table table-sm table-bordered solid"
+                           style="border: 1px solid #000; font-family:Calibri (Body);">
+                        <tr>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;">Lab</td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">Mitsui Chemicals India
+                                Pvt Ltd.
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;">Street address</td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <p>Plot no. 5 6, Swastik Industrial<br/>Estate, Sarkhej-Bavla Highway,
+                                    <br/>
+                                    Village: Sari, Tal: Sanand
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;">Responsible Person</td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.user_id.name"/>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;">City / State</td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">Ahmedabad, Gujarat</td>
+
+                        </tr>
+                        <tr>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;">Phone No</td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.user_id.phone"/>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;">Pin code</td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">382220</td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;height:25%;">E-mail</td>
+                            <td style="width:25%;font-size:14px; border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.user_id.email"/>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;">Country</td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">INDIA</td>
+                        </tr>
+                    </table>
+
+                    <p></p>
+                    <p>
+                        <b style="font-family:Calibri (Body);">Signatures</b>
+                    </p>
+                    <table class="table table-sm table-bordered solid"
+                           style="border: 1px solid #000;font-family:Calibri (Body);">
+                        <tr>
+                            <td style="width:25%;vertical-align: middle;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Prepared by:
+                            </td>
+                            <td style="width:25%;vertical-align: middle;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.prepared_by_name"/>
+                            </td>
+                            <td style="width:25%;vertical-align: middle;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Authorized by:
+                            </td>
+                            <td style="width:25%;vertical-align: middle;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.authorized_by_name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%;height:80px;vertical-align: middle;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Signature:
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <img t-attf-src="data:image/*;base64,{{o.prepared_by}}"
+                                     style="width:100%;height:80px;"/>
+                            </td>
+                            <td style="width:25%;vertical-align: middle;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Signature
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <img t-attf-src="data:image/*;base64,{{o.authorized_by}}"
+                                     style="width:100%;height:80px;"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%;vertical-align: middle;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Verified by:
+                            </td>
+                            <td style="width:25%;vertical-align: middle;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.verified_by_name"/>
+                            </td>
+                            <td style="width:25%;vertical-align: middle;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Issued by:
+                            </td>
+                            <td style="width:25%;vertical-align: middle;border: 1px solid #000;word-wrap: break-word;">
+                                <span t-esc="o.issued_by_name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%;height:80px;vertical-align: middle;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Signature
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <img t-attf-src="data:image/*;base64,{{o.verified_by}}"
+                                     style="width:100%;height:80px;"/>
+                            </td>
+                            <td style="width:25%;vertical-align: middle;background-color:#eee;border: 1px solid #000;word-wrap: break-word;">
+                                Signature
+                            </td>
+                            <td style="width:25%;border: 1px solid #000;word-wrap: break-word;">
+                                <img t-attf-src="data:image/*;base64,{{o.issued_by}}" style="width:100%;height:80px;"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <p style="page-break-after:always;"/>
+
+
+                    <center>
+                        <p style="font-size:14px; font-family:Calibri (Body);">
+                            <b>
+                                <u>This is a digitally signed report and does not require signature of subsequent
+                                    pages
+                                </u>
+                            </b>
+                        </p>
+                    </center>
+
+                    <p style="font-size:12px; text-align:justify; font-family:Calibri (Body);">
+                        <b>DISCLAIMER:</b>
+                        The data reported in this report are valid at the time of and under the stipulated conditions of
+                        measurement and the test results are only
+                        <b/>
+                        applicable to those items, which have been tested. The sampling was done by the client. The data
+                        contents in this report do not constitute a qualification
+                        <b/>
+                        certificate under any set of specifications. MCIND does not accept any liability for any
+                        consequences including commercial or otherwise arising out of the
+                        <b/>
+                        utilization of the information contained in this report. MCIND reserves the right to utilize the
+                        information contained in this report in the interest of scientific
+                        <b/>
+                        progress without disclosing the identity of the customer. The duplication, publication as well
+                        as passing on of this report is only allowed if it is complete and
+                        <b/>
+                        written permission from MCIND is given. MCIND is a licensing partner of PI Berlin, who has
+                        provided technical consulting services for the establishment and
+                        <b/>
+                        operation of the laboratory. PI Berlin is not responsible for the module sampling, scope of
+                        work, test procedure, test completion, or test results contained in
+                        <b/>
+                        this report. No part of this document shall be reproduced or transmitted in any form, by any
+                        means without prior written permission. MCIND has put forth its
+                        <b/>
+                        best efforts in preparing and arranging this document. The laboratory held responsible only for
+                        reported results in this report.
+                    </p>
+                    <p style="page-break-after:always;"/>
+                    <!-- page-3 -->
+
+                    <p style="font-size:20px;color:blue; font-family:Calibri (Body);">
+                        <b>Table of Contents</b>
+                    </p>
+                    <table class="table table-sm table-bordered solid; font-family:Calibri (Body);">
+                        <tr>
+                            <td style="width:10%;">1.</td>
+                            <td style="width:80%">General Information about the Report</td>
+                            <td style="width:10%;">4</td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%;">1.1</td>
+                            <td style="width:80%">Order</td>
+                            <td style="width:10%;">4</td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%;">1.2</td>
+                            <td style="width:80%">Approach</td>
+                            <td style="width:10%;">4</td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%;">1.3</td>
+                            <td style="width:80%">List of abbreviations and symbols used</td>
+                            <td style="width:10%;">5</td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%;">2</td>
+                            <td style="width:80%">General Information about the Test Object</td>
+                            <td style="width:10%;">6</td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%;">2.1</td>
+                            <td style="width:80%">Delivery Condition</td>
+                            <td style="width:10%;">6</td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%;">2.2</td>
+                            <td style="width:80%">Sample Description</td>
+                            <td style="width:10%;">6</td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%;">3</td>
+                            <td style="width:80%">Performed Tests</td>
+                            <td style="width:10%;">7</td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%;">3.1</td>
+                            <td style="width:80%">Overview of Performed Tests</td>
+                            <td style="width:10%;">7</td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%;">3.2</td>
+                            <td style="width:80%">Detailed Test Results</td>
+                            <td style="width:10%;">8</td>
+                        </tr>
+                        <!--<t t-set="qty" t-value="1"/>-->
+                        <t t-foreach="o.tasks" t-as="task">
+                            <tr>
+                                <td><!--<span t-esc="qty"/>.<![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>-->
+                                </td>
+                                <td>
+                                    <span t-esc="task.name"/>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <!--<t t-set="qty" t-value="qty + 1"/>-->
+                        </t>
+                        <tr>
+                            <td style="width:10%;">4</td>
+                            <td style="width:80%">Equipment Used</td>
+                            <td style="width:10%;">16</td>
+                        </tr>
+                        <tr>
+                            <td style="width:10%;">5</td>
+                            <td style="width:80%">Normative references</td>
+                            <td style="width:10%;">17</td>
+                        </tr>
+                    </table>
+                    <p style="page-break-after:always;"/>
+                    <!-- page-4 -->
+
+                    <p></p>
+                    <p></p>
+                    <br/>
+                    <p style="font-size:20px;color:blue; font-family:Calibri (Body);">
+                        <b>1. General Information about the Report</b>
+                    </p>
+
+                    <p style="font-size:18px;color:blue; font-family:Calibri (Body);">
+                        <b>1.1 Order</b>
+                    </p>
+                    <p style="font-family:Calibri (Body);">The objective of the project is to conduct the following
+                        tests mentioned below
+                    </p>
+                    <t t-set="qty" t-value="1"/>
+                    <t t-set="task_length" t-value="1"/>
+                    <t t-foreach="o.tasks" t-as="task">
+                        <span style="font-family:Calibri (Body);"><span t-esc="qty"/>.
+                            <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>
+                            <span t-esc="task.name"/>
+                            <br/>
+                        </span>
+                        <t t-set="qty" t-value="qty + 1"/>
+                        <t t-set="task_length" t-value="task_length + 1"/>
+                    </t>
+                    <p style="font-size:18px;color:blue;font-family:Calibri (Body);">1.2 Approach</p>
+                    <p style="font-family:Calibri (Body);">MCIND tested
+                        <span t-esc="task_length - 1"/>
+                        no. of PV module of make
+                        <span t-esc="o.partner_id.name"/>
+                        and model type
+                        <span t-esc="o.name"/>
+                        for which the following test sequence was followed:
+                    </p>
+                    <t t-foreach="o.tasks" t-as="task">
+                        <img t-attf-src="data:image/*;base64,{{task.attachment}}" style="text-align:center"/>
+                    </t>
+                    <!--TO DO-->
+                    <p style="page-break-after:always;"/>
+                    <!-- page-5 -->
+
+                    <p style="font-size:18px;color:blue; font-family:Calibri (Body);">
+                        <b>1.3 List of abbreviations and symbols used</b>
+                    </p>
+                    <table class="table table-sm table-bordered solid"
+                           style="blue;border: 1px solid #000;font-family:Calibri (Body);">
+                        <tr>
+                            <td style="width:30%;blue;border: 1px solid #000;">
+                                <strong>MCIND</strong>
+                            </td>
+                            <td style="width:70%;blue;border: 1px solid #000;">
+                                <strong>Mitsui Chemicals India Pvt Ltd</strong>
+                            </td>
+                        </tr>
+                        <t t-foreach="o.tasks" t-as="line">
+                            <tr>
+                                <td style="blue;border: 1px solid #000;">
+                                    <span t-field="line.abbreviations_id.mcind"/>
+                                </td>
+                                <td style="blue;border: 1px solid #000;">
+                                    <span t-field="line.abbreviations_id.mitsui_chemicals"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </table>
+                    <p style="page-break-after:always;"/>
+                    <!-- page-6 -->
+
+                    <p style="font-size:20px;color:blue;  font-family:Calibri (Body);">
+                        <b>2 General Information about the Test Object</b>
+                    </p>
+                    <p style="font-size:18px;color:blue; font-family:Calibri (Body);">
+                        <b>2.1 Delivery Condition</b>
+                    </p>
+                    <div style="width:50%; height:30%; text-align:center;">
+                        <img t-attf-src="data:image/*;base64,{{o.sample_id.attachment}}"
+                             style="width:700px; height:300px;"/>
+                    </div>
+                    <p style="font-size:16px;color:blue; font-family:Calibri (Body);">
+                        <b>Delivery Condition:</b>
+                        <span t-esc="o.sample_id.delivery"/>
+                        observed. Module is in
+                        <span t-esc="o.sample_id.model"/>
+                        condition for testing
+                    </p>
+                    <p style="font-size:16px;color:blue; font-family:Calibri (Body);">
+                        <b>Location:</b>
+                        <span t-esc="o.sample_id.gate"/>
+                        Solar PV Laboratory, Mitsui chemicals
+                        India Pvt. Ltd., Ahmedabad, Gujarat
+                    </p>
+                    <p style="font-size:12px;color:blue; font-family:Calibri (Body);">382220.</p>
+
+                    <p style="font-size:20px;color:blue; font-family:Calibri (Body);">
+                        <b>2.2 Sample Description</b>
+                    </p>
+
+                    <table class="table table-sm table-bordered solid"
+                           style="border: 1px solid #000; font-family:Calibri (Body);">
+                        <tr>
+                            <td style="width:25%; background-color:#eee;border: 1px solid #000;">
+                                <b>Make:</b>
+                            </td>
+                            <td style="width:25%; background-color:#eee;border: 1px solid #000;">
+                                <span t-esc="o.partner_id.name"/>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;">
+                                <b>Cell Material:</b>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;" colspan="2">
+                                <span t-esc="o.sample_id.cell_material"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;">
+                                <b>Model Type:</b>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;">
+                                <span t-esc="o.sample_id.model_type"/>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;">
+                                <b>No. of Cells:</b>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;" colspan="2">
+                                <!--                            <span t-esc="o.sample_id.sample_request_ids.no_of_cells"/>-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;">
+                                <b>Sr. No.</b>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;">
+                                <b>Sample ID</b>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;">
+                                <b>Product No.</b>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;">
+                                <b>Module Area in m2</b>
+                            </td>
+                            <td style="width:25%;background-color:#eee;border: 1px solid #000;">
+                                <b>Remarks</b>
+                            </td>
+                        </tr>
+                        <t t-set="qty" t-value="1"/>
+                        <t t-foreach="o.sample_id.sample_request_ids" t-as="task">
+                            <tr>
+                                <td style="border: 1px solid #000;"><span t-esc="qty"/>.
+                                    <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>
+                                </td>
+                                <td style="border: 1px solid #000;">
+                                    <span t-esc="task.sample_no"/>
+                                </td>
+                                <td style="border: 1px solid #000;">
+                                    <span t-esc="task.product_no"/>
+                                </td>
+                                <td style="border: 1px solid #000;">
+                                    <span t-esc="task.module_area"/>
+                                </td>
+                                <td style="border: 1px solid #000;">
+                                    <span t-esc="task.remarks"/>
+                                </td>
+                            </tr>
+                            <t t-set="qty" t-value="qty + 1"/>
+                        </t>
+                    </table>
+                    <p style="page-break-after:always;"/>
+
+                    <!-- page-7 -->
+                    <p style="font-size:20px;color:blue; font-family:Calibri (Body);">
+                        <b>3 Performed Tests</b>
+                    </p>
+                    <p style="font-size:18px;color:blue;font-family:Calibri (Body);">
+                        <b>3.1 Overview of Performed Tests</b>
+                    </p>
+
+                    <table class="table table-sm table-bordered solid"
+                           style="blue;border: 1px solid #000;font-family:Calibri (Body);">
+                        <tr>
+                            <td style="width:60%;height:150px;text-align:center;vertical-align: middle;blue;background-color:#eee;border: 1px solid #000;"
+                                rowspan="2">
+                                <b>Tests</b>
+                            </td>
+                            <td style="width:40%;blue;background-color:#eee;border: 1px solid #000;text-align: center;">
+                                <b>Sample ID</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="blue;border: 1px solid #000;vertical-align: middle;text-align: center;">
+                                <span t-esc="o.name"/>
+                            </td>
+                        </tr>
+                        <t t-foreach="o.tasks" t-as="task">
+
+                            <tr>
+                                <td style="blue;border: 1px solid #000;">
+                                    <span t-esc="task.name"/>
+                                </td>
+                                <td style="border: 1px solid #000;text-align: center;">X</td>
+                            </tr>
+                        </t>
+
+                    </table>
+
+                    <p style="page-break-after:always;"/>
+                    <!--page-8 -->
+                    <br/>
+                    <br/>
+
+
+                    <p style="font-size:18px;color:blue;font-family:Calibri (Body);">
+                        <b>3.2 Detailed Test Results</b>
+                    </p>
+
+                    <t t-set="qty" t-value="1"/>
+                    <t t-foreach="o.tasks" t-as="task">
+                        <br/>
+                        <br/>
+                        <p style="font-family:Calibri (Body);"><span t-esc="qty"/>.<![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>
+                            <span style="font-size:18px;color:blue;" t-esc="task.name"/>
+                        </p>
+                        <p style="font-family:Calibri (Body);">
+                            <span style="font-size:18px;color:blue;" t-raw="task.description"/>
+                        </p>
+                        <p style="font-family:Calibri (Body); font-size:18px;color:blue;"> Result Compilation of
+                            <span style="font-size:18px;color:blue;" t-esc="task.name"/>
+                        </p>
+                        <p style="font-family:Calibri (Body);">
+                            <span style="font-size:18px;color:blue;" t-raw="task.protocol_id.description"/>
+                        </p>
+
+
+
+                        <t t-set="qty" t-value="qty + 1"/>
+                        <table class="table table-sm table-bordered solid" style="font-family:Calibri (Body);">
+                            <tr>
+                                <td style="width:25%;">
+                                    <b>Test &amp; Operations Engineer:</b>
+                                </td>
+                                <td style="width:25%">
+                                    <span t-esc="task.user_id.name"/>
+                                </td>
+                                <td style="width:25%;">
+                                    <b>Test Date (DD-MM-YYYY):</b>
+                                </td>
+                                <td style="width:25%" colspan="2">
+                                    <span t-esc="task.ks_start_datetime"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <p style="page-break-after:always;"/>
+                    </t>
+
+
+                    <!-- page-17 -->
+
+                    <p style="font-size:20px;color:blue; font-family:Calibri (Body); ">4 Equipment Used</p>
+                    <table class="table table-sm table-bordered solid"
+                           style="border: 1px solid #000; font-family:Calibri (Body);">
+                        <tr>
+                            <td style="width:40%;text-align:center;border: 1px solid #000;">
+                                <b>Description</b>
+                            </td>
+                            <td style="width:30%;text-align:center;border: 1px solid #000;">
+                                <b>Identification #</b>
+                            </td>
+                            <td style="width:30%;text-align:center;border: 1px solid #000;">
+                                <b>Calibration due date</b>
+                            </td>
+                        </tr>
+                        <t t-foreach="o.tasks.protocol_id.equipment_list_ids" t-as="line">
+
+                            <tr>
+                                <td style="width:25%;border: 1px solid #000;">
+                                    <span t-esc="line.equipment_name"/>
+                                </td>
+                                <td style="width:25%;border: 1px solid #000;">
+                                    <span t-esc="line.equipment_id"/>
+                                </td>
+                                <td style="width:25%;border: 1px solid #000;">
+                                    <span t-esc="line.calibration_due_date"/>
+                                </td>
+                            </tr>
+
+                        </t>
+                    </table>
+
+                    <p style="font-size:20px;color:blue;font-family:Calibri (Body);">5 Normative references</p>
+                    <p style="font-family:Calibri (Body);">• IEC 60891:2009, Photovoltaic devices – Procedures for
+                        temperature and irradiance corrections to
+                        <br/>
+                        measured I-V characteristics
+                        <br/>
+                        •IEC 60904-1-2, Photovoltaic devices – Part 1: Measurement of photovoltaic current-voltage
+                        <br/>
+                        characteristics.
+                        <br/>
+                        •IEC 60904-9, Photovoltaic devices – Part 9: Solar simulator performance requirement
+                        <br/>
+
+                    </p>
+
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

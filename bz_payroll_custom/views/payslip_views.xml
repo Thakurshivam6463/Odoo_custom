@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_payslip_form_inherit" model="ir.ui.view">
+            <field name="name">hr.payslip.form</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="om_hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="attributes">
+                    <attribute name="create">false</attribute>
+                </xpath>
+                <xpath expr="//page[4]" position="after">
+                    <page string="Advantages and Deduction">
+                        <group string="Advantages">
+                            <group>
+                                <field name="basic" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="hra_exemption" invisible="1"/>
+                                <field name="hra" readonly="1"/>
+                                <field name="conveyance_allowance" readonly="1"/>
+                                <field name="food_allowance" readonly="1"/>
+                                <field name="medical_allowance" readonly="1"/>
+                                <field name="special_allowance" readonly="1"/>
+                            </group>
+                        </group>
+                        <group string="House Rent">
+                            <field name="rent_line" widget="section_and_note_one2many" nolabel="1">
+                                <tree string="House Rent" create="false">
+                                    <field name="landlord_name"/>
+                                    <field name="street"/>
+                                    <field name="pan"/>
+                                    <field name="accommodation_address"/>
+                                    <field name="city"/>
+                                    <field name="rent_Payable"/>
+                                    <field name="rent_effective_from"/>
+                                    <field name="rent_effective_to"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group string="Investment Declaration">
+                            <field name="investment_line" widget="section_and_note_one2many" nolabel="1">
+                                <tree string="Investment Declaration" create="false">
+                                    <field name="section"/>
+                                    <field name="expense"/>
+                                    <field name="max_limit"/>
+                                    <field name="declared_amount"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <menuitem id="om_hr_payroll.menu_hr_payslip_run"
+            action="om_hr_payroll.action_hr_payslip_run_tree"
+            parent="om_hr_payroll.menu_hr_payroll_root" sequence="15"
+            groups="om_hr_payroll.group_hr_payroll_manager"
+        />
+
+        <record id="view_hr_payslip_tree_inherit" model="ir.ui.view">
+            <field name="name">hr.payslip.tree</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="om_hr_payroll.view_hr_payslip_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="create">false</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

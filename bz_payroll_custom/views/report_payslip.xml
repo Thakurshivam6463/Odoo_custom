@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_payslip_inherit" inherit_id="om_hr_payroll.report_payslip">
+        <xpath expr="//table[1]/tr[5]" position="after">
+            <tr>
+                <td>
+                    <strong>Aadhar</strong>
+                </td>
+                <td>
+                    <span t-field="o.employee_id.aadhar"/>
+                </td>
+                <td>
+                    <strong>PAN</strong>
+                </td>
+                <td>
+                    <span t-field="o.employee_id.pan"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Employee ID</strong>
+                </td>
+                <td>
+                    <span t-field="o.employee_id.unique_employee_id"/>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </xpath>
+        <xpath expr="//table[2]" position="replace">
+            <div class="page">
+                <div class="row mb4">
+                    <div class="col-6">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Income</th>
+                                    <th>For the Month Rs.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Basic</td>
+                                    <td><span t-field="o.basic"/></td>
+                                </tr>
+                                <tr>
+                                    <td>HRA</td>
+                                    <td><span t-field="o.hra_exemption"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Conveyance Allowance</td>
+                                    <td><span t-field="o.conveyance_allowance"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Food Allowance</td>
+                                    <td><span t-field="o.food_allowance"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Medical Allowance</td>
+                                    <td><span t-field="o.medical_allowance"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Special Allowance</td>
+                                    <td><span t-field="o.special_allowance"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Gross Salary</strong></td>
+                                    <td>
+                                        <strong><span t-esc="o.basic + o.hra_exemption + o.conveyance_allowance + o.food_allowance + o.medical_allowance + o.special_allowance"
+                                                      t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-6">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Deductions</th>
+                                    <th>For the Month Rs.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="total_deduction" t-value="0.0"/>
+                                <tr t-foreach="o.investment_line" t-as="investment_line">
+                                    <td>
+                                        <span t-field="investment_line.expense.expense"/>
+                                    </td>
+                                    <td>
+                                        <span t-esc="round(investment_line.declared_amount/12,2)"
+                                            t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                    </td>
+                                    <t t-set="total_deduction" t-value="total_deduction + investment_line.declared_amount"/>
+                                </tr>
+                                <tr>
+                                    <td><strong>Total Deduction</strong></td>
+                                    <td>
+                                        <strong><span t-esc="total_deduction/12"
+                                                      t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Net Pay</strong></td>
+                                    <td>
+                                        <strong><span t-esc="(o.basic + o.hra_exemption + o.conveyance_allowance + o.food_allowance + o.medical_allowance + o.special_allowance) - (total_deduction/12)"
+                                                      t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/></strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--<div style="border:1px solid gray;">Net Salary : <span t-esc="o.currency_id.amount_to_text(555)"/></div>-->
+            </div>
+
+        </xpath>
+    </template>
+</odoo>

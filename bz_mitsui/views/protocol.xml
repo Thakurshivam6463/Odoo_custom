@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <!-- create tree view -->
+    <record id="view_protocol_form_tree" model="ir.ui.view">
+        <field name="name">protocol.tree</field>
+        <field name="model">protocol.form</field>
+        <field name="arch" type="xml">
+            <tree expand="1">
+                <field name="process_type_id"/>
+                <field name="standard_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- create form view -->
+    <record id="view_protocol_form_view" model="ir.ui.view">
+        <field name="name">protocol.form</field>
+        <field name="model">protocol.form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group>
+                        <group>
+                            <field name="process_type_id"/>
+                            <field name="standard_id"/>
+                        </group>
+                        <group>
+                            <h4>Environmental Condition</h4>
+                            <field name="ambient_temperature"/>
+                            <field name="humidity"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Other Info" name="other_info1">
+                            <field name="parameter_ids">
+                                <tree editable="bottom">
+                                    <field name="parameter_id"/>
+                                    <field name="value"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="equipment_details" string="Equipment Details">
+<!--                            <form string="Equipment List">-->
+                                <sheet>
+                                    <field name="equipment_list_ids">
+                                        <tree editable="bottom">
+                                            <field name="equipment_name"/>
+                                            <field name="equipment_id"/>
+                                            <field name="calibration_due_date"/>
+                                        </tree>
+                                    </field>
+                                </sheet>
+<!--                            </form>-->
+                        </page>
+
+                        <page string="Remarks" name="remarks">
+                            <group>
+                                <field name="remarks"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <!-- Chatter box -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search view-->
+    <!-- <record id="view_protocol_search" model="ir.ui.view">
+         <field name="name">protocol.search</field>
+         <field name="model">protocol.form</field>
+         <field name="arch" type="xml">
+             <search string="Protocol">
+                 <field name="customer_name"/>
+                 &lt;!&ndash; <field name="project_id_trf_no"/> &ndash;&gt;
+                 <field name="mcind_no"/>
+                 <separator/>
+                 <group expand="0" string="Group By">
+                     <filter string="Customer Name" name="customer_name" domain="[]" context="{'group_by': 'customer_name'}"/>
+                     <filter string="Project Id Trf No" name="project_id_trf_no" domain="[]" context="{'group_by': 'project_id_trf_no'}"/>
+                     <filter string="MCIND No" name="mcind_no" domain="[]" context="{'group_by': 'mcind_no'}"/>
+
+                 </group>
+
+             </search>
+         </field>
+     </record>-->
+
+    <!-- Acton Model -->
+    <record id="action_protocol" model="ir.actions.act_window">
+        <field name="name">Protocol</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">protocol.form</field>
+        <field name="view_mode">tree,form</field>
+        <!--<field name="context">{'search_default_patient_name':1}</field>-->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Protocol From!
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+
+    <menuitem id="protocol"
+              name="Protocol"
+              parent="project.menu_project_config"
+              action="action_protocol"
+              sequence="10"/>
+</odoo>

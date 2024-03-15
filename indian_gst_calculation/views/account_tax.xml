@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Create GST Taxes for Sale -->
+        <record id="gst_sale_5" model="account.tax">
+        	<field name="name">Goods and Services Tax (India) @5%</field>
+        	<field name="type_tax_use">sale</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">5</field>
+        </record>
+        <record id="gst_sale_12" model="account.tax">
+        	<field name="name">Goods and Services Tax (India) @12%</field>
+        	<field name="type_tax_use">sale</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">12</field>
+        </record>
+        <record id="gst_sale_18" model="account.tax">
+        	<field name="name">Goods and Services Tax (India) @18%</field>
+        	<field name="type_tax_use">sale</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">18</field>
+        </record>
+        <record id="gst_sale_28" model="account.tax">
+        	<field name="name">Goods and Services Tax (India) @28%</field>
+        	<field name="type_tax_use">sale</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">28</field>
+        </record>
+        <!-- Create GST Taxes for Purchase -->
+        <record id="gst_purchase_5" model="account.tax">
+            <field name="name">GST(India) @5%</field>
+            <field name="type_tax_use">purchase</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">5</field>
+        </record>
+        <record id="gst_purchase_12" model="account.tax">
+            <field name="name">GST(India) @12%</field>
+            <field name="type_tax_use">purchase</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">12</field>
+        </record>
+        <record id="gst_purchase_18" model="account.tax">
+            <field name="name">GST(India) @18%</field>
+            <field name="type_tax_use">purchase</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">18</field>
+        </record>
+        <record id="gst_purchase_28" model="account.tax">
+            <field name="name">GST(India) @28%</field>
+            <field name="type_tax_use">purchase</field>
+            <field name="amount_type">percent</field>
+            <field name="amount">28</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- create form view -->
+    <record id="wizard_sample_move_view" model="ir.ui.view">
+        <field name="name">wizard.sample.move</field>
+        <field name="model">wizard.sample.move</field>
+        <field name="arch" type="xml">
+            <form string="Sample In/Out">
+                <sheet>
+                    <field name="sample_line_ids">
+                        <tree editable="bottom">
+                            <field name="product_id"/>
+                            <field name="qty"/>
+                            <field name="source_location" domain="[('usage', '=', 'internal')]"/>
+                            <field name="destination_location" domain="[('usage', '=', 'internal')]"/>
+                        </tree>
+                    </field>
+
+                    <footer>
+                        <button string=" Apply" name="action_sample_apply" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Acton Model -->
+    <record id="action_create_sample_move" model="ir.actions.act_window">
+        <field name="name">Create Sample</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.sample.move</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="wizard_sample_move_view"/>
+        <field name="target">new</field>
+    </record>
+
+
+</odoo>

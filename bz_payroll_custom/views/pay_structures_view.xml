@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_pay_structures_tree" model="ir.ui.view">
+        <field name="name">pay.structures.form</field>
+        <field name="model">pay.structures</field>
+        <field name="arch" type="xml">
+            <tree string="Pay Structures">
+                <field name="name"/>
+                <field name="basic"/>
+                <field name="hra"/>
+                <field name="conveyance_allowance"/>
+                <field name="food_allowance"/>
+                <field name="medical_allowance"/>
+                <field name="special_allowance"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_pay_structures_form" model="ir.ui.view">
+        <field name="name">pay.structures.form</field>
+        <field name="model">pay.structures</field>
+        <field name="arch" type="xml">
+            <form string="Pay Structures">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group string="Pay Structure">
+                        <group>
+                            <label for="basic"/>
+                            <div class="o_row">
+                                <field name="basic" nolabel="1"/>
+                                <span>/ month</span>
+                            </div>
+                        </group>
+                        <group>
+                            <label for="hra"/>
+                            <div class="o_row">
+                                <field name="hra" nolabel="1"/>
+                                <span>/ month</span>
+                            </div>
+                            <label for="conveyance_allowance"/>
+                            <div class="o_row">
+                                <field name="conveyance_allowance" nolabel="1"/>
+                                <span>/ month</span>
+                            </div>
+                            <label for="food_allowance"/>
+                            <div class="o_row">
+                                <field name="food_allowance" nolabel="1"/>
+                                <span>/ month</span>
+                            </div>
+                            <label for="medical_allowance"/>
+                            <div class="o_row">
+                                <field name="medical_allowance" nolabel="1"/>
+                                <span>/ month</span>
+                            </div>
+                            <label for="special_allowance"/>
+                            <div class="o_row">
+                                <field name="special_allowance" nolabel="1"/>
+                                <span>/ month</span>
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pay_structures_view" model="ir.actions.act_window">
+        <field name="name">Pay Structures</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pay.structures</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_pay_structures_view"
+              action="action_pay_structures_view"
+              parent="om_hr_payroll.menu_hr_payroll_configuration"
+              name="Pay Structure"
+              sequence="117"/>
+</odoo>

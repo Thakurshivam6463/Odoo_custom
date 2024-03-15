@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- create tree view -->
+    <record id="view_sample_form_tree" model="ir.ui.view">
+        <field name="name">sample.form.tree</field>
+        <field name="model">sample.form</field>
+        <field name="arch" type="xml">
+            <tree expand="1">
+                <field name="customer_id"/>
+                <field name="sale_order_id"/>
+                <field name="project_id"/>
+                <field name="date"/>
+                <field name="source_location"/>
+                <field name="destination_location"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- create form view -->
+    <record id="view_sample_form_view" model="ir.ui.view">
+        <field name="name">sample.form</field>
+        <field name="model">sample.form</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button id="button_confirm" name="action_confirm" string="Confirm" class="btn-primary"
+                            states="draft" type="object"/>
+                    <!--<button id="button_done" name="action_done" string="Done" class="btn-primary"
+                            states="confirm" type="object"/>-->
+                    <button name="action_goahead" type="object" string="Go Ahead" class="oe_highlight"/>
+                    <button id="button_cancel" name="action_cancel" string="Cancel" states="draft" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done,cancel"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_move" type="object"
+                                class="oe_stat_button" icon="fa-calendar">
+                            <div class="o_stat_info">
+                                <field name="move_count" class="o_stat_value"/>
+                                <span class="o_stat_text" attrs="{'invisible': [('move_count', '&lt;', 2)]}">Stock
+                                    Moves
+                                </span>
+                                <span class="o_stat_text" attrs="{'invisible': [('move_count', '&gt;', 1)]}">Stock
+                                    Move
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="customer_id"/>
+                            <field name="sale_order_id"/>
+                            <field name="project_id"/>
+
+
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="source_location" domain="[('usage', '=', 'customer')]"/>
+                            <field name="destination_location" domain="[('usage', '=', 'internal')]"/>
+
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Sample Description" name="sample description">
+                            <group>
+                                <group>
+                                    <field name="test_request_no"/>
+                                    <field name="time_of_receiving"/>
+                                    <field name="date_of_unpacking"/>
+                                    <field name="no_of_samples_ordered"/>
+                                    <field name="gate"/>
+                                    <field name="attachment"/>
+                                </group>
+                                <group>
+                                    <!--<field name="number_of_samples_received"/>-->
+                                    <field name="cell_material"/>
+                                    <field name="model_type"/>
+                                    <field name="delivery"/>
+                                    <field name="model"/>
+                                    <field name="attachment_id" widget="many2many_binary" string="Add Attachments"/>
+
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Product" name="sample_request">
+                            <group>
+                                <group col="3">
+                                    <button name="identical_line" string="Identical" class="oe_highlight" type="object" attrs="{'invisible':[('enable_identical_button','=',False)]}"/>
+                                </group>
+                                <group col="3">
+                                    <field name="enable_identical_button"/>
+                                </group>
+                                <group col="3">
+                                    <field name="number_of_samples_received" attrs="{'required': [('enable_identical_button','=', True)]}"/>
+                                </group>
+                            </group>
+
+                            <field name="sample_request_ids">
+                                <tree>
+                                    <field name="sample_no"/>
+                                    <field name="product_no"/>
+                                    <!-- <field name="qty"/> -->
+                                    <field name="remarks"/>
+                                </tree>
+                                <form create="0" edit="0">
+                                    <sheet>
+<!--                                        <button name="identical_line" string="Identical" class="oe_highlight" type="object"/>-->
+                                        <group>
+                                            <group>
+                                                <field name="sample_no"/>
+                                                <field name="product_no"/>
+                                                <field name="product"/>
+                                                <!-- <field name="qty"/> -->
+                                                <field name="module_tech"/>
+                                                <field name="cell_dimension"/>
+                                                <field name="cell_area"/>
+                                                <field name="module_dimension"/>
+                                                <field name="module_area"/>
+                                                <field name="no_of_cells"/>
+                                                <field name="no_of_busbars"/>
+                                            </group>
+                                            <group>
+                                                <field name="connectors_wires_jbox_status"/>
+                                                <field name="module_weight"/>
+                                                <field name="pmax"/>
+                                                <field name="isc"/>
+                                                <field name="voc"/>
+                                                <field name="imp"/>
+                                                <field name="vmp"/>
+                                                <field name="fuse_rating"/>
+                                                <field name="manufacturer"/>
+                                                <field name="year_of_mfg"/>
+                                                <!-- <field name="state"/> -->
+                                                <field name="remarks"/>
+                                            </group>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                        
+                        <!--<page string="Delivery Condition" name="delivery">
+                            <group>
+                                <group>
+
+                                </group>
+                                <group>
+
+                                </group>
+                            </group>
+                        </page>-->
+                        <page string="Note" name="note">
+                            <group>
+                                <field name="notes"/>
+                            </group>
+                        </page>
+                    </notebook>
+
+                </sheet>
+                <!-- Chatter box -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search view-->
+    <record id="view_sample_search" model="ir.ui.view">
+        <field name="name">sample.form.search</field>
+        <field name="model">sample.form</field>
+        <field name="arch" type="xml">
+            <search string="sample form">
+                <field name="customer_id"/>
+                <separator/>
+                <filter string="Draft" name="draft" domain="[('state','=','draft')]"/>
+                <filter string="Done" name="done" domain="[('state','=','done')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Customer" name="customer_id" domain="[]" context="{'group_by':'customer_id'}"/>
+                    <filter string="Sale order" name="sale_order_id" domain="[]"
+                            context="{'group_by':'sale_order_id'}"/>
+                    <filter string="Project Id" name="project_id" domain="[]" context="{'group_by':'project_id'}"/>
+                    <filter string="Source Location" name="source_location" domain="[]"
+                            context="{'group_by':'source_location'}"/>
+                    <filter string="Destination Location" name="destination_location" domain="[]"
+                            context="{'group_by':'destination_location'}"/>
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+    <!-- Acton Model -->
+    <record id="action_sample" model="ir.actions.act_window">
+        <field name="name">Sample Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sample.form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Sample From!
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+
+    <menuitem id="sample"
+              name="Sample Request"
+              web_icon="bz_sample_request,static/description/sq.png"
+              sequence="10"/>
+
+    <menuitem id="sample_request"
+              name="Sample Request"
+              parent="sample"
+              action="action_sample"
+              sequence="10"/>
+
+</odoo>

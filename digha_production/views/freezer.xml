@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- master data for grade count -->
+        <record model="ir.ui.view" id="freezer_tree">
+            <field name="name">freezer.tree</field>
+            <field name="model">freezer</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="freezer"/>
+
+                </tree>
+            </field>
+        </record>
+
+       <record model="ir.ui.view" id="freezer_form">
+            <field name="name">freezer.from</field>
+            <field name="model">freezer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="freezer"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="action_freezer">
+            <field name="name">Freezer</field>
+            <field name="res_model">freezer</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Sub Menu -->
+
+        <menuitem name="Freezer"
+                  id="menu_freezer"
+                  parent="menu_configuration"
+                  sequence="20"
+                  action="action_freezer"/>
+
+    </data>
+</odoo>

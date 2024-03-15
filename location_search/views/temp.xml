@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="menu_employee_form" model="website.menu">
+        <field name="name">Location Form</field>
+        <field name="url">/location</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">55</field>
+    </record>
+
+    <template id="online_employee_test">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+                <section class="s_website_form" data-vcss="001" data-snippet="s_website_form">
+                    <form t-attf-action="/contact-us" method="post" enctype="multipart/form-data"
+                              class="o_mark_required" data-mark="*" data-model_name="" data-success-page="">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+            <select name="search" data-limit="15" data-display-price="true" data-display-image="true" data-display-description="true" class="form-control bg-transparent search-query" placeholder="Search" t-att-value="search">
+                <option value="">Select Your Location </option>
+                <option value="Delhi">Delhi</option>
+                <option value="Gurugram">Gurugram</option>
+                <option value="Ghaziabad">Ghaziabad</option>
+                <option value="Noida">Noida</option>
+            </select>
+               <div class="input-group-append">
+                   <button type="submit" class="btn btn-primary" aria-label="Search"><i class="dri dri-search"/> Submit</button>
+                </div>
+            </form>
+                </section>
+            </div>
+        </t>
+    </template>
+</odoo>

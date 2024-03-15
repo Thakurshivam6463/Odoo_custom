@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Acton Model -->
+    <record id="action_laptop_product" model="ir.actions.act_window">
+        <field name="name">Laptop Product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">electronic.product</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'default_item': 'laptop','default_note' : 'New Electronic Product', 'hide_item' : 1}</field>
+        <field name="domain">[('item', '=', 'laptop')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Laptop Product !
+            </p>
+        </field>
+    </record>
+
+
+    <!-- Menu Item -->
+    <menuitem id="menu_laptop"
+              name="laptop"
+              parent="menu_product_root"
+              action="action_laptop_product"
+              sequence="20"/>
+
+    <!-- Acton Model -->
+    <record id="action_mobile_product" model="ir.actions.act_window">
+        <field name="name">Mobile Product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">electronic.product</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'default_item': 'mobile','default_note' : 'New Electronic Product', 'hide_item' : 1}</field>
+        <field name="domain">[('item', '=', 'mobile')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Mobile Product !
+            </p>
+        </field>
+    </record>
+
+
+    <!-- Menu Item -->
+    <menuitem id="menu_mobile"
+              name="Mobile"
+              parent="menu_product_root"
+              action="action_mobile_product"
+              sequence="30"/>
+
+    <!-- Acton Model -->
+    <record id="action_fan_product" model="ir.actions.act_window">
+        <field name="name">Fan Product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">electronic.product</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'default_item': 'fan','default_note' : 'New Electronic Product', 'hide_item' : 1}</field>
+        <field name="domain">[('item', '=', 'fan')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Fan Product !
+            </p>
+        </field>
+    </record>
+
+
+    <!-- Menu Item -->
+    <menuitem id="menu_fan"
+              name="Fan"
+              parent="menu_product_root"
+              action="action_fan_product"
+              sequence="40"/>
+
+    <!-- Acton Model -->
+    <record id="action_led_product" model="ir.actions.act_window">
+        <field name="name">Led Product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">electronic.product</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'default_item': 'led','default_note' : 'New Electronic Product', 'hide_item' : 1}</field>
+        <field name="domain">[('item', '=', 'led')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create led Product !
+            </p>
+        </field>
+    </record>
+
+
+    <!-- Menu Item -->
+    <menuitem id="menu_led"
+              name="Led"
+              parent="menu_product_root"
+              action="action_led_product"
+              sequence="50"/>
+
+    <!-- Acton Model -->
+    <record id="action_earphone_product" model="ir.actions.act_window">
+        <field name="name">Ear Phone Product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">electronic.product</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'default_item': 'earphone','default_note' : 'New Electronic Product', 'hide_item' : 1}</field>
+        <field name="domain">[('item', '=', 'earphone')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create earphone Product !
+            </p>
+        </field>
+    </record>
+
+
+    <!-- Menu Item -->
+    <menuitem id="menu_earphone"
+              name="Ear Phone"
+              parent="menu_product_root"
+              action="action_earphone_product"
+              sequence="60"/>
+</odoo>

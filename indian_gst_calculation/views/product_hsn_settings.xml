@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+	<data>
+		<record id="product_hsn_form_view" model="ir.ui.view">
+			<field name="name">Product HSN Form</field>
+			<field name="model">custom.products</field>
+			<field name="arch" type="xml">
+				<form string="Product HSN Code">
+					<sheet string="Product HSN Code">
+						<separator string="Product HSN Information"/>
+							<group>
+								<group>
+									<field name="custom_product_type" string="Category Type"/>
+									<field name="name" string="Type of Product"/>
+									<field name="HSN_SAC" string="HSN / SAC Code"/>
+									<field name="appl_tax" string="Applicable Tax"/>
+								</group>
+							</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="course_tree_view">
+            <field name="name">custom.products.tree</field>
+            <field name="model">custom.products</field>
+            <field name="arch" type="xml">
+                <tree string="Product HSN Tree">
+					<field name="name"/>
+                    <field name="custom_product_type"/>
+					<field name="HSN_SAC"/>
+					<field name="appl_tax"/>
+                </tree>
+            </field>
+        </record>
+
+		<record id="action_product_hsn" model="ir.actions.act_window">
+            <field name="name">Product HSN Code</field>
+            <field name="res_model">custom.products</field>
+<!--            <field name="view_type">form</field>-->
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first salesperson
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_product_hsn" name="Product HSN Information" parent="sales_team.menu_sale_config" sequence="0" action="action_product_hsn"/>
+	</data>
+</odoo>

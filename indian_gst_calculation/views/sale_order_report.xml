@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+	<data>
+		<template id="report_saleorder_doc_1" inherit_id="sale.report_saleorder_document">
+             <xpath expr="//t[@t-call='web.external_layout']" position="replace">
+            <t t-call="web.external_layout">
+                <t t-call="indian_gst_calculation.custom_external_sale_order_layouts">
+                    <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>
+                    <div class="page">
+                        <div class="row" style="font-size:11px">
+                            <div class="col-xs-12">
+                                <style type="text/css">
+                                              @media print
+                                    table { page-break-inside:auto; border-collapse: separate;border-spacing:0 15px;}
+                                    tr    { page-break-inside:avoid; page-break-after:auto }
+                                    th, td{ width:150px;
+                                            padding:5px}
+                                    thead { display:table-header-group }
+                                    tfoot { display:table-footer-group }
+<!---->
+                                    .border-none, table, tr, td, h4, span, b{
+                                        border:1px solid #ffffff !important;
+                                    }
+                                </style>
+
+                                            <center>
+                                                <h4 style="border:1px solid #fff !important;">
+                                                    <span t-if="doc.state not in ['draft','sent']"><b>Order</b></span>
+                                                    <span t-if="doc.state in ['draft','sent']"><b>Quotation</b></span>
+                                                </h4>
+                                            </center>
+
+                                    <table style="border:1px solid #000 !important; margin-top:0px !important; margin-bottom:0px !important; padding:0px !important; width:100%;" >
+                                    <tr style="border:1px solid #000 !important;" colspan='11'>
+                                        <td style="border:1px solid #000 !important;" width="50%" colspan="11">
+                                            <b t-if="doc.company_id.company_gst_number"> Company GSTIN: </b><t t-esc="doc.company_id.company_gst_number"/><br/>
+<!--                                             Tax Is Payable On Reverse Charge: (Yes/No)<br/>
+ -->                                            <b t-if="doc.state not in ['draft','sent']">Order Number: </b>
+                                            <b t-if="doc.state in ['draft','sent']">Quotation Number: </b><t t-esc="doc.name"/><br/>
+                                            <b t-if="doc.state not in ['draft','sent']">Order Date: </b>
+                                            <b t-if="doc.state in ['draft','sent']">Quotation Date: </b>
+                                            <span t-field="doc.date_order" t-field-options="{&quot;format&quot;: &quot;dd-MM-yyyy&quot;}" />
+                                            <div name="partner_invoice_address">
+                                            </div>
+                                            <div name="client_order_ref" t-if="doc.client_order_ref">
+                                                <strong>Reference:</strong>
+                                                <p t-field="doc.client_order_ref"/>
+                                            </div>
+                                        </td>
+                                        <td style="border:1px solid #000 !important;" width="50%" colspan="6">
+                                            <div t-if="doc.user_id.name" class="col-xs-12">
+                                                <b>Salesperson: </b><span t-field="doc.user_id"/><br/>
+                                                <b t-if="doc.payment_term_id">Payment Terms: </b>
+                                                <span t-field="doc.payment_term_id"/>
+                                            </div>
+                                            <div name="payment_term" t-if="doc.payment_term_id" class="col-xs-12">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr style="border:1px solid #000 !important;">
+                                        <td style="border:1px solid #000 !important;" width="50%" colspan='7'> <center><b>Details of Receiver</b></center></td>
+                                         <td style="border:1px solid #000 !important;" width="50%" colspan="7"><center><b>Details of Consignee(shipped to)</b></center></td>
+                                    </tr>
+                                    <tr style="border:1px solid #000 !important;">
+                                        <td style="border:1px solid #000 !important;" width="50%" colspan="7">
+                                            <b> Name: </b>  <t t-esc="doc.bill_to.name"/><br/>
+                                            <b> Address:</b>    <t t-esc="doc.bill_to.street"/><br/>
+                                            <b> City:</b>  <t t-esc="doc.bill_to.city"/><![CDATA[&nbsp; &nbsp; ]]>
+                                            <b> State:</b>  <t t-esc="doc.bill_to.state_id.name"/><br/>
+                                            <b> Country:</b>  <t t-esc="doc.bill_to.country_id.name"/> <![CDATA[&nbsp; &nbsp;]]>
+                                            <b> Pin code:</b> <t t-esc="doc.bill_to.zip"/><br/>
+                                            <b> GSTIN:</b> <t t-esc="doc.bill_to.partner_gst_number"/>
+                                            <span t-if="doc.bill_to.vat"><span t-field="doc.bill_to.vat"/></span>
+                                        </td>
+
+                                        <td style="border:1px solid #000 !important;" width="50%" colspan="6">
+                                            <b> Name: </b>  <t t-esc="doc.ship_to.name"/><br/>
+                                            <b> Address:  </b>  <t t-esc="doc.ship_to.street"/><br/>
+                                            <b> City:</b>  <t t-esc="doc.ship_to.city"/><![CDATA[&nbsp; &nbsp; ]]>
+                                            <b> State:</b>  <t t-esc="doc.ship_to.state_id.name"/><br/>
+                                            <b> Country:</b>  <t t-esc="doc.ship_to.country_id.name"/> <![CDATA[&nbsp; &nbsp; ]]>
+                                            <b> Pin code:</b> <t t-esc="doc.ship_to.zip"/><br/>
+                                            <b> GSTIN: </b><t t-esc="doc.ship_to.partner_gst_number"/>
+                                        </td>
+                                    </tr>
+                                    </table>
+
+                                    <t t-set="display_discount" t-value="any([l.discount for l in doc.order_line])"/>
+
+                                <table style="border:1px solid #000 !important; margin-top:0px !important; margin-bottom:0px !important; padding:0px !important; width:100%;" >
+                                    <!-- <t t-foreach="doc.order_lines_layouted()" t-as="page"> -->
+                                    <thead>
+                                        <tr style="border:1px solid #000 !important;">
+                                            <th><b>No</b></th>
+                                            <th><b> Description of Goods</b></th>
+                                            <th><b>HSN Code (GST)</b></th>
+                                            <th class="text-center"><b>Qty</b></th>
+                                            <th class="text-center"><b>UOM</b></th>
+                                            <th class="text-center"><b>Rate</b></th>
+                                            <th><b>Discount</b></th>
+                                            <th><b>Taxable values</b></th>
+                                            <th class="text-center"><b>CGST</b></th>
+                                            <th class="text-center"><b>SGST</b></th>
+                                            <th class="text-center"><b>IGST</b></th>
+                                            <th class="text-center"><b>UTGST</b></th>
+                                            <th class="text-center"><b>Total</b></th>
+                                        </tr>
+                                    </thead>
+
+
+                                <tbody class="sale-tbody">
+                                    <tr t-foreach="doc.order_line" t-as="l">
+                                        <t t-set="line" t-value='l'/>
+                                        <td> <t t-esc="l_index+1"/></td>
+                                        <td><span t-field="line.product_id.name"/></td>
+                                        <td><t t-esc="l.HSN_SAC"/></td>
+                                        <td><t t-esc="l.product_uom_qty"/>
+                                        </td>
+                                        <td><t t-esc="l.product_uom.name"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <t t-esc="l.price_unit" t-esc-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                        </td>
+                                        <td t-if="display_discount">
+                                            <t t-esc="l.discount"/>%
+                                        </td>
+                                        <td t-if="not display_discount"><t t-esc="0.00"/>%</td>
+
+                                        <td class="text-right"><t t-esc="l.price_subtotal" t-esc-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/></td>
+
+                                        <td class="text-right">
+                                            <span t-field="l.sale_amount_CGST" t-field-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                            <span style="color:#696969">@<t t-esc="'%.2f' %(l.sale_CGST)"/>%</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="l.sale_amount_SGST" t-field-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                            <span style="color:#696969">@<t t-esc="'%.2f' %(l.sale_SGST)"/>%</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="l.sale_amount_IGST" t-field-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                            <span style="color:#696969">@<t t-esc="'%.2f' %(l.sale_IGST)"/>%</span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="l.sale_amount_UTGST" t-field-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                            <span style="color:#696969">@<t t-esc="'%.2f' %(l.sale_UTGST)"/>%</span>
+                                        </td>
+
+                                        <td class="text-right">
+                                            <span t-field="l.price_subtotal" t-field-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                        </td>
+                                    </tr>
+
+                                    <tr style="border:1px solid #000 !important;">
+                                        <td style="border:1px solid #000 !important;" colspan="8" class="text-center"><b>Total Amount (In Words)</b>
+                                        </td>
+                                        <td style="border:1px solid #000 !important;" colspan="4" class="text-right"><b>Total</b></td>
+                                        <td style="border:1px solid #000 !important;" class="text-right">
+                                            <span t-field="doc.amount_untaxed" t-field-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:1px solid #000 !important; " rowspan="6" colspan="8" class="text-center">
+                                            <b>INR </b><span t-esc="doc.amount_to_text(doc.amount_total, doc.currency_id)"/>
+                                        </td>
+                                        <td colspan="4" class="text-right"><b>Add : CGST</b> </td>
+                                        <td class="text-right">
+                                            <span t-field="doc.amount_CGST" t-field-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-right"><b>Add : SGST</b></td>
+                                        <td class="text-right">
+                                            <span t-field="doc.amount_SGST" t-field-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-right"><b>Add : IGST</b></td>
+                                        <td class="text-right">
+                                            <span t-field="doc.amount_IGST" t-field-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-right"><b>Add : UTGST</b></td>
+                                        <td class="text-right">
+                                            <span t-field="doc.amount_UTGST" t-field-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr style="border:1px solid #000 !important;">
+                                        <td style="border:1px solid #000 !important;" colspan="4" class="text-right">
+                                            <span t-if="not doc.amount_CGST and not doc.amount_SGST and not doc.amount_IGST and not doc.amount_UTGST"><b>Total Tax Amount: Other Taxes</b></span>
+                                            <span t-if="doc.amount_CGST or doc.amount_SGST or doc.amount_IGST or doc.amount_UTGST"><b>Total Tax Amount: GST</b></span>
+                                        </td>
+                                        <td style="border:1px solid #000 !important;" class="text-right">
+                                            <span t-field="doc.amount_tax" t-field-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/>
+                                        </td>
+                                    </tr>
+                                    <tr style="border:1px solid #000 !important;">
+                                        <div name="total">
+                                        </div>
+                                        <td style="border:1px solid #000 !important;" colspan="4" class="text-right"><b>Total Amount </b></td>
+                                        <td style="border:1px solid #000 !important;" class="text-right">
+                                            <b><span t-field="doc.amount_total" t-field-options='{"widget": "monetary", "display_currency": "doc.currency_id"}'/></b>
+                                        </td>
+                                    </tr>
+                                    <tr style="border:1px solid #000 !important;">
+                                        <td style="border:1px solid #000 !important; " colspan="8" class="text-center"><b> Terms and conditions</b></td>
+                                        <td style="border:1px solid #000 !important;" colspan="5" class="text-center"><b><t t-esc="doc.company_id.name"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:1px solid #000 !important;" rowspan="4" colspan="8"><t t-esc="doc.note"/></td>
+                                        <td colspan="5">Signature:</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" class="text-center"><b>Authorised Signatory</b></td>
+                                    </tr>
+                                    <tr style="border:1px solid #000 !important;">
+                                        <td style="border:1px solid #000 !important;" colspan="5">Name: <t t-esc="doc.user_id.name"/></td>
+                                    </tr>
+                                    <tr style="border:1px solid #000 !important;">
+                                        <td style="border:1px solid #000 !important;" colspan="5">Designation: </td>
+                                    </tr>
+                                </tbody>
+                            <!-- </t> -->
+                                </table>
+                            </div>
+                        </div>
+                        <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and doc.fiscal_position_id.note">
+                            <strong>Fiscal Position Remark:</strong>
+                            <span t-field="doc.fiscal_position_id.note"/>
+                        </p>
+                        <table>
+                        	<tr>
+                        		<td style="font-weight: bold;"></td>
+                        		<td></td>
+                        	</tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+             </xpath>
+        </template>
+        <template id="custom_external_sale_order_layouts">
+            <!-- Multicompany -->
+            <t t-if="not o and doc">
+                <t t-set="o" t-value="doc"/>
+            </t>
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+            <t t-call="indian_gst_calculation.custom_external_layout_header_so" />
+            <t t-raw="0" />
+<!--            <t t-call="indian_gst_calculation.custom_external_layout_footer" />-->
+        </template>
+
+        <template id="custom_external_layout_header_so">
+            <div class="header" style="width:800px !important;">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-height: 100px; margin-top:26px !important; padding-top:17px !important;"/>
+                    </div>
+                    <div class="col-xs-8 text-right" name="company_address" style="margin-top:20px !important; padding-top:5px !important; width:800px !important;">
+                        <div>
+                            <span t-field="company.name" style="font-size:16pt;font-family:helvetica-neue-bold; display:block;color:#565656; width:800px !important;"/>
+                        </div>
+                        <div style="width:800px !important;">
+                            <i class="fa fa-map-marker" style="font-size:12pt;color:#da607f;margin-right: 5px;"></i>
+                            <span t-field="company.street" style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000"/><span style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000">,</span>
+                            <span t-field="company.street2" style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000"/><span style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000">,</span>
+                            <span t-field="company.country_id.name" style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000"/><span style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000">,</span>
+                            <span t-field="company.zip" style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000"/><span style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal; display:inline-block;color:#000000">.</span>
+                        </div>
+                        <div style="width:800px !important;">
+                            <i class="fa fa-envelope-o" style="font-size:12pt;color:#da607f;margin-right: 5px;"></i>
+                            <span t-field="company.email" style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000;"/>
+                            <i class="fa fa-globe" style="font-size:12pt;color:#da607f;margin-right: 5px; margin-left: 5px; margin-bottom:0px;"></i>
+                            <span t-field="company.website" style="font-size:12pt;font-family:helvetica-neue-medium;font-stretch:condensed;font-weight:normal;display:inline-block;color:#000000;"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row zero_min_height">
+                    <div class="col-xs-12">
+                        <div style="border-bottom: 1px solid black; width:800px !important;"></div>
+                    </div>
+                </div>
+            </div>
+        </template>
+        <template id="report_saleorder">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="sale.report_saleorder_document" t-lang="doc.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+	</data>
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--<record id="view_move_form_inherited" model="ir.ui.view">
+        <field name="name">project.project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+           <xpath expr="//notebook//page[@name='ks_gantt_setting']" position="after">
+                <page name="ks_gantt_setting" string="Sample Move">
+                    <form string="Sample In/Out">
+                <sheet>
+                    <field name="product_ids">
+                        <tree>
+                            <field name="product_id"/>
+                            <field name="qty"/>
+                            <field name="source_location" domain="[('usage', '=', 'internal')]"/>
+                            <field name="destination_location" domain="[('usage', '=', 'internal')]"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+                </page>
+            </xpath>
+
+        </field>
+    </record>-->
+
+</odoo>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="protocol_form_inherit" model="ir.ui.view">
+        <field name="name">protocol.form.inherit</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+<!--                <button string="Create Protocol" name="action_protocol_form_new" type="object" class="oe_highlight"/>-->
+                <button string="Sample In" name="action_samplein" type="object" class="oe_highlight"/>
+                <button string="Sample Out" name="action_samplein" type="object" class="oe_highlight"/>
+            </xpath>
+             <!--<xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_protocol_view" type="object"
+                    class="oe_stat_button" icon="fa-star">
+                    <div class="o_stat_info">
+                        <field name="protocol_count" class="o_stat_value"/>
+                        <span class="o_stat_text"> PROTOCOL</span>
+                    </div>
+                </button>
+            </xpath> -->
+            <!-- <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="equipment_id"/>
+            </xpath>
+ -->
+        </field>
+    </record>
+
+    <record id="project_form_inherit" model="ir.ui.view">
+        <field name="name">project.form.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="project_type"/>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_reject" type="object" string="Reject" class="oe_highlight"/>
+            </xpath>
+             <xpath expr="//div[@name='button_box']" position="inside">
+                <button  class="oe_stat_button" name="action_sample_view" type="object" icon="fa-file-text-o" string="Sample">
+                </button>
+                <button  class="oe_stat_button" name="action_trf_view" type="object" icon="fa-file-text-o" string="TRF">
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

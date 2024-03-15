@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+        <record id="view_dev_create_testing_form" model="ir.ui.view">
+            <field name="name">view.dev.create.testing.form</field>
+            <field name="model">dev.create.testing</field>
+            <field name="arch" type="xml">
+                <form string="Create Testing">
+                    <group>
+                        <group>
+                            <field name="project_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="sale_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <group string="Testing">
+                        <field name="line_ids" nolabel="1" >
+                            <tree create="0" editable="bottom" delete="0">
+                                <field name="testing_id" readonly="1"/>
+                                <field name="checklist_ids" widget="many2many_tags" required="1"/>
+                                <field name="location_id" required="1"/>
+                                <field name="user_id" required="1"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer>
+			            <button string="Create Testing" name="action_create_testing" type="object" class="oe_highlight" /> or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_create_testing" model="ir.actions.act_window">
+            <field name="name">Create Testing</field>
+            <field name="res_model">dev.create.testing</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_dev_create_testing_form"/>
+            <field name="target">new</field>
+        </record>
+        
+</openerp>

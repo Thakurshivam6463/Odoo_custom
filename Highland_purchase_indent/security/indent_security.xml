@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+	<!-- <record models="ir.module.category" id="purchase_indent">
+		<field name="name">Purchase Indent</field>
+		<field name="description">User access level for Purchase Indent</field>
+		<field name="sequence">20</field>
+	</record>
+
+	<record id="purchase_indent_user" models="res.groups">
+		<field name="name">User</field>
+		<field name="category_id" ref="purchase_indent"/>
+	</record>
+
+	<record id="purchase_indent_manager" models="res.groups">
+		<field name="name">Manager</field>
+		<field name="category_id" ref="purchase_indent"/>
+		<field name="implied_ids" eval="[(4, ref('purchase_indent_user'))]"/>
+	</record>
+
+</data>
+
+<data noupdate="0">
+
+    <record id="purchase_indent_user_user_rule" models="ir.rule">
+        <field name="name">Purchase Indent User</field>
+        <field name="model_id" ref="model_purchase_indent"/>
+        <field name="domain_force">[('employee_id.user_id','=',user.id)]</field>
+        <field name="groups" eval="[(4, ref('purchase_indent_user'))]"/>
+    </record>
+    
+    <record id="purchase_indent_po_head_rule" models="ir.rule">
+        <field name="name">Manager</field>
+        <field name="model_id" ref="model_purchase_indent"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('purchase_indent_manager'))]"/>
+    </record> -->
+
+    <record id="make_invisible" model="res.groups">
+        <field name="name">Invisible</field>
+    </record>
+
+</data>
+</odoo>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="soak_out_details_form">
+            <field name="name">soak.out.form</field>
+            <field name="model">soak.out</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    <button id="button_submit" name="action_submit" string="Submit"
+                            class="btn-primary"
+                            states="draft" type="object"/>
+                    <button id="button_complete" name="action_complete"
+                            string="Complete" class="btn-primary"
+                            states="submit" type="object"/>
+                    <button id="button_cancel" name="action_cancel" string="Cancel"
+                            states="draft,submit" type="object"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,submit,complete,cancel"/>
+                </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="date"/>
+                                <field name="end_time"/>
+
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Soak Out Details">
+                                    <field name="soak_details_ids" widget="section_and_note_one2many">
+                                        <tree string="Soak Out Details" editable="bottom">
+                                            <field name="value_add_product"/>
+                                            <field name="grade"/>
+                                            <field name="quantity"/>
+                                            <field name="sock_in"/>
+                                            <field name="sock_out_qty"/>
+                                            <field name="pickup"/>
+                                        </tree>
+                                    </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="action_soak_out">
+            <field name="name">Soak Out Details</field>
+            <field name="res_model">soak.out</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem name="Soak Out Details"
+                  id="menu_soak_out_details"
+                  parent="menu_sea_production"
+                  sequence="10"
+                   action="action_soak_out"
+        />
+
+    </data>
+</odoo>

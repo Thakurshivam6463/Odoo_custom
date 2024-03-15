@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dev_testing_user,dev.testing.user,model_dev_testing,base.group_user,1,1,1,1
+access_testing_checklist_user,model.testing.checklist.user,model_testing_checklist,base.group_user,1,1,1,1
+access_project_testing_user,acc.project.testing.user,model_project_testing,base.group_user,1,1,1,1
+access_dev_testing_location_user,dev.testing.location.user,model_dev_testing_location,base.group_user,1,1,1,1
+access_dev_create_testing_user,dev.create.testing.user,model_dev_create_testing,base.group_user,1,1,1,1
+access_create_testing_line_user,create.testing.line.user,model_create_testing_line,base.group_user,1,1,1,1
+access_task_checklist_line_user,task.checklist.line.user,model_task_checklist_line,base.group_user,1,1,1,1
+access_task_result_lines_user,task.result.lines.user,model_task_result_lines,base.group_user,1,1,1,1

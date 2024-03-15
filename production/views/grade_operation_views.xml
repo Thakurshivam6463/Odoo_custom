@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="grade_operation_list">
+            <field name="name">grade.operation.list</field>
+            <field name="model">grade.operation</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="batch_id"/>
+                    <field name="receiving_id"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="grade_operation_form_new">
+            <field name="name">grade.operation.form</field>
+            <field name="model">grade.operation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="status" widget="statusbar" statusbar_visible="draft,verifying,complete"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="batch_id"/>
+                                <field name="receiving_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Grade Operation Lines">
+                                <field name="grade_operation_line_ids">
+                                    <tree editable="bottom">
+                                        <field name="grade_id"/>
+                                        <field name="weight"/>
+                                        <field name="count"/>
+                                        <field name="is_sub_grade_id"/>
+                                        <field name="grade_operation_id" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_grade_operation">
+          <field name="name">Grade Operation</field>
+          <field name="res_model">grade.operation</field>
+          <field name="view_mode">tree,form</field>
+          <field name="view_id" ref="grade_operation_list"/>
+        </record>
+
+        <menuitem name="Grade Operation"
+          id="menu_grade_operation"
+          parent="menu_root_fish_management"
+          action="action_grade_operation"/>
+    
+    </data>
+</odoo>

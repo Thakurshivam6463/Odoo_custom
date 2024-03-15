@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="form_company_dev_purchase_dynamic_approval" model="ir.ui.view">
+		<field name="name">form.company.dev.purchase.dynamic.approval</field>
+		<field name="model">res.company</field>
+		<field name="inherit_id" ref="base.view_company_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//notebook" position="inside">
+                <page string="Purchase Approval Configuration" name="dynamic_sale_config">
+                    <field name="purchase_dynamic_approval_ids">
+                        <tree>
+                            <field name="company_id" invisible="1"/>
+                            <field name="from_amount"/>
+                            <field name="to_amount"/>
+                            <field name="process_by"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="from_amount"/>
+                                    <field name="to_amount"/>
+                                </group>
+                                <group>
+                                    <field name="process_by"/>
+                                </group>
+                            </group>
+                            <field name="user_ids" attrs="{'invisible': [('process_by', '=', 'groups')], 'required': [('process_by', '=', 'users')]}"/>
+                            <field name="group_ids" attrs="{'invisible': [('process_by', '=', 'users')], 'required': [('process_by', '=', 'groups')]}"/>
+                        </form>
+                    </field>
+                </page>
+            </xpath>
+		</field>
+	</record>
+</odoo>

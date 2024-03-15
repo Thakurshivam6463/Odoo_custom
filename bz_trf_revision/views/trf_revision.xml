@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_trf_filter" model="ir.ui.view">
+        <field name="name">trf.list.select</field>
+        <field name="model">trf</field>
+        <field name="inherit_id" ref="bz_crm_trf.view_trf_search" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="current_revision_id" invisible="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_trf_form_view_inherit" model="ir.ui.view">
+        <field name="name">trf.form</field>
+        <field name="model">trf</field>
+        <field name="inherit_id" ref="bz_crm_trf.view_trf_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" postion='inside'>
+                <button
+                    name="create_revision"
+                    states="reject"
+                    string="New Revision of TRF"
+                    type="object"
+                />
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_view_revisions"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-file-archive-o"
+                    attrs="{'invisible': ['|', ('has_old_revisions', '=', False),('revision_count', '=', 0)]}"
+                >
+                <field
+                    name="revision_count"
+                    widget="statinfo"
+                    string="Prev. revisions"
+                />
+                </button>
+            </xpath>
+            <!-- <field name="report_duration_feasible" position="after"> -->
+            <xpath expr="//field[@name='rev_no']" position="replace">
+                <field name="rev_no" invisible="1"/>
+                <field
+                    name="current_revision_id"
+                    attrs="{'invisible': [('current_revision_id', '=', False)]}"
+                />
+                <field name="has_old_revisions" invisible="1" />
+            </xpath>
+                
+            </field>
+    </record>
+
+</odoo>

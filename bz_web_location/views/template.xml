@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="search_sidebar1" inherit_id="theme_prime.search_sidebar">
+        <xpath expr="//div[@class='input-group-append']" position="replace">
+            <h2> hello </h2>
+        </xpath>
+
+    </template>
+</odoo>

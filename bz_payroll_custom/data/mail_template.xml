@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="mail_template_investment_declaration_date" model="mail.template">
+            <field name="name">Investment Declaration Modification End Date</field>
+            <field name="model_id" ref="bz_payroll_custom.model_investment_declaration"/>
+            <field name="email_from">${(user.email |safe)}</field>
+            <field name="subject">Investment Declaration Modification End Date: ${object.modification_end_date}</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                    <p>Dear ${object.employee_id.name},</p>
+                    <p>Please update your investment declaration till ${object.modification_end_date}</p>
+                    <p>In case of any queries concerning this matter, do not hesitate to contact our hr department.</p>
+                    <br/>
+                    Best Regards,
+                    <br/>
+                    ${user.name}
+                    <br/>
+                    ]]>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_investment_pdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <!-- Employee information-->
+                        <h3 class="text-center">Form NO. 12BB</h3>
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <td style="width:50%">
+                                    <strong>Employee ID</strong>
+                                </td>
+                                <td style="width:50%">
+                                    <span t-esc="o.employee_id.identification_id"/>
+                                </td>
+                           </tr>
+                            <tr>
+                                <td style="width:50%">
+                                    <strong>Name</strong>
+                                </td>
+                                <td style="width:50%">
+                                  <span t-esc="o.employee_id.name"/>
+                                </td>
+                           </tr>
+                            <tr>
+                                <td style="width:50%">
+                                    <strong>Address of the Employee</strong>
+                                </td>
+                                <td style="width:50%">
+                                  <div t-field="o.employee_id.address_home_id"
+                                       t-options='{"widget": "contact", "fields": ["address", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                </td>
+                           </tr>
+                            <tr>
+                                <td>
+                                    <strong>Permanent Account Number of the Employee</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.bank_account_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Financial year</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="o.get_financial_year()" />
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- House rent details -->
+                        <t t-if="o.house_rent_line">
+                            <h3 class="text-center">House Rent Details</h3>
+                            <table class="table table-sm table-bordered" name="investment_declaration">
+                                    <tr>
+                                        <td class="text-left">
+                                            <span>Rent Effective From</span>
+                                        </td>
+                                        <td name="th_street" class="text-left">
+                                            <span>Location</span>
+                                        </td>
+                                        <td name="th_accommodation_address" class="text-left">
+                                            <span>Accommodation Address</span>
+                                        </td>
+                                        <td name="th_landlord_name" class="text-left">
+                                            <span>Landlord's Name</span>
+                                        </td>
+                                        <td name="th_pan" class="text-left">
+                                            <span>Pan No.</span>
+                                        </td>
+                                        <td name="th_rent_payable" class="text-left">
+                                            <span>Amount</span>
+                                        </td>
+                                    </tr>
+                                <t t-set="house_rent_total" t-value="0"/>
+                                <t t-foreach="o.house_rent_line" t-as="line">
+                                    <t t-set="house_rent_total" t-value="house_rent_total + line.rent_Payable"/>
+                                    <tr>
+                                        <td>
+                                            <span t-field="line.rent_effective_from"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.street"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.accommodation_address"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.landlord_name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.pan"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.rent_Payable"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </t>
+
+                        <!-- Insurance Details -->
+                        <t t-foreach="o.investment_line" t-as="section_lic">
+                            <t t-if="section_lic.expense.expense == 'Life Insurance Premium'">
+                                <h3 class="text-center">Life Insurance Premium</h3>
+                                <table class="table table-sm table-bordered" name="investment_declaration">
+                                    <tr>
+                                        <td class="text-left">
+                                            <span>Name of the Insurance Company</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Policy No.</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Date of Commencement<br/>(dd/mm/yyy)
+                                            </span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Sum Assured</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Premium Amt</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Frequency</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Number of Installment Paid on or after 1st Apr 22(Count)</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Number of Installment Payable on or before 31st Mar 23(Count)</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Amount Paid on or after 1st Apr 22(Amt)</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Amount Payable on or before 31st Mar 23(Amt)</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Total Amount FY 22-23(paid Amt+payable Amt)</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Frequency</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </t>
+                        </t>
+
+                        <!-- Medical Insurance Details -->
+                        <t t-foreach="o.investment_line" t-as="section_mid">
+                            <t t-if="section_mid.expense.expense == 'Medical Insurance Premium'">
+                                <h3 class="text-center">Medical Insurance Details</h3>
+                                <table class="table table-sm table-bordered" name="investment_declaration">
+                                    <tr>
+                                        <td class="text-left">
+                                            <span>Category</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Name of the insurance Co/ Institution</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Policy/Bill No.</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Date (dd/mm/yyyy)</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Premium/Bill Amt</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Number of installment Paid on or after 1st Apr 22(Count)</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Number of installment Payable on or before 31st Mar 23(Count)</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Amount Paid on after 1st Apr 22(Count)</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Amount Payable on or before 31st Mar 23(Count)</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Total Amount FY 22-23(Paid Amt+Payable Amt)</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Age Group</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Relationship</span>
+                                        </td>
+                                        <td class="text-left">
+                                            <span>Mode</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </t>
+                        </t>
+
+                        <!--Investment Details -->
+                        <h3 class="text-center">Details of claims and evidence thereof</h3>
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <td>
+                                    <strong>Sl No.</strong>
+                                </td>
+                                <td class="text-center">
+                                    <strong>Nature of claim</strong>
+                                </td>
+                                <td>
+                                    <strong>Amount (Rs.)</strong>
+                                </td>
+                                <td>
+                                    <strong>Evidence / particulars</strong>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <strong>1.</strong>
+                                </td>
+                                <td>
+                                    <strong>House Rent Allowance:</strong>
+                                    <p>
+                                        (i) Rent paid to the landlord<br/>
+                                        (ii) Name of the landlord<br/>
+                                        (iii) Address of the landlord<br/>
+                                        (iv) Permanent Account Number of the landlord</p>
+                                    Note : [Permanent Account Number or Aadhaar<br/>
+                                    Number] shall be furnished if the aggregate rent paid<br/>
+                                    during the previous year exceeds one lakh rupees
+                                </td>
+                                <td>
+                                    <t t-esc="house_rent_total"/>
+                                </td>
+                                <td>
+                                    <t t-foreach="o.house_rent_line" t-as="line">
+                                            <span t-field="line.landlord_name"/>,
+                                    </t>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <strong>2.</strong>
+                                </td>
+                                <td>
+                                    <strong>Leave travel concessions or assistance</strong>
+                                </td>
+                                <td>
+                                    <strong></strong>
+                                </td>
+                                <td>
+                                    <strong></strong>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <strong>3.</strong>
+                                </td>
+                                <td>
+                                    <strong>Deduction of interest on borrowing:</strong><br/>
+                                    (i) Interest payable/paid to the lender<br/>
+                                    (ii) Name of the lender<br/>
+                                    (iii) Address of the lender<br/>
+                                    (iv) [Permanent Account Number or Aadhaar <br/>
+                                    Number] of the lender<br/>
+                                        (a) Financial Institutions (if available)<br/>
+                                        (b) Employer (if available)<br/>
+                                        (c) Others
+                                </td>
+                                <td>
+                                    <strong></strong>
+                                </td>
+                                <td>
+                                    <strong></strong>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <strong>4.</strong>
+                                </td>
+                                <td>
+                                    <strong>Deduction under Chapter VI-A</strong><br/>
+                                    (A) Sections 80C, 80CCC and 80CCD
+                                    <p style="padding-left: 20px">
+                                        (i) Section 80C
+                                        <p style="padding-left: 50px">
+                                            <t t-foreach="o.investment_line" t-as="section_80C">
+                                                <t t-if="section_80C.code == 'under_sec_80c'">
+                                                    <t t-esc="section_80C.expense.expense"/>
+                                                    <br/>
+                                                </t>
+                                            </t>
+                                        </p>
+                                    </p>
+
+                                    <p style="padding-left: 20px">
+                                        (ii) Section 80CCC
+                                        <p style="padding-left: 50px">
+                                            <t t-foreach="o.investment_line" t-as="section_80CCC">
+                                                <t t-if="section_80CCC.code == 'under_sec_80ccc'">
+                                                    <t t-esc="section_80CCC.expense.expense"/>
+                                                    <br/>
+                                                </t>
+                                            </t>
+                                        </p>
+                                    </p>
+
+                                    <p style="padding-left: 20px">
+                                        (iii) Section 80CCD
+                                        <p style="padding-left: 50px">
+                                            <t t-foreach="o.investment_line" t-as="section_80CCD">
+                                                <t t-if="section_80CCD.code == 'under_sec_80ccd'">
+                                                    <t t-esc="section_80CCD.expense.expense"/>
+                                                    <br/>
+                                                </t>
+                                            </t>
+                                        </p>
+                                    </p>
+                                    (B) Other sections (e.g. 80E, 80G, 80TTA, etc.)<br/>
+                                    under Chapter VI-A
+                                    <p style="padding-left: 80px">
+                                        <p style="padding-left: 50px">
+                                            <t t-foreach="o.investment_line" t-as="section_other">
+                                                <t t-if="section_other.code not in ['under_sec_80ccd','under_sec_80ccc','under_sec_80c']">
+                                                    <t t-esc="section_other.expense.expense"/>
+                                                    <br/>
+                                                </t>
+                                            </t>
+                                        </p>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p style="padding-top: 85px">
+                                        <!--Section 80C-->
+                                        <t t-foreach="o.investment_line" t-as="section_80C">
+                                            <t t-if="section_80C.code == 'under_sec_80c'">
+                                                <t t-esc="section_80C.declared_amount"/>
+                                                <br/>
+                                            </t>
+                                        </t>
+                                    </p>
+                                    <p style="padding-top: 47px">
+                                        <!--Section 80CCC-->
+                                        <t t-foreach="o.investment_line" t-as="section_80CCC">
+                                            <t t-if="section_80CCC.code == 'under_sec_80ccc'">
+                                                <t t-esc="section_80CCC.declared_amount"/>
+                                                <br/>
+                                            </t>
+                                        </t>
+                                    </p>
+                                    <p style="padding-top: 40px">
+                                        <!--Section 80CCD-->
+                                        <t t-foreach="o.investment_line" t-as="section_80CCD">
+                                            <t t-if="section_80CCD.code == 'under_sec_80ccd'">
+                                                <t t-esc="section_80CCD.declared_amount"/>
+                                                <br/>
+                                            </t>
+                                        </t>
+                                    </p>
+                                    <p style="padding-top: 63px">
+                                        <!--other Sections-->
+                                        <t t-foreach="o.investment_line" t-as="section_other">
+                                            <t t-if="section_other.code not in ['under_sec_80ccd','under_sec_80ccc','under_sec_80c']">
+                                                <t t-esc="section_other.declared_amount"/>
+                                                <br/>
+                                            </t>
+                                        </t>
+                                    </p>
+                                </td>
+                                <td>
+                                    <strong></strong>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <td class="text-center" style="width:100%" colspan="2">
+                                    <strong>Verification</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:100%" colspan="2">
+                                    <strong>I, ............................................ son/daughter of ............................................. do hereby certify that the information given above is complete
+                                        and correct.</strong>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="width:50%">
+                                    <strong>
+                                        Place....................................<br/>
+                                        Date.....................................<br/>
+                                        Designation.......................<br/>
+                                    </strong>
+                                </td>
+                                <td style="width:50%">
+                                    <strong><br/>
+                                        (Signature of the Employee)<br/>
+                                        Full Name:
+                                    </strong>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

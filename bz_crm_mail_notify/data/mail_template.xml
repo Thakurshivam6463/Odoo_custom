@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="mail_template_lead_notify" model="mail.template">
+            <field name="name">Notify Lead</field>
+            <field name="model_id" ref="bz_crm_mail_notify.model_crm_lead"/>
+            <field name="email_from">${(user.email |safe)}</field>
+            <field name="subject">Acknowledgement for New Business Requirement </field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                    <p>Dear ${object.contact_name or 'Sir/Madam'},</p>
+                    <p>Thank you for contacting Bonza Pro Technologies. Our Sales Team will get in touch with you as soon as possible.</p>
+                    <p>We would be eager to work with your esteemed organization. Looking forward to a long-lasting relationship.</p>
+                    <br/>
+                    Your Sincerely
+                    <br/>
+                    connect@bonzapros.com
+                    <br/>
+                    ]]>
+            </field>
+        </record>
+
+        <record id="mail_template_hr_applicant" model="mail.template">
+            <field name="name">Applicant</field>
+            <field name="model_id" ref="bz_crm_mail_notify.model_hr_applicant"/>
+            <field name="email_from">${(user.email |safe)}</field>
+            <field name="subject">Acknowledgement for ${object.job_id.name} </field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                    <p>Dear ${object.partner_name or 'Candidate'},</p>
+                    <p>We have received your application for the mentioned Position.
+                    In case your application is shortlisted, Our HR Team will get in touch with you as soon as possible.</p>
+                    <br/>
+                    Your Sincerely
+                    <br/>
+                    connect@bonzapros.com
+                    <br/>
+                    ]]>
+            </field>
+        </record>
+
+    </data>
+</odoo>

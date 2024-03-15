@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- create tree view -->
+    <record id="view_protocol_parameter_tree" model="ir.ui.view">
+        <field name="name">protocol.parameter.tree</field>
+        <field name="model">protocol.parameter</field>
+        <field name="arch" type="xml">
+            <tree expand="1">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- create form view -->
+     <record id="view_protocol_parameter_form" model="ir.ui.view">
+        <field name="name">protocol.parameter.form</field>
+        <field name="model">protocol.parameter</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acton Model -->
+    <record id="action_protocol_parameter" model="ir.actions.act_window">
+        <field name="name">protocol Parameter</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">protocol.parameter</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+               Protocol Parameter
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="protocol_parameter_menu"
+              name="Protocol Parameter"
+              parent="project.menu_project_config"
+              action="action_protocol_parameter"
+              sequence="11"/>
+</odoo>

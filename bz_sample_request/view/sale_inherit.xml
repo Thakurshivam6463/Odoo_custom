@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_inherited" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_quotation_send']" position="after">
+                <button name="action_sam_req" string="Sample Create" states="sale" type="object"/>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_sp_rq" type="object"
+                    class="oe_stat_button" icon="fa-star"
+                    context="{'partner_id': partner_id}">
+                    <div class="o_stat_info">
+                        <field name="sample_request_count" class="o_stat_value"/>
+                        <span class="o_stat_text" attrs="{'invisible': [('sample_request_count', '&lt;', 2)]}"> Sample Request</span>
+                        <span class="o_stat_text" attrs="{'invisible': [('sample_request_count', '&gt;', 1)]}"> Sample Request</span>
+                    </div>
+                </button>
+            </xpath>
+             <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="project_template_id"/>
+            </xpath>
+            
+            <xpath expr="//notebook" position="inside">
+                <page string="Remarks/Comments">
+                    <span>Remarks</span>
+                    <field name="remarks"/>
+
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

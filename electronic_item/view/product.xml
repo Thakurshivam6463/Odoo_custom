@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Create Kanban view -->
+    <record id="view_product_kanban" model="ir.ui.view">
+            <field name="name">electronic.product.kanban</field>
+            <field name="model">electronic.product</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="id"/>
+                    <field name="reference"/>
+                    <field name="name"/>
+                    <field name="price"/>
+                    <field name="item"/>
+                    <field name="note"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="row">
+                                    <ul>
+                                        <li>
+                                            Reference: <field name="reference"/>
+                                        </li>
+                                        <li>
+                                            Name: <field name="name"/>
+                                        </li>
+                                        <li>
+                                            Price: <field name="price"/>
+                                        </li>
+                                        <li>
+                                            Item: <field name="item"/>
+                                        </li>
+                                        <li>
+                                            Note: <field name="note"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+    </record>
+
+    <!-- create tree view -->
+    <record id="view_product_tree" model="ir.ui.view">
+        <field name="name">electronic.product.tree</field>
+        <field name="model">electronic.product</field>
+        <field name="arch" type="xml">
+            <tree expand="1">
+                <field name="reference"/>
+                <field name="name"/>
+                <field name="price" optional="hide"/>
+                <field name="item"/>
+                <field name="note" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- create form view -->
+    <record id="view_product_form" model="ir.ui.view">
+        <field name="name">electronic.product.form</field>
+        <field name="model">electronic.product</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="reference" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="price"/>
+                        </group>
+                        <group>
+                            <field name="item" invisible="context.get('hide_item')"/>
+                            <field name="note"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Order" name="order">
+                            <field name="order_ids" readonly="1">
+                                <tree create="0" delete="0" edit="0">
+                                    <field name="name"/>
+                                    <field name="product_id"/>
+                                    <field name="price" optional="show"/>
+                                    <field name="item" optional="show"/>
+                                    <field name="date_order" optional="show"/>
+                                    <field name="note" optional="hide"/>
+                                </tree>
+                                <form create="0" edit="0">
+                                    <group>
+                                        <group>
+                                            <field name="product_id"/>
+                                            <field name="price"/>
+                                        </group>
+                                        <group>
+                                            <field name="item" readonly="1" force_save="1"/>
+                                            <field name="date_order"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <!-- Chatter box -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search view -->
+    <record id="view_product_search" model="ir.ui.view">
+        <field name="name">electronic.product.search</field>
+        <field name="model">electronic.product</field>
+        <field name="arch" type="xml">
+            <search string="Product">
+                <field name="name"/>
+                <field name="note"/>
+                <separator/>
+                <filter string="Laptop" name="laptop" domain="[('item', '=', 'laptop')]"/>
+                <filter string="Mobile" name="mobile" domain="[('item', '=', 'mobile')]"/>
+                <filter string="Led" name="led" domain="[('item', '=', 'led')]"/>
+                <filter string="Fan" name="fan" domain="[('item', '=', 'fan')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Item" name="item" domain="[]" context="{'group_by': 'name'}"/>
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+    <!-- Acton Model -->
+    <record id="action_electronic" model="ir.actions.act_window">
+        <field name="name">Product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">electronic.product</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'search_default_product_name':1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create product!
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_electronic_root"
+              name="Electronic Shop"
+              sequence="10"/>
+
+    <menuitem id="menu_product_root"
+              name="Products"
+              parent="menu_electronic_root"
+              sequence="10"/>
+    <menuitem id="electronic_product"
+              name="Products"
+              parent="menu_product_root"
+              action="action_electronic"
+              sequence="10"/>
+</odoo>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="purchase_order_form_view">
+            <field name="name">purchase.gst</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_ref" position="after">
+
+                    <field name="no_gst" string="No GST"
+                           attrs="{'readonly':['|', ('state', 'in', ['sent', 'to approve', 'purchase', 'done', 'cancel']), '|', '|', ('CGST_SGST', '=', True), ('IGST','=', True), ('UTGST', '=', True)]}"/>
+
+                    <field name="CGST_SGST" string="CGST + SGST"
+                           attrs="{'readonly':['|', ('state', 'in', ['sent', 'to approve', 'purchase', 'done', 'cancel']), '|', '|', ('no_gst', '=', True), ('IGST','=', True), ('UTGST', '=', True)]}"/>
+
+                    <field name="IGST" string="IGST"
+                           attrs="{'readonly':['|', ('state', 'in', ['sent', 'to approve', 'purchase', 'done', 'cancel']), '|', '|', ('no_gst', '=', True), ('CGST_SGST', '=', True), ('UTGST', '=', True)]}"/>
+
+                    <field name="UTGST" string="UTGST"
+                           attrs="{'readonly':['|', ('state', 'in', ['sent', 'to approve', 'purchase', 'done', 'cancel']), '|', '|', ('no_gst', '=', True), ('CGST_SGST', '=', True), ('IGST', '=', True)]}"/>
+                </field>
+                <xpath expr="//field[@name='amount_tax']" position="replace">
+                    <field name="amount_tax"
+                           attrs="{'invisible':['|', ('no_gst', '=', True), '|', '|', ('CGST_SGST', '=', True), ('IGST','=', True), ('UTGST', '=', True)]}">
+                    </field>
+                </xpath>
+                <field name="amount_untaxed" position="after">
+
+                    <field name="amount_CGST" string="CGST" readonly="True" widget="monetary"
+                           attrs="{'invisible':[('amount_CGST','=', 0.0)]}"/>
+                    <field name="amount_SGST" string="SGST" readonly="True" widget="monetary"
+                           attrs="{'invisible':[('amount_SGST','=', 0.0)]}"/>
+                    <field name="amount_IGST" string="IGST" readonly="True" widget="monetary"
+                           attrs="{'invisible':[('amount_IGST','=', 0.0)]}"/>
+                    <field name="amount_UTGST" string="UTGST" readonly="True" widget="monetary"
+                           attrs="{'invisible':[('amount_UTGST','=', 0.0)]}"/>
+                </field>
+                <!--                <xpath expr="//field[@name='order_line']/tree//field[@name='taxes_id']" position="attributes">-->
+                <!--                    <attribute name="invisible">1</attribute>-->
+                <!--                </xpath>-->
+                <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
+                    <field name="HSN_SAC" string="HSN / SAC Code"/>
+                    <field name="purchase_CGST" string="CGST (%)"/>
+                    <field name="purchase_SGST" string="SGST (%)"/>
+                    <field name="purchase_IGST" string="IGST (%)"/>
+                    <field name="purchase_UTGST" string="UTGST (%)"/>
+                    <field name="purchase_amount_TAX" string="Tax Rate (%)" invisible="1"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Terms &amp; Conditions">
+                        <group>
+                            <field name="contact_person_text"/>
+                            <field name="gst_text"/>
+                            <field name="insurance_text"/>
+                            <field name="delivery_term_text"/>
+                            <field name="packing_text"/>
+                            <field name="delivery_schedule_text"/>
+                            <field name="terms_payment_text"/>
+                            <field name="documents_text"/>
+                            <field name="warranty_text"/>
+                            <field name="special_text"/>
+                            <field name="special_text_2"/>
+                            <field name="special_text_3"/>
+                            <field name="special_text_4"/>
+                            <field name="transportation_text"/>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//div[hasclass('oe_title')]" position="replace">
+                     <div class="oe_title">
+                        <span class="o_form_label" attrs="{'invisible': [('state','not in',('draft','sent'))]}">Draft PO </span>
+                        <span class="o_form_label" attrs="{'invisible': [('state','in',('draft','sent'))]}">Purchase Order </span>
+                        <h1>
+                            <field name="priority" widget="priority" class="mr-3"/>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                </xpath>
+
+                <xpath expr="//button[@name='print_quotation'][1]" position="replace">
+                    <button name="print_quotation" string="Print Draft PO" type="object" states="draft" class="oe_highlight" groups="base.group_user"/>
+                </xpath>
+
+                <xpath expr="//button[@name='print_quotation'][2]" position="replace">
+                    <button name="print_quotation" string="Print Draft PO" type="object" states="sent" groups="base.group_user"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="purchase.report_purchase_quotation" model="ir.actions.report">
+            <field name="name">Draft PO</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">purchase.report_purchasequotation</field>
+            <field name="report_file">purchase.report_purchasequotation</field>
+            <field name="print_report_name">'Draft PO - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="model_purchase_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record model="ir.ui.menu" id="purchase.menu_purchase_rfq">
+            <field name="name">Draft PO</field>
+        </record>
+
+        <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+            <field name="name">Draft PO</field>
+        </record>
+
+        <record model="ir.ui.menu" id="account.menu_action_move_in_refund_type">
+            <field name="name">Debit Note</field>
+        </record>
+
+        <record id="account.action_move_in_refund_type" model="ir.actions.act_window">
+            <field name="name">Debit Note</field>
+        </record>
+
+        <record model="ir.ui.view" id="res_partner_bank_form_view">
+            <field name="name">res.partner.bank</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='bank_ids']/tree//field[@name='acc_number']" position="after">
+                    <field name="ifsc_code"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

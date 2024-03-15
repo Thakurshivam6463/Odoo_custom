@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_partner_category_tree" model="ir.ui.view">
+            <field name="name">partner.category.tree</field>
+            <field name="model">partner.category</field>
+            <field name="arch" type="xml">
+                <tree string="Partner Category">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+    </record>
+
+    <record id="view_partner_category_form" model="ir.ui.view">
+            <field name="name">partner.category.form</field>
+            <field name="model">partner.category</field>
+            <field name="arch" type="xml">
+              <form string="Partner Category">
+                <header>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="code"/>
+                        </group>
+                    </group>
+                </sheet>
+              </form>
+            </field>
+    </record>
+
+    <record id="action_partner_category_view" model="ir.actions.act_window">
+        <field name="name">Partner Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">partner.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_partner_category_view_form" action="action_partner_category_view" parent="purchase.menu_procurement_management" name="Partner Category" sequence="11"/>
+</odoo>

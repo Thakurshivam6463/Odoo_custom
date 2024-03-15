@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- create tree view -->
+    <record id="view_location_conf_tree" model="ir.ui.view">
+        <field name="name">location.conf.tree</field>
+        <field name="model">location.conf</field>
+        <field name="arch" type="xml">
+            <tree expand="1">
+                <field name="city"/>
+                <field name="state_id"/>
+                <field name="image" widget="image_popup" class="ot_image"/>
+                <!--<field name="contact_person_Designation"/>
+                <field name="contact_persons_phone_number"/>
+                <field name="email"/>-->
+            </tree>
+        </field>
+    </record>
+
+    <!-- create form view -->
+    <record id="view_location_conf_form_view" model="ir.ui.view">
+        <field name="name">location.conf.form</field>
+        <field name="model">location.conf</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="city" placeholder="City" class="o_address_city"/>
+                            <field name="state_id" class="o_address_state" placeholder="State"
+                                   options="{'no_open': True, 'no_quick_create': True}"/>
+                            <field name="country_id" placeholder="Country" class="o_address_country"
+                                   options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+                            <field name="image" widget="image_popup" class="oe_avatar"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search view-->
+    <!--<record id="view_trf_search" models="ir.ui.view">
+        <field name="name">trf.search</field>
+        <field name="models">trf</field>
+        <field name="arch" type="xml">
+            <search string="TRF">
+                <field name="name"/>
+                <separator/>
+                <filter string="Sales PIC" name="sales_pic" domain="[('state','=','sales_pic')]"/>
+                <filter string="Technical Manager" name="technical_manager" domain="[('state','=','technical_manager')]"/>
+                <filter string="Technical head" name="technical_head" domain="[('state','=','technical_head')]"/>
+                <filter string="Lab Manager" name="lab_manager" domain="[('state','=','lab_manager')]"/>
+                <filter string="Rejected" name="reject" domain="[('state','=','reject')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Customer" name="name" domain="[]" context="{'group_by':'name'}"/>
+                </group>
+
+            </search>
+        </field>
+    </record>-->
+
+    <!-- Acton Model -->
+    <record id="action_location_conf" model="ir.actions.act_window">
+        <field name="name">Location Conf</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">location.conf</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Location Conf From!
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="location_conf"
+              name="Location"
+              parent="website.menu_website_global_configuration"
+              action="action_location_conf"
+              sequence="10"/>
+</odoo>

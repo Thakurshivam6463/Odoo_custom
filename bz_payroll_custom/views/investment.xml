@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_investment_declaration_tree" model="ir.ui.view">
+            <field name="name">investment.declaration.tree</field>
+            <field name="model">investment.declaration</field>
+            <field name="arch" type="xml">
+                <tree string="Investment Declaration">
+                    <field name="employee_id"/>
+                    <field name="employee_identification"/>
+                    <field name="joining_date"/>
+                    <field name="employee_pan"/>
+                    <field name="mobile"/>
+                </tree>
+            </field>
+    </record>
+
+    <record id="view_investment_declaration_form" model="ir.ui.view">
+        <field name="name">investment.declaration.form</field>
+        <field name="model">investment.declaration</field>
+        <field name="arch" type="xml">
+            <form string="Investment Declaration">
+                <header>
+                    <button string="TDS Calculation" name="action_calculate_tds" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="employee_identification"/>
+                        </group>
+                        <group>
+                            <field name="joining_date"/>
+                            <field name="employee_pan"/>
+                            <field name="mobile"/>
+                            <field name="modification_end_date"/>
+                        </group>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="House Rent Declaration" name="house_rent" autofocus="autofocus">
+                            <field name="house_rent_line" widget="section_and_note_one2many">
+                                <tree string="House Rent" editable="bottom">
+                                    <field name="landlord_name"/>
+                                    <field name="street"/>
+                                    <field name="pan"/>
+                                    <field name="accommodation_address"/>
+                                    <field name="city"/>
+                                    <field name="rent_Payable"/>
+                                    <field name="calculated_price" invisible="1"/>
+                                    <field name="type"/>
+                                    <field name="rent_effective_from"/>
+                                    <field name="rent_effective_to"/>
+                                    <field name="document"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Investment Declaration" name="investment_declaration">
+                            <field name="investment_line" widget="section_and_note_one2many">
+                                <tree string="Investment" editable="bottom">
+                                    <field name="section" required="1"/>
+                                    <field name="expense" required="1"/>
+                                    <field name="description"/>
+                                    <field name="max_limit" readonly="1" force_save="1"/>
+                                    <field name="declared_amount"/>
+                                    <field name="document"/>
+                                    <field name="code" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_investment_declaration_view" model="ir.actions.act_window">
+        <field name="name">Investment Declaration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">investment.declaration</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('employee_id', '=',active_id)]</field>
+    </record>
+
+</odoo>

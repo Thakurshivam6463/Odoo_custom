@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="fish_reprocessing_list">
+      <field name="name">fish.reprocessing.list</field>
+      <field name="model">fish.reprocessing</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="number"/>
+          <field name="user_id"/>
+          <field name="create_date"/>
+          <field name="re_process_user_id"/>
+          <field name="reason"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="fish_reprocessing_form_new">
+      <field name="name">fish.reprocessing.form</field>
+      <field name="model">fish.reprocessing</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+          </header>
+          <sheet>
+            <div class="oe_title">
+                <h1>
+                  <field name="number" readonly="0"/>
+                </h1>
+            </div>
+            <group>
+              <group>
+                  <field name="user_id"/>
+                  <field name="create_date"/>
+                  <field name="re_process_user_id"/>
+                  <field name="reason"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="action_fish_reprocessing">
+      <field name="name">Reprocessing</field>
+      <field name="res_model">fish.reprocessing</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="fish_reprocessing_list"/>
+    </record>
+
+    <!-- Sub Menu -->
+    <menuitem name="Reprocessing" 
+      id="menu_fish_reprocessing" 
+      parent="menu_root_fish_management"
+      action="action_fish_reprocessing"/>
+
+  </data>
+</odoo>

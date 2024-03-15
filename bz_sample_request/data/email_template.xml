@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="mail_template_goahead" model="mail.template">
+            <field name="name">Goahead Template</field>
+            <field name="model_id" ref="bz_sample_request.model_sample_form"/>
+            <field name="email_from">singhshivam0599@gmail.com</field>
+            <field name="email_to"></field>
+            <field name="subject">Sample Request: ${object.customer_id.name}</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                    <p>Dear Project Team,</p>
+                    <p>Good to go with testing<p><br/>
+                    Best Regards,
+                    <br/>
+                    <br/>
+                    ]]>
+            </field>
+        </record>
+
+            <record id="mail_template_project_reject" model="mail.template">
+            <field name="name">Reject Template</field>
+            <field name="model_id" ref="bz_sample_request.model_project_project"/>
+            <field name="email_from">singhshivam0599@gmail.com</field>
+            <field name="email_to"></field>
+            <field name="subject">Project: ${object.name}</field>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+                    <p>Dear Sales Team,</p>
+                    <p>Please verify the provided Document<p><br/>
+                    Best Regards,
+                    <br/>
+                    <br/>
+                    ]]>
+            </field>
+        </record>
+
+    </data>
+</odoo>

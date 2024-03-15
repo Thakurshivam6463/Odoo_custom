@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="report_investment_xlsx" model="ir.actions.report">
+        <field name="name">Investment Declaration Excel</field>
+        <field name="model">investment.declaration</field>
+        <field name="report_type">xlsx</field>
+        <field name="report_name">bz_payroll_custom.report_investment_xlsx</field>
+        <field name="report_file">bz_payroll_custom.report_investment_xlsx</field>
+        <field name="print_report_name">('Investment Details - %s' % (object.employee_id.name))</field>
+        <field name="binding_model_id" ref="model_investment_declaration"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!--<record id="report_investment_pdf" models="ir.actions.report">
+        <field name="name">Investment PDF</field>
+        <field name="models">investment.declaration</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">bz_payroll_custom.report_investment_pdf</field>
+        <field name="report_file">bz_payroll_custom.report_investment_pdf</field>
+        <field name="binding_model_id" ref="model_investment_declaration"/>
+        <field name="binding_type">report</field>
+    </record>-->
+
+</odoo>

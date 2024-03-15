@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Sequences for Employee Id -->
+        <record id="seq_employee_id" model="ir.sequence">
+            <field name="name">Employee Id</field>
+            <field name="code">hr.employee</field>
+            <field name="prefix">BPT</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

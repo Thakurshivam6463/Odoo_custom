@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sample_form,access.sample.form,model_sample_form,,1,1,1,1
+access_sample_request,access.sample.request,model_sample_request,,1,1,1,1
+access_wizard_sample_move,access.wizard.sample.move,model_wizard_sample_move,,1,1,1,1
+access_wizard_sample_move_line,access.wizard.sample.move.line,model_wizard_sample_move_line,,1,1,1,1
+access_product_move_line,access.product.move.line,model_product_move_line,,1,1,1,1
+access_wizard_equipment,access.wizard.equipment,model_wizard_equipment,,1,1,1,1
+access_equipment_inherit,access.equipment.inherit,model_equipment_inherit,,1,1,1,1
+access_maintenance_check,access.maintenance.check,model_maintenance_check,,1,1,1,1
+access_maintenance_checklist,access.maintenance.checklist,model_maintenance_checklist,,1,1,1,1
+

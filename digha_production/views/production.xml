@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="sea_production_tree">
+            <field name="name">fish.production.tree</field>
+            <field name="model">fish.production</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="lot_number"/>
+                    <field name="process_at"/>
+                    <field name="date"/>
+                    <field name="time"/>
+                    <field name="shift"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="fish_production_form_new">
+            <field name="name">fish.production.form</field>
+            <field name="model">fish.production</field>
+            <field name="arch" type="xml">
+                <form>
+                     <header>
+                    <button string="Soak Out Details" name="action_soak_out_form" type="object" class="oe_highlight"/>
+                </header>
+                    <sheet>
+                         <div class="oe_button_box" name="button_box">
+                        <button name="action_soak_out_view" type="object"
+                                class="oe_stat_button" icon="fa-star">
+                            <div class="o_stat_info">
+                                <field name="soak_count" class="o_stat_value"/>
+                                <span class="o_stat_text" attrs="{'invisible': [('soak_count', '&lt;', 2)]}">Soak
+                                    Out
+                                </span>
+                                <span class="o_stat_text" attrs="{'invisible': [('soak_count', '&gt;', 1)]}">Soak
+                                    Out
+                                </span>
+                            </div>
+                        </button>
+                    </div>
+                        <group>
+                            <group>
+                                <field name="lot_number"/>
+                                <field name="supervisor"/>
+                                <field name="process_at"/>
+                                <field name="processing_unit"/>
+                            </group>
+                            <group>
+                                <field name="date"/>
+                                <field name="time"/>
+                                <field name="start_date_time"/>
+                                <field name="shift"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Product details">
+                                    <field name="product_ids" widget="section_and_note_one2many">
+                                        <tree string="Product" editable="bottom">
+                                            <field name="product_id"/>
+                                            <field name="process_type"/>
+                                            <field name="batch_date"/>
+                                            <field name="status"/>
+                                            <field name="qty"/>
+                                            <field name="batch"/>
+                                        </tree>
+                                    </field>
+
+                            </page>
+                             <page string="Deveining &amp; Grading details">
+                                    <field name="grading_details_ids" widget="section_and_note_one2many">
+                                        <tree editable="bottom">
+                                            <field name="preprocessed_product"/>
+                                            <field name="grade"/>
+                                            <field name="value_add_product"/>
+                                            <field name="waste_qty"/>
+                                            <field name="quantity"/>
+                                            <field name="yield1"/>
+                                            <field name="socking"/>
+                                            <field name="remarks"/>
+                                        </tree>
+                                    </field>
+
+                            </page>
+                            <page string="Note" name="note">
+                                <group>
+                                    <field name="note"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="action_sea_production">
+            <field name="name">Deveining Header</field>
+            <field name="res_model">fish.production</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Sub Menu -->
+        <menuitem name="Production"
+                  id="menu_sea_production"
+        />
+
+        <menuitem name="Production"
+                  id="menu_production"
+                  parent="menu_sea_production"
+        />
+
+        <menuitem name="Deveining Header"
+                  id="menu_deveining_header"
+                  parent="menu_production"
+                  action="action_sea_production"/>
+
+    </data>
+</odoo>

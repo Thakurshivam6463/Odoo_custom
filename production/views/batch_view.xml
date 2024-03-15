@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="fish_batch_list">
+            <field name="name">fish.batch.list</field>
+            <field name="model">fish.batch</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="batch_date"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="fish_batch_form_new">
+            <field name="name">fish.batch.form</field>
+            <field name="model">fish.batch</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <!--            <button name="action_complete_received" string="Receiving of Materials Complete" type="object" class="oe_highlight" attrs="{'invisible': [('status', '!=', 'operation')]}"/>-->
+                        <!--            <button name="action_operation_check" string="Send For Separation Operation" type="object" class="oe_highlight" attrs="{'invisible': [('status', '!=', 'quality')]}"/>-->
+                        <!--            <button name="action_quality_check" string="Send For Quality" type="object" class="oe_highlight" attrs="{'invisible': [('status', '!=', 'received')]}"/>-->
+                        <field name="status" widget="statusbar" statusbar_visible="draft,verifying,complete"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="batch_date"/>
+                                <field name="receiving_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="De-Heading">
+                                <field name="deheading_ids">
+                                    <tree editable="bottom">
+                                        <field name="vendor_id" options="{'no_create': True}"/>
+                                        <field name="man_power"/>
+                                        <field name="material"/>
+                                        <field name="received_material"/>
+                                        <field name="average_per_man"/>
+                                        <field name="spend_time"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+         <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="action_fish_batch">
+      <field name="name">Batch</field>
+      <field name="res_model">fish.batch</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="fish_batch_list"/>
+    </record>
+
+
+    <!-- Sub Menu -->
+    <menuitem name="Batchs"
+      id="menu_fish_batch"
+      parent="menu_root_fish_management"
+      action="action_fish_batch"/>
+    </data>
+</odoo>

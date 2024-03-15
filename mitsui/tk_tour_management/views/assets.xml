@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="action_tour_dashboard" model="ir.actions.client">
+        <field name="name">Tour Management</field>
+        <field name="tag">tour_dashboard</field>
+    </record>
+
+    <template id="assets_backend" name="account assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/tk_tour_management/static/src/js/tour.js"></script>
+            <link rel="stylesheet" href="/tk_tour_management/static/src/css/lib/style.css"/>
+            <link rel="stylesheet" href="/tk_tour_management/static/src/css/style.scss"/>
+        </xpath>
+    </template>
+</odoo>

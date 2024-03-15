@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="account_invoice_form_view">
+            <field name="name">account.gst</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <field name="ref" position="after">
+
+                    <field name="no_gst" string="No GST" 
+                        attrs="{'readonly':
+                        ['|', ('state', 'in', ['open', 'paid', 'proforma', 'proforma2', 'cancel']), '|', '|', ('CGST_SGST', '=', True), ('IGST','=', True), ('UTGST', '=', True)]}"/>
+
+                    <field name="CGST_SGST" string="CGST + SGST" 
+                        attrs="{'readonly':['|', ('state', 'in', ['open', 'paid', 'proforma', 'proforma2', 'cancel']), '|', '|', ('no_gst', '=', True), ('IGST','=', True), ('UTGST', '=', True)]}"/>
+
+                    <field name="IGST" string="IGST" 
+                        attrs="{'readonly':['|', ('state', 'in', ['open', 'paid', 'proforma', 'proforma2', 'cancel']), '|', '|', ('no_gst', '=', True), ('CGST_SGST', '=', True), ('UTGST', '=', True)]}"/>
+                        
+                    <field name="UTGST" string="UTGST" 
+                        attrs="{'readonly':['|', ('state', 'in', ['open', 'paid', 'proforma', 'proforma2', 'cancel']), '|', '|', ('no_gst', '=', True), ('CGST_SGST', '=', True), ('IGST', '=', True)]}"/>
+                </field>
+                <xpath expr="//field[@name='amount_by_group']" position="replace">
+                    <field name="amount_tax" attrs="{'invisible':['|', ('no_gst', '=', True), '|', '|', ('CGST_SGST', '=', True), ('IGST','=', True), ('UTGST', '=', True)]}">
+                    </field>
+                </xpath>
+                <xpath expr="//field[@name='invoice_date']" position="after">
+                    <field name="bill_to" readonly="True" attrs="{'invisible':[('move_type', '=', 'entry')]}"></field>
+                    <field name="ship_to" readonly="True" attrs="{'invisible':[('move_type', '=', 'entry')]}"></field>
+                    <field name="outward_id" attrs="{'invisible':[('move_type', '!=', 'out_invoice')],'required':[('move_type', '=', 'out_invoice')]}"></field>
+                    <field name="inward_id" attrs="{'invisible':[('move_type', '!=', 'in_invoice')],'required':[('move_type', '=', 'in_invoice')]}"></field>
+                </xpath>
+                <xpath expr="//field[@name='amount_untaxed']" position="after">
+<!--                <field name="amount_untaxed" position="after">-->
+                    <field name="amount_CGST" string="CGST" readonly="True" widget="monetary" 
+                        attrs="{'invisible':[('amount_CGST','=', 0.0)]}"/>
+                    <field name="amount_SGST" string="SGST" readonly="True" widget="monetary"
+                        attrs="{'invisible':[('amount_SGST','=', 0.0)]}"/>
+                    <field name="amount_IGST" string="IGST" readonly="True" widget="monetary"
+                        attrs="{'invisible':[('amount_IGST','=', 0.0)]}"/>
+                    <field name="amount_UTGST" string="UTGST" readonly="True" widget="monetary"
+                        attrs="{'invisible':[('amount_UTGST','=', 0.0)]}"/>
+<!--                </field>-->
+                </xpath>
+
+                <field name="tax_ids" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='price_unit']" position="after">
+                    <field name="HSN_SAC" string="HSN / SAC Code"/>
+                    <field name="invoice_CGST" string="CGST (%)"/>
+                    <field name="invoice_SGST" string="SGST (%)"/>
+                    <field name="invoice_IGST" string="IGST (%)"/>
+                    <field name="invoice_UTGST" string="UTGST (%)"/>
+                    <field name="invoice_amount_TAX" string="Tax Rate (%)" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Account : General Ladger and Partner ladger short by Date -->
+        <record model="ir.ui.view" id="account_invoice_line_inherit_tree_view">
+            <field name="name">account.move.line.inherit.tree.view</field>
+            <field name="model">account.move.line</field>
+            <field name="inherit_id" ref="account.view_move_line_tree_grouped"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="default_order">date desc</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

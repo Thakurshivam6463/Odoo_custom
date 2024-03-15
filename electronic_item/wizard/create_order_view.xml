@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_create_order_form" model="ir.ui.view">
+        <field name="name">create.order.wizard.form</field>
+        <field name="model">create.order.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create New Order">
+                <group class="oe_title">
+                    <field name="date_order"/>
+                    <field name="product_id"/>
+                </group>
+                <footer>
+                    <button name="action_create_order" type="object" string="Create" class="btn-primary"/>
+                    <!--<button name="action_view_appointment" type="object" string="View Appointment" class="btn-primary"/>-->
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_create_order" model="ir.actions.act_window">
+        <field name="name">Create Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">create.order.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_create_order_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

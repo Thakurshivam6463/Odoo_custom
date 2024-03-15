@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="seq_batch" model="ir.sequence">
+            <field name="name">Fish Batch</field>
+            <field name="code">fish.batch</field>
+            <field name="prefix">BT</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_materials_reciving_deck" model="ir.sequence">
+            <field name="name">Materials Receiving Deck</field>
+            <field name="code">materials.reciving.deck</field>
+            <field name="prefix">MRD/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_grade" model="ir.sequence">
+            <field name="name">Grade Operation</field>
+            <field name="code">grade.operation</field>
+            <field name="prefix">GD</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_production_planning" model="ir.sequence">
+            <field name="name">Production Planning</field>
+            <field name="code">production.planning</field>
+            <field name="prefix">PP</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <record id="seq_gate_pass" model="ir.sequence">
+            <field name="name">Gate Entry</field>
+            <field name="code">new.gate.entry</field>
+            <field name="prefix">GT/%(month)s/%(y)s</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

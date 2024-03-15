@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="load_unload_tree">
+            <field name="name">load.unload.tree</field>
+            <field name="model">load.unload</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="system_rec_no"/>
+                    <field name="company"/>
+                    <field name="production_date"/>
+                    <field name="unit"/>
+                    <field name="freezer"/>
+                    <field name="load_number"/>
+                    <field name="production_supervisor"/>
+                    <field name="feeding_end"/>
+                    <field name="store_supervisor"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="load_unload_form">
+            <field name="name">load.unload.from</field>
+            <field name="model">load.unload</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    <button id="button_submit" name="action_submit" string="Submit"
+                            class="btn-primary"
+                            states="draft" type="object"/>
+                    <button id="button_complete" name="action_complete"
+                            string="Complete" class="btn-primary"
+                            states="submit" type="object"/>
+                        <button id="button_verified" name="action_verified"
+                            string="Verified" class="btn-primary"
+                            states="complete" type="object"/>
+                    <button id="button_cancel" name="action_cancel" string="Cancel"
+                            states="draft,submit,complete" type="object"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,submit,complete,verified,cancel"/>
+                </header>
+                    <sheet>
+                        <group string="Loading">
+                            <group>
+                                <field name="company"/>
+                                <field name="unit"/>
+                                <field name="production_date"/>
+                                <field name="freezer"/>
+                            </group>
+                            <group>
+                                <field name="load_number"/>
+                                <field name="loading_time"/>
+                                <field name="production_supervisor"/>
+                            </group>
+                        </group>
+                        <group string="Unloading">
+                            <group>
+                                <field name="store_supervisor"/>
+                                <field name="packing_date"/>
+                                <field name="feeding_end"/>
+                            </group>
+                            <group>
+                                <field name="system_rec_no"/>
+                                <field name="create_date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Production Details">
+                                    <field name="production_details_ids" widget="section_and_note_one2many">
+                                        <form string="Production Details">
+                                            <sheet>
+                                                <group>
+                                                    <group>
+                                                        <field name="pre_processed"/>
+                                                        <field name="value_added"/>
+                                                        <field name="lot_number"/>
+                                                        <field name="variety"/>
+                                                        <field name="available_qty"/>
+                                                        <field name="product_id"/>
+                                                        <field name="cooking"/>
+                                                        <field name="brand"/>
+                                                        <field name="glaze"/>
+                                                        <field name="packing_type"/>
+                                                    </group>
+                                                    <group>
+                                                        <field name="pack_by"/>
+                                                        <field name="packing_slab"/>
+                                                        <field name="packing_style"/>
+                                                        <field name="feed_qty"/>
+                                                        <field name="no_of_mc"/>
+                                                        <field name="loose_qty"/>
+                                                        <field name="previous_loose"/>
+                                                        <field name="packed_qty"/>
+                                                        <field name="production_details_id" invisible="1"/>
+                                                    </group>
+                                                </group>
+                                            </sheet>
+                                        </form>
+                                    </field>
+
+                            </page>
+                            <page string="Note" name="note">
+                                <group>
+                                    <field name="notes"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+          <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="action_load_unload">
+            <field name="name">Load Unload</field>
+            <field name="res_model">load.unload</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Sub Menu -->
+        <menuitem name="Load/Unload"
+                  id="menu_load_unload"
+                  parent="menu_sea_production"
+                  action="action_load_unload"/>
+
+    </data>
+</odoo>

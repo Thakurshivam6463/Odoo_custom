@@ -1,0 +1,31 @@
+# -*- coding: utf-8 -*-
+{
+    'name' : 'Sample Request',
+    'version' : '1.0',
+    'summary': 'TRF',
+    'sequence': -100,
+    'description': """Sample Request""",
+    'category': 'Testing',
+    'website': 'https://www.bonzapro.com',
+    'depends': ['crm', 'mail', 'sale','project','stock','maintenance', 'bz_mitsui', 'contacts'],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/email_template.xml',
+        'data/data.xml',
+        'view/sample_view.xml',
+        'view/sale_inherit.xml',
+        'view/move_view_line.xml',
+        'view/equipment.xml',
+        'view/maintenance_check.xml',
+        'view/maintenance_request_checklist_view.xml',
+        'view/equipment_inherit.xml',
+        'wizard/sample_wiz_view.xml',
+        'wizard/equipment.xml',
+
+    ],
+    'demo': [],
+    'qweb': [],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="view_reports_form" model="ir.ui.view">
+        <field name="name">management.reports.wizard.form</field>
+        <field name="model">management.reports.wizard</field>
+        <field name="arch" type="xml">
+           <form string="Print Reports">
+                <group>
+                    <group>
+                        <field name="reports_id"/>
+                    </group>
+                    <group>
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_report_reports" model="ir.actions.act_window">
+        <field name="name">Reports Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">management.reports.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_reports_form"/>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="assets_frontend" name="My style" inherit_id="website.assets_frontend">
+        <t name="Homepage" t-name="website.homepage1">
+            <t t-call="website.layout">
+                <t t-set="pageName" t-value="'homepage'"/>
+                <div id="wrap" class="oe_structure oe_empty">
+                    <section class="s_carousel_wrapper" data-vxml="001" data-snippet="s_carousel" data-name="Carousel"
+                             style="">
+                        <div id="myCarousel1663050315564" class="s_carousel s_carousel_default carousel slide"
+                             data-interval="10000">
+                            <ol class="carousel-indicators o_we_no_overlay">
+                                <li data-target="#myCarousel1663050315564" data-slide-to="0" class="active"/>
+                                <li data-target="#myCarousel1663050315564" data-slide-to="1"/>
+                                <li data-target="#myCarousel1663050315564" data-slide-to="2"/>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item o_colored_level oe_img_bg pt160 pb256 active"
+                                     style="background-image: url(&quot;/web/image/website.s_carousel_default_image_1&quot;);"
+                                     data-name="Slide">
+                                    <div class="container"></div>
+                                </div>
+                                <div class="carousel-item pt96 pb96 o_colored_level oe_img_bg"
+                                     style="background-image: url(&quot;/web/image/website.s_carousel_default_image_2&quot;);"
+                                     data-name="Slide">
+                                    <div class="container"></div>
+                                </div>
+                                <div class="carousel-item pt128 pb128 o_colored_level oe_img_bg"
+                                     style="background-image: url(&quot;/web/image/1058-8c0d4452/12.png&quot;);"
+                                     data-name="Slide" data-original-id="1057"
+                                     data-original-src="/web/image/1057-614a52e3/12.png" data-mimetype="image/png"
+                                     data-resize-width="1392">
+                                    <div class="container"></div>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev o_not_editable o_we_no_overlay"
+                               href="#myCarousel1663050315564" data-slide="prev" role="img" aria-label="Previous"
+                               title="Previous">
+                                <span class="carousel-control-prev-icon"/>
+                                <span class="sr-only o_default_snippet_text">Previous</span>
+                            </a>
+                            <a class="carousel-control-next o_not_editable o_we_no_overlay"
+                               href="#myCarousel1663050315564" data-slide="next" role="img" aria-label="Next"
+                               title="Next">
+                                <span class="carousel-control-next-icon"/>
+                                <span class="sr-only o_default_snippet_text">Next</span>
+                            </a>
+                        </div>
+                    </section>
+                    <section class="s_features pt32 pb32 o_colored_level" data-snippet="s_features"
+                             data-name="Features">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-4 pt32 pb32 text-center o_colored_level">
+                                    <i class="fa fa-3x fa-gear rounded bg-primary m-3 float-left" data-original-title=""
+                                       title="" aria-describedby="tooltip64906"/>
+                                    <h3 style="text-align: left; "><span
+                                            style="color: rgb(12, 18, 31); font-family: Lora; font-size: 18px;">
+                                        Competent Team To Augment Businesses</span>&amp;nbsp;
+                                    </h3>
+                                    <p style="text-align: left; ">
+                                        <span style="color: rgb(30, 22, 102); font-family: Lora; font-size: 17px;">With
+                                            our partnership model, extend your team by hiring skilled engineers.
+                                        </span>
+                                        <br/>
+                                    </p>
+                                </div>
+                                <div class="col-lg-4 pt32 pb32 text-center o_colored_level">
+                                    <i class="fa fa-3x fa-photo rounded bg-o-color-5 m-3 float-left"
+                                       data-original-title="" title="" aria-describedby="tooltip602041"/>
+                                    <h3 style="text-align: left; ">
+                                        <div class="wpb_text_column wpb_content_element  vc_custom_1636350100889"
+                                             style="box-sizing: border-box; margin-top: 0px !important; margin-right: initial; margin-bottom: 0px !important; margin-left: initial; text-decoration-line: none !important; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; outline: none !important; color: rgb(30, 22, 102); font-family: Lora; font-size: 17px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">
+                                            <div class="wpb_wrapper"
+                                                 style="box-sizing: border-box; margin-top: initial; margin-right: initial; margin-bottom: 0px; margin-left: initial; text-decoration: none !important; outline: none !important;"/>
+                                        </div>
+                                    </h3>
+                                    <h6 class="vc_custom_heading font-weight-medium vc_custom_1636350089177"
+                                        style="margin-right: initial; margin-left: initial; overflow-wrap: break-word; font-family: Lora; line-height: 28px; color: rgb(12, 18, 31); font-size: 18px; padding: 0px; text-align: left; margin-bottom: 20px !important; outline: none !important; visibility: inherit !important;">
+                                        Professionals For Developing Products And Solutions
+                                    </h6>
+                                    <p style="text-align: left; "><span
+                                            style="color: rgb(30, 22, 102); font-family: Lora; font-size: 17px;">Giving
+                                        life to your concepts with full-cycle MVP designs</span>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                                        <span style="color: rgb(30, 22, 102); font-family: Lora; font-size: 17px;">and
+                                            software development.
+                                        </span>
+                                        <br/>
+                                    </p>
+                                </div>
+                                <div class="col-lg-4 pt32 pb32 text-center o_colored_level">
+                                    <i class="fa fa-3x fa-leaf rounded bg-secondary m-3 float-left"
+                                       data-original-title="" title="" aria-describedby="tooltip482372"/>
+                                    <h3 style="text-align: left; ">
+                                        <div class="wpb_text_column wpb_content_element  vc_custom_1636350128689"
+                                             style="box-sizing: border-box; margin-top: 0px !important; margin-right: initial; margin-bottom: 0px !important; margin-left: initial; text-decoration-line: none !important; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; outline: none !important; color: rgb(30, 22, 102); font-family: Lora; font-size: 17px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">
+                                            <div class="wpb_wrapper"
+                                                 style="box-sizing: border-box; margin-top: initial; margin-right: initial; margin-bottom: 0px; margin-left: initial; text-decoration: none !important; outline: none !important;"/>
+                                        </div>
+                                    </h3>
+                                    <h6 class="vc_custom_heading font-weight-medium vc_custom_1636350123018"
+                                        style="margin-right: initial; margin-left: initial; overflow-wrap: break-word; font-family: Lora; line-height: 28px; color: rgb(12, 18, 31); font-size: 18px; padding: 0px; text-align: left; margin-bottom: 20px !important; outline: none !important; visibility: inherit !important;">
+                                        Providing A Complete Technical Solution Model
+                                    </h6>
+                                    <p style="text-align: left; ">
+                                        <font style="color: rgb(30, 22, 102);">Preparing a flexible&amp;nbsp; and
+                                            effective model with ERP
+                                        </font>
+                                    </p>
+                                    <p style="text-align: left; ">&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;<font
+                                            style="color: rgb(30, 22, 102);">(Enterprise Resource Planning)</font>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;<font
+                                            style="color: rgb(30, 22, 102);">to provide Comprehensive</font>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                                        <font style="color: rgb(30, 22, 102);">benefits.</font>
+
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="s_text_image pt32 pb32 o_colored_level" data-snippet="s_image_text"
+                             data-name="Image - Text">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="pt16 pb16 o_colored_level col-lg-4">
+                                    <img src="/web/image/1033-91d1529e/Creative-Agency-Experts-Image.png"
+                                         class="img img-fluid mx-auto" alt="" loading="lazy"
+                                         style="transform: translateX(-39.7%) translateY(1.6%) scaleX(1.96) scaleY(1.98);"
+                                         data-original-title="" title="" aria-describedby="tooltip492846"
+                                         data-original-id="1027"
+                                         data-original-src="/web/image/1027-926a12f8/Creative-Agency-Experts-Image.png"
+                                         data-mimetype="image/png" data-resize-width="690"/>
+                                </div>
+                                <div class="pt16 pb16 o_colored_level offset-lg-2 col-lg-6">
+                                    <h6 class="font-weight-medium vc_custom_1636440124927 vc_custom_heading"
+                                        style="margin-right: initial; margin-left: initial; overflow-wrap: break-word; font-family: Lora; line-height: 26px; color: rgb(12, 18, 31); font-size: 16px; padding: 0px; margin-bottom: 12px !important; outline: none !important; visibility: inherit !important;">
+                                        INNOVATION LEADS TO DEVELOPMENT
+                                    </h6>
+                                    <h3 class="font-weight-bold vc_custom_1638340365925 vc_custom_heading"
+                                        style="margin-right: initial; margin-left: initial; overflow-wrap: break-word; font-family: Lora; line-height: 45px; color: rgb(12, 18, 31); font-size: 35px; padding: 0px; margin-bottom: 36px !important; outline: none !important; visibility: inherit !important;">
+                                        No idea is small! With the right execution, we help you generate wondrous
+                                        achievements out of simple nations.
+                                    </h3>
+                                    <h2>
+                                        <div class="vc_custom_heading font-weight-medium vc_custom_1638357952350"
+                                             style="margin-right: initial; margin-left: initial; font-family: Lora; font-size: 18px; color: rgb(12, 18, 31); line-height: 30px; margin-top: 0px !important; margin-bottom: 12px !important; outline: none !important;">
+                                            Top-notch Services at Every Single Step
+                                        </div>
+                                        <div class="wpb_text_column wpb_content_element  vc_custom_1636439628444"
+                                             style="margin-right: initial; margin-left: initial; color: rgb(30, 22, 102); font-family: Lora; font-size: 17px; margin-top: 0px !important; margin-bottom: 17px !important; outline: none !important;">
+                                            <div class="wpb_wrapper"
+                                                 style="margin-top: initial; margin-right: initial; margin-bottom: 0px; margin-left: initial; outline: none !important;">
+                                                <p style="margin-top: initial; margin-right: initial; margin-bottom: 0px; margin-left: initial; overflow-wrap: break-word; padding: 0px; max-width: 100%; outline: none !important;">
+                                                    <font style="font-size: 18px;">Bonza Pro Technologies assists in
+                                                        your product or solution’s process re-engineering and complete
+                                                        development. To ensure excellence, our team stays updated with
+                                                        all the latest technologies and strategies.
+                                                    </font>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="wpb_text_column wpb_content_element  vc_custom_1641379194498"
+                                             style="margin-right: initial; margin-left: initial; color: rgb(30, 22, 102); font-family: Lora; font-size: 17px; margin-top: 0px !important; margin-bottom: 20px !important; outline: none !important;">
+                                            <div class="wpb_wrapper"
+                                                 style="margin-top: initial; margin-right: initial; margin-bottom: 0px; margin-left: initial; outline: none !important;">
+                                                <p style="margin-top: initial; margin-right: initial; margin-bottom: 0px; margin-left: initial; overflow-wrap: break-word; padding: 0px; max-width: 100%; outline: none !important;">
+                                                    <font style="font-size: 18px;">Right from the start, with business
+                                                        blue printing and mapping, we come into action. From there, our
+                                                        experienced team leads your project towards
+                                                        implementation,licensing, testing, training and then going live.
+                                                        Our work doesn’t end here; we further provide complete service
+                                                        and handholding support.
+                                                    </font>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="s_text_image pb32 o_colored_level pt0" data-snippet="s_text_image"
+                             data-name="Text - Image">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-6 pt16 pb16 o_colored_level">
+                                    <h6 class="vc_custom_heading font-weight-medium vc_custom_1636439865863"
+                                        style="margin-right: initial; margin-left: initial; overflow-wrap: break-word; font-family: Lora; line-height: 26px; color: rgb(12, 18, 31); font-size: 16px; padding: 0px; margin-bottom: 12px !important; outline: none !important; visibility: inherit !important;">
+                                        EXPANDING OUR EXPERTISE FOR YOUR GOODNESS
+                                    </h6>
+                                    <h3 class="vc_custom_heading font-weight-bold vc_custom_1642699169864"
+                                        style="margin-right: initial; margin-left: initial; overflow-wrap: break-word; font-family: Lora; line-height: 45px; color: rgb(12, 18, 31); font-size: 35px; padding: 0px; margin-bottom: 36px !important; outline: none !important; visibility: inherit !important;">
+                                        We Provide Innovative and Strategic Services to Wide Range of Sectors
+                                    </h3>
+                                    <h2>
+                                        <div class="wpb_text_column wpb_content_element  vc_custom_1641378866692"
+                                             style="margin-right: initial; margin-left: initial; color: rgb(30, 22, 102); font-family: Lora; font-size: 17px; margin-top: 0px !important; margin-bottom: 30px !important; outline: none !important;">
+                                            <div class="wpb_wrapper"
+                                                 style="margin-top: initial; margin-right: initial; margin-bottom: 0px; margin-left: initial; outline: none !important;">
+                                                <p style="margin-top: initial; margin-right: initial; margin-bottom: 0px; margin-left: initial; overflow-wrap: break-word; padding: 0px; max-width: 100%; outline: none !important;">
+                                                    Bonza Pro Technologies has helped various businesses to thrive on
+                                                    digital platforms with its brilliant technical services. For every
+                                                    sector, we have something outstanding in-store.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </h2>
+                                </div>
+                                <div class="col-lg-6 o_colored_level pt0 pb104">
+                                    <img src="/web/image/1131-c4e1a2a9/EXPANDING-OUR-EXPERTISE-FOR.png"
+                                         class="img img-fluid mx-auto" alt="" loading="lazy"
+                                         style="transform: translateX(44.6%) translateY(10.8%) scaleX(1.31) scaleY(1.3);"
+                                         data-original-id="1026"
+                                         data-original-src="/web/image/1026-743e8435/EXPANDING-OUR-EXPERTISE-FOR.png"
+                                         data-mimetype="image/png" data-resize-width="690" data-original-title=""
+                                         title="" aria-describedby="tooltip128758"/>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="s_cover parallax s_parallax_is_fixed bg-black-50 pb96 o_colored_level pt120"
+                             data-scroll-background-ratio="1" data-snippet="s_cover" data-name="Cover">
+                        <span class="s_parallax_bg oe_img_bg"
+                              style="background-image: url(&quot;/web/image/1035-926a12f8/Creative-Agency-Experts-Image.png&quot;); background-position: 50% 0px;"
+                              data-original-id="1027"
+                              data-original-src="/web/image/1027-926a12f8/Creative-Agency-Experts-Image.png"
+                              data-mimetype="image/png" data-resize-width="844"/>
+                        <div class="o_we_bg_filter bg-black-50"/>
+                        <div class="container s_allow_columns">
+                            <h1 style="text-align: center;">
+                                <span style="font-size: 48px;">
+                                    <b>We Specialize In Digital</b>
+                                    <b><br/>Transfromation of SME Businesses
+                                    </b>
+                                </span>
+                            </h1>
+                            <p class="lead" style="text-align: center;">We will explain this once we do an assessment of
+                                your current business
+                            </p>
+                            <p style="text-align: center;">
+                                <a href="/contactus" class="btn btn-primary mb-2" data-original-title="" title=""
+                                   aria-describedby="tooltip125576">Contact us
+                                </a>
+                            </p>
+                        </div>
+                    </section>
+                    <section class="s_three_columns bg-200 pt32 pb32 o_colored_level" data-vcss="001"
+                             data-snippet="s_three_columns" data-name="Columns">
+                        <div class="container">
+                            <div class="row d-flex align-items-stretch">
+                                <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
+                                    <div class="card bg-white h-100">
+                                        <img class="card-img-top"
+                                             src="/web/image/website.s_three_columns_default_image_1" alt=""
+                                             loading="lazy" data-original-id="645"
+                                             data-original-src="/web/image/website.library_image_11"
+                                             data-mimetype="image/jpeg" style=""/>
+                                        <div class="card-body">
+                                            <h3 class="card-title o_default_snippet_text">Feature One</h3>
+                                            <p class="card-text">Adapt these three columns to fit your design need. To
+                                                duplicate, delete or move columns, select the column and use the top
+                                                icons to perform your action.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="s_col_no_bgcolor pt16 pb16 col-lg-6">
+                                    <div class="card bg-white h-100">
+                                        <img class="card-img-top"
+                                             src="/web/image/website.s_three_columns_default_image_2" alt=""
+                                             loading="lazy" data-original-id="646"
+                                             data-original-src="/web/image/website.library_image_13"
+                                             data-mimetype="image/jpeg" style=""/>
+                                        <div class="card-body">
+                                            <h3 class="card-title o_default_snippet_text">Feature Two</h3>
+                                            <p class="card-text">To add a fourth column, reduce the size of these three
+                                                columns using the right icon of each block. Then, duplicate one of the
+                                                columns to create a new one as a copy.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </t>
+        </t>
+
+    </template>
+
+</odoo>

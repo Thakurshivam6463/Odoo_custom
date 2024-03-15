@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_proposal_pdf_layout">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <table class="table table-sm table-bordered solid">
+                            <tr>
+                                <td colspan="4">
+                                    <h3 style="color:blue;">General Data</h3>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:20%">Customer:</td>
+                                <td style="width:30%"><span t-esc="o.customer_name.name"/></td>
+                                <td style="width:20%">Manufacturer:</td>
+                                <td style="width:30%"></td>
+                            </tr>
+                            <tr>
+                                <td style="width:20%">Order number:</td>
+                                <td style="width:30%"></td>
+                                <td style="width:20%">Log Book Ref no.:</td>
+                                <td style="width:30%"></td>
+                            </tr>
+                            <tr>
+                                <td style="width:20%">Rec. Date:</td>
+                                <td style="width:30%"><span t-esc="o.date"/></td>
+                                <td style="width:20%">Test Date:</td>
+                                <td style="width:30%"></td>
+                            </tr>
+                            <tr>
+                                <td style="width:20%">Operator:</td>
+                                <td style="width:30%"></td>
+                                <td style="width:20%">Test Time:</td>
+                                <td style="width:30%"></td>
+                            </tr>
+                        </table>
+
+                        <table class="table table-sm table-bordered solid">
+                            <tr>
+                                <td colspan="6">
+                                    <h3 style="color:blue;">Sample Details</h3>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="color:blue;">Module Serial No.</td>
+                                <td style="width:20%"></td>
+                                <td style="color:blue;">Model No.</td>
+                                <td colspan="4" style="width:20%"></td>
+                            </tr>
+                            <tr>
+                                <td style="color:blue;">MCIND No.</td>
+                                <td><span t-esc="o.mcind_no.name"/></td>
+                                <td style="color:blue;">Job No</td>
+                                <td colspan="4"></td>
+                            </tr>
+                            <tr>
+                                <td>Module Type</td>
+                                <td></td>
+                                <td>Cell Technology</td>
+                                <td colspan="3"></td>
+                            </tr>
+                            <tr>
+                                <td>Module dimension</td>
+                                <td></td>
+                                <td>Cell Dimension</td>
+                                <td colspan="3"></td>
+                            </tr>
+                            <tr>
+                                <td>Module area (in m2)</td>
+                                <td></td>
+                                <td>Cell Area (inCm2)</td>
+                                <td colspan="3"></td>
+                            </tr>
+                            <tr>
+                                <td>Expected/Nameplate Pmax</td>
+                                <td></td>
+                                <td>No. of Cells</td>
+                                <td style="width:16%"></td>
+                                <td style="width:16%"></td>
+                                <td style="width:16%"></td>
+                            </tr>
+                            <tr>
+                                <td>Expected/ Nameplate Voc</td>
+                                <td></td>
+                                <td>NOCT/NMOT</td>
+                                <td colspan="3"></td>
+                            </tr>
+                            <tr>
+                                <td>Expected/Nameplate Isc</td>
+                                <td></td>
+                                <td>Reference Test Standard/ Method</td>
+                                <td colspan="3"></td>
+                            </tr>
+                            <tr>
+                                <td>Expected/Nameplate Impp</td>
+                                <td></td>
+                                <td>Expected/Namepl ate Vmpp</td>
+                                <td colspan="3"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="6">
+                                    <![CDATA[
+                                    <p>Last Uniformity Check Date:<br/>Last Flasher Golden module Calibration Date &amp; Time:
+                                    <br/>Last Flasher Validation (Silver module) Date &amp; Time:<br/>
+                                    Uncertainty measurement required by customer: &nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="opt_in_checkbox"/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<b>Yes<b/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="checkbox" class="opt_in_checkbox"/>&nbsp;&nbsp;&nbsp;&nbsp;<b>No<b/><br/>
+                                    <b>Environmental Conditions during test:<b/>
+                                    </p>
+                                    <p>Module Temperature ....... Max module Temperature........ Min Module Temperature....... ΔT......(<2)</p>
+                                    <p>Whether Temperature Corrections implemented :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="checkbox" class="opt_in_checkbox"/>&nbsp;&nbsp;&nbsp;&nbsp;<b>Yes<b/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="opt_in_checkbox"/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<b>No<b/>
+                                    <p/>
+                                    ]]>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6">
+                                    Temperature Coefficients (As per Datasheet): α(%/0C) ............ ; β(%/oC) ............. ; ƴ(%/oC) ............
+                                </td>
+                            </tr>
+                        </table>
+                        <p style="page-break-after:always;"/>
+
+                        <table class="table table-sm table-bordered solid">
+                            <tr>
+                                <td colspan="4">
+                                    <h3 style="color:blue;">Test Details</h3>
+                                </td>
+                            </tr>
+                            <tr t-if="o.process_type == 'accessibility_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Resistance</td>
+                                <td style="width:40%"><span t-esc="o.resistance"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'accessibility_test'">
+                                <td>Humidity</td>
+                                <td style="width:20%"><span t-esc="o.humidity"/></td>
+                                <td>Force</td>
+                                <td style="width:40%"><span t-esc="o.force"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'accessibility_test'">
+                                <td>Voltage</td>
+                                <td style="width:20%"><span t-esc="o.voltage"/></td>
+                                <td>Temperature</td>
+                                <td style="width:40%"><span t-esc="o.temperature"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'damp_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Temperature</td>
+                                <td style="width:40%"><span t-esc="o.temperature"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'damp_test'">
+                                <td>Relative Humidity</td>
+                                <td style="width:20%"><span t-esc="o.relative_humidity"/></td>
+                                <td>No. of Cycles</td>
+                                <td style="width:40%"><span t-esc="o.no_of_cycles"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'damp_test'">
+                                <td>Recovery Time</td>
+                                <td style="width:20%"><span t-esc="o.recovery_time"/></td>
+                                <td>Temperature during recovery period</td>
+                                <td style="width:20%"><span t-esc="o.temperature_during_recovery_period"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'damp_test'">
+                                <td>Max Time duration of Test</td>
+                                <td style="width:20%"><span t-esc="o.max_time_duration"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'humidity_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Temperature</td>
+                                <td style="width:40%"><span t-esc="o.temperature"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'humidity_test'">
+                                <td>Relative Humidity</td>
+                                <td style="width:20%"><span t-esc="o.relative_humidity"/></td>
+                                <td>Time(Ave)</td>
+                                <td style="width:40%"><span t-esc="o.time_ave"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'humidity_test'">
+                                <td>Avg Current (A)</td>
+                                <td style="width:20%"><span t-esc="o.avg_current_A"/></td>
+                                <td>Max Time duration of Test</td>
+                                <td style="width:40%"><span t-esc="o.max_time_duration"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'humidity_test'">
+                                <td>Max Allowed Cycle Time</td>
+                                <td style="width:20%"><span t-esc="o.max_allowed_cycle_time"/></td>
+                                <td>Recovery Time</td>
+                                <td style="width:40%"><span t-esc="o.recovery_time"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'humidity_test'">
+                                <td>Temperature during recovery period</td>
+                                <td style="width:20%"><span t-esc="o.temperature_during_recovery_period"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'thermal_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Temperature</td>
+                                <td style="width:40%"><span t-esc="o.temperature"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'thermal_test'">
+                                <td>STC Measured Parameters Impp (A)</td>
+                                <td style="width:20%"><span t-esc="o.stc_measured_parameters"/></td>
+                                <td>Time(Ave)</td>
+                                <td style="width:40%"><span t-esc="o.time_ave"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'thermal_test'">
+                                <td>Avg Current (A)</td>
+                                <td style="width:20%"><span t-esc="o.avg_current_A"/></td>
+                                <td>No. of Thermal Cycles</td>
+                                <td style="width:40%"><span t-esc="o.no_of_thermal_cycles"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'thermal_test'">
+                                <td>Max Allowed Cycle Time</td>
+                                <td style="width:20%"><span t-esc="o.max_allowed_cycle_time"/></td>
+                                <td>Total no. of hours</td>
+                                <td style="width:40%"><span t-esc="o.total_no_hours"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'thermal_test'">
+                                <td>Max Time duration of Test</td>
+                                <td style="width:20%"><span t-esc="o.max_time_duration"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'conduit_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Trade Size of Conduit</td>
+                                <td style="width:40%"><span t-esc="o.trade_size_conduit"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'conduit_test'">
+                                <td>Conduit Diameter</td>
+                                <td style="width:20%"><span t-esc="o.conduit_diameter"/></td>
+                                <td>Applied Weight in Kg</td>
+                                <td style="width:40%"><span t-esc="o.applied_weight_Kg"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'conduit_test'">
+                                <td>Force load in N</td>
+                                <td style="width:20%"><span t-esc="o.force_load_N"/></td>
+                                <td>Time Duration in s</td>
+                                <td style="width:40%"><span t-esc="o.time_duration_s"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'susceptibility_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Velocity</td>
+                                <td style="width:40%"><span t-esc="o.velocity"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'susceptibility_test'">
+                                <td>Force</td>
+                                <td style="width:20%"><span t-esc="o.force"/></td>
+                                <td>Time Duration</td>
+                                <td style="width:40%"><span t-esc="o.time_duration"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'dmtl'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Average Pressure</td>
+                                <td style="width:40%"><span t-esc="o.average_pressure"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'dmtl'">
+                                <td>Total No Cycle</td>
+                                <td style="width:20%"><span t-esc="o.total_no_cycle"/></td>
+                                <td>Ambient Temperature</td>
+                                <td style="width:40%"><span t-esc="o.ambient_temperature"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'dmtl'">
+                                <td>Humidity</td>
+                                <td style="width:20%"><span t-esc="o.humidity"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'el'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Applied Current</td>
+                                <td style="width:40%"><span t-esc="o.applied_current"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'el'">
+                                <td>Applied Voltage</td>
+                                <td style="width:20%"><span t-esc="o.applied_voltage"/></td>
+                                <td>Number of Cell</td>
+                                <td style="width:40%"><span t-esc="o.number_of_cell"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'bypass_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>No of Bypass Diode</td>
+                                <td style="width:40%"><span t-esc="o.no_of_diode"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'bypass_test'">
+                                <td>No of Blocking Diode</td>
+                                <td style="width:20%"><span t-esc="o.no_of_blocking"/></td>
+                                <td>Sweep Duration</td>
+                                <td style="width:40%"><span t-esc="o.sweep_duration"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'bypass_test'">
+                                <td>IV Point</td>
+                                <td style="width:20%"><span t-esc="o.IV_point"/></td>
+                                <td>Load IV Voltage</td>
+                                <td style="width:40%"><span t-esc="o.load_IV_voltage"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'bypass_test'">
+                                <td>Irradiance</td>
+                                <td style="width:20%"><span t-esc="o.irradiance"/></td>
+                                <td>Voc</td>
+                                <td style="width:40%"><span t-esc="o.voc"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'bypass_test'">
+                                <td>Sweep Direction</td>
+                                <td style="width:20%"><span t-esc="o.sweep_direction"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'hot_spot_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Irradiance</td>
+                                <td style="width:40%"><span t-esc="o.irradiance"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'hot_spot_test'">
+                                <td>Temperature</td>
+                                <td style="width:20%"><span t-esc="o.temperature"/></td>
+                                <td>Max Time duration of Test</td>
+                                <td style="width:40%"><span t-esc="o.max_time_duration"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'determination_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Pmax</td>
+                                <td style="width:40%"><span t-esc="o.p_max"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'determination_test'">
+                                <td>Voc</td>
+                                <td style="width:20%"><span t-esc="o.voc"/></td>
+                                <td>Isc</td>
+                                <td style="width:40%"><span t-esc="o.isc"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'determination_test'">
+                                <td>Immp</td>
+                                <td style="width:20%"><span t-esc="o.immp"/></td>
+                                <td>Vmmp</td>
+                                <td style="width:40%"><span t-esc="o.vmmp"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'determination_test'">
+                                <td>Irradiance</td>
+                                <td style="width:20%"><span t-esc="o.irradiance"/></td>
+                                <td>Load IV Voltage</td>
+                                <td style="width:40%"><span t-esc="o.load_IV_voltage"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'determination_test'">
+                                <td>Sweep Duration</td>
+                                <td style="width:20%"><span t-esc="o.sweep_duration"/></td>
+                                <td>IV Point</td>
+                                <td style="width:40%"><span t-esc="o.IV_point"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'determination_test'">
+                                <td>FF</td>
+                                <td style="width:20%"><span t-esc="o.ff"/></td>
+                                <td>Efficiency</td>
+                                <td style="width:40%"><span t-esc="o.efficiency"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'determination_test'">
+                                <td>Sweep Direction</td>
+                                <td style="width:20%"><span t-esc="o.sweep_direction"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'performance_af_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Pmax</td>
+                                <td style="width:40%"><span t-esc="o.p_max"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_af_test'">
+                                <td>Voc</td>
+                                <td style="width:20%"><span t-esc="o.voc"/></td>
+                                <td>Isc</td>
+                                <td style="width:40%"><span t-esc="o.isc"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_af_test'">
+                                <td>Immp</td>
+                                <td style="width:20%"><span t-esc="o.immp"/></td>
+                                <td>Vmmp</td>
+                                <td style="width:40%"><span t-esc="o.vmmp"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_af_test'">
+                                <td>Irradiance</td>
+                                <td style="width:20%"><span t-esc="o.irradiance"/></td>
+                                <td>Load IV Voltage</td>
+                                <td style="width:40%"><span t-esc="o.load_IV_voltage"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_af_test'">
+                                <td>Sweep Duration</td>
+                                <td style="width:20%"><span t-esc="o.sweep_duration"/></td>
+                                <td>IV Point</td>
+                                <td style="width:40%"><span t-esc="o.IV_point"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_af_test'">
+                                <td>FF</td>
+                                <td style="width:20%"><span t-esc="o.ff"/></td>
+                                <td>Efficiency</td>
+                                <td style="width:40%"><span t-esc="o.efficiency"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_af_test'">
+                                <td>Sweep Direction</td>
+                                <td style="width:20%"><span t-esc="o.sweep_direction"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'performance_stc_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Pmax</td>
+                                <td style="width:40%"><span t-esc="o.p_max"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_stc_test'">
+                                <td>Voc</td>
+                                <td style="width:20%"><span t-esc="o.voc"/></td>
+                                <td>Isc</td>
+                                <td style="width:40%"><span t-esc="o.isc"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_stc_test'">
+                                <td>Immp</td>
+                                <td style="width:20%"><span t-esc="o.immp"/></td>
+                                <td>Vmmp</td>
+                                <td style="width:40%"><span t-esc="o.vmmp"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_stc_test'">
+                                <td>Irradiance</td>
+                                <td style="width:20%"><span t-esc="o.irradiance"/></td>
+                                <td>Load IV Voltage</td>
+                                <td style="width:40%"><span t-esc="o.load_IV_voltage"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_stc_test'">
+                                <td>Sweep Duration</td>
+                                <td style="width:20%"><span t-esc="o.sweep_duration"/></td>
+                                <td>IV Point</td>
+                                <td style="width:40%"><span t-esc="o.IV_point"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_stc_test'">
+                                <td>FF</td>
+                                <td style="width:20%"><span t-esc="o.ff"/></td>
+                                <td>Efficiency</td>
+                                <td style="width:40%"><span t-esc="o.efficiency"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_stc_test'">
+                                <td>Sweep Direction</td>
+                                <td style="width:20%"><span t-esc="o.sweep_direction"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'performance_nmot_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Pmax</td>
+                                <td style="width:40%"><span t-esc="o.p_max"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_nmot_test'">
+                                <td>Voc</td>
+                                <td style="width:20%"><span t-esc="o.voc"/></td>
+                                <td>Isc</td>
+                                <td style="width:40%"><span t-esc="o.isc"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_nmot_test'">
+                                <td>Immp</td>
+                                <td style="width:20%"><span t-esc="o.immp"/></td>
+                                <td>Vmmp</td>
+                                <td style="width:40%"><span t-esc="o.vmmp"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_nmot_test'">
+                                <td>Irradiance</td>
+                                <td style="width:20%"><span t-esc="o.irradiance"/></td>
+                                <td>Load IV Voltage</td>
+                                <td style="width:40%"><span t-esc="o.load_IV_voltage"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_nmot_test'">
+                                <td>Sweep Duration</td>
+                                <td style="width:20%"><span t-esc="o.sweep_duration"/></td>
+                                <td>IV Point</td>
+                                <td style="width:40%"><span t-esc="o.IV_point"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_nmot_test'">
+                                <td>FF</td>
+                                <td style="width:20%"><span t-esc="o.ff"/></td>
+                                <td>Efficiency</td>
+                                <td style="width:40%"><span t-esc="o.efficiency"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'performance_nmot_test'">
+                                <td>Sweep Direction</td>
+                                <td style="width:20%"><span t-esc="o.sweep_direction"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'coefficient_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Sweep Duration</td>
+                                <td style="width:40%"><span t-esc="o.sweep_duration"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'coefficient_test'">
+                                <td>Sweep Direction</td>
+                                <td style="width:20%"><span t-esc="o.sweep_direction"/></td>
+                                <td>Load IV Voltage</td>
+                                <td style="width:40%"><span t-esc="o.load_IV_voltage"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'coefficient_test'">
+                                <td>Irradiance</td>
+                                <td style="width:20%"><span t-esc="o.irradiance"/></td>
+                                <td>α(%/°C)</td>
+                                <td style="width:40%"><span t-esc="o.alternative_name1"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'coefficient_test'">
+                                <td>β(%/oC)</td>
+                                <td style="width:20%"><span t-esc="o.alternative_name2"/></td>
+                                <td>ƴ(%/oC)</td>
+                                <td style="width:40%"><span t-esc="o.alternative_name3"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'bifaciality_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Pmax</td>
+                                <td style="width:40%"><span t-esc="o.p_max"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'bifaciality_test'">
+                                <td>Voc</td>
+                                <td style="width:20%"><span t-esc="o.voc"/></td>
+                                <td>Isc</td>
+                                <td style="width:40%"><span t-esc="o.isc"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'bifaciality_test'">
+                                <td>Immp</td>
+                                <td style="width:20%"><span t-esc="o.immp"/></td>
+                                <td>Vmmp</td>
+                                <td style="width:40%"><span t-esc="o.vmmp"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'bifaciality_test'">
+                                <td>Irradiance</td>
+                                <td style="width:20%"><span t-esc="o.irradiance"/></td>
+                                <td>Load IV Voltage</td>
+                                <td style="width:40%"><span t-esc="o.load_IV_voltage"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'bifaciality_test'">
+                                <td>Sweep Duration</td>
+                                <td style="width:20%"><span t-esc="o.sweep_duration"/></td>
+                                <td>IV Point</td>
+                                <td style="width:40%"><span t-esc="o.IV_point"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'bifaciality_test'">
+                                <td>FF</td>
+                                <td style="width:20%"><span t-esc="o.ff"/></td>
+                                <td>Efficiency</td>
+                                <td style="width:40%"><span t-esc="o.efficiency"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'bifaciality_test'">
+                                <td>Sweep Direction</td>
+                                <td style="width:20%"><span t-esc="o.sweep_direction"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'ground_continuity_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Voltage</td>
+                                <td style="width:40%"><span t-esc="o.voltage"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'ground_continuity_test'">
+                                <td>Test Current (2.5 x IOCPR )</td>
+                                <td style="width:20%"><span t-esc="o.test_current_25_i"/></td>
+                                <td>Resistance</td>
+                                <td style="width:40%"><span t-esc="o.resistance"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'ground_continuity_test'">
+                                <td>Maximum over-current protection rating (Iocpr)</td>
+                                <td style="width:20%"><span t-esc="o.maximum_over_current_protection"/></td>
+                                <td>Humidity</td>
+                                <td style="width:40%"><span t-esc="o.humidity"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'hail_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Diameter</td>
+                                <td style="width:40%"><span t-esc="o.diameter"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'hail_test'">
+                                <td>Weight</td>
+                                <td style="width:20%"><span t-esc="o.weight"/></td>
+                                <td>Velocity</td>
+                                <td style="width:40%"><span t-esc="o.velocity"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'hail_test'">
+                                <td>Distance</td>
+                                <td style="width:20%"><span t-esc="o.distance"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'impulse_voltage_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Maximum System Voltage</td>
+                                <td style="width:40%"><span t-esc="o.maximum_system_voltage"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'impulse_voltage_test'">
+                                <td>Application Class</td>
+                                <td style="width:20%"><span t-esc="o.application_class"/></td>
+                                <td>Impulse Voltage in Volt</td>
+                                <td style="width:40%"><span t-esc="o.impulse_voltage_volt"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'impulse_voltage_test'">
+                                <td>Time Pluse Duration</td>
+                                <td style="width:20%"><span t-esc="o.time_pulse_duration"/></td>
+                                <td>Humidity</td>
+                                <td style="width:40%"><span t-esc="o.humidity"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'insulation_resistance_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Leakage Current</td>
+                                <td style="width:40%"><span t-esc="o.leakage_current"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'insulation_resistance_test'">
+                                <td>Resistance</td>
+                                <td style="width:20%"><span t-esc="o.resistance"/></td>
+                                <td>Humidity</td>
+                                <td style="width:40%"><span t-esc="o.humidity"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'insulation_resistance_test'">
+                                <td>Temperature</td>
+                                <td style="width:20%"><span t-esc="o.temperature"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'insulation_thickness_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Module Application Class</td>
+                                <td style="width:40%"><span t-esc="o.module_application_class"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'insulation_thickness_test'">
+                                <td>System Voltage</td>
+                                <td style="width:20%"><span t-esc="o.system_voltage"/></td>
+                                <td>No. of Thickness Layers</td>
+                                <td style="width:40%"><span t-esc="o.no_thickness_layers"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'insulation_thickness_test'">
+                                <td>Ambient Temperature</td>
+                                <td style="width:20%"><span t-esc="o.ambient_temperature"/></td>
+                                <td>Insulation Thickness</td>
+                                <td style="width:40%"><span t-esc="o.insulation_thickness"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'ir_thermography_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Applied Voltage</td>
+                                <td style="width:40%"><span t-esc="o.applied_voltage"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'ir_thermography_test'">
+                                <td>Applied Current</td>
+                                <td style="width:20%"><span t-esc="o.applied_current"/></td>
+                                <td>No. of Cell</td>
+                                <td style="width:40%"><span t-esc="o.no_of_cell"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'module_breakage_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Impactor Weight</td>
+                                <td style="width:40%"><span t-esc="o.impactor_weight"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'module_breakage_test'">
+                                <td>Impactor Height</td>
+                                <td style="width:20%"><span t-esc="o.impactor_height"/></td>
+                                <td>Impact Diameter</td>
+                                <td style="width:40%"><span t-esc="o.impact_diameter"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'module_breakage_test'">
+                                <td>Broken Particle Size</td>
+                                <td style="width:20%"><span t-esc="o.broken_particle_size"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'outdoor_exposure_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Irradiation dosage</td>
+                                <td style="width:40%"><span t-esc="o.irradiation_dosage"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'outdoor_exposure_test'">
+                                <td>Module Area</td>
+                                <td style="width:20%"><span t-esc="o.module_area"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'partial_discharge_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Maximum System Voltage</td>
+                                <td style="width:40%"><span t-esc="o.maximum_system_voltage"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'partial_discharge_test'">
+                                <td>Temperature</td>
+                                <td style="width:20%"><span t-esc="o.temperature"/></td>
+                                <td>Humidity</td>
+                                <td style="width:40%"><span t-esc="o.humidity"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'partial_discharge_test'">
+                                <td>Extinction Voltage</td>
+                                <td style="width:20%"><span t-esc="o.extinction_voltage"/></td>
+                                <td>Charge Intensity</td>
+                                <td style="width:40%"><span t-esc="o.charge_intensity"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'peel_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Humidity</td>
+                                <td style="width:40%"><span t-esc="o.humidity"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'peel_test'">
+                                <td>Temperature</td>
+                                <td style="width:20%"><span t-esc="o.temperature"/></td>
+                                <td>Width</td>
+                                <td style="width:40%"><span t-esc="o.width"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'peel_test'">
+                                <td>Length of Measurement</td>
+                                <td style="width:20%"><span t-esc="o.length_of_measurement"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'potential_induced_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Temperature</td>
+                                <td style="width:40%"><span t-esc="o.temperature"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'potential_induced_test'">
+                                <td>Humidity</td>
+                                <td style="width:20%"><span t-esc="o.humidity"/></td>
+                                <td>Leakage Current</td>
+                                <td style="width:40%"><span t-esc="o.leakage_current"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'potential_induced_test'">
+                                <td>Applied Voltage</td>
+                                <td style="width:20%"><span t-esc="o.applied_voltage"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'reverse_current_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Maximum over-current protection rating (Iocpr)</td>
+                                <td style="width:40%"><span t-esc="o.maximum_over_current_protection"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'reverse_current_test'">
+                                <td>Test Current (1.35 x IOCPR )</td>
+                                <td style="width:20%"><span t-esc="o.test_current_135"/></td>
+                                <td>Module Temperature</td>
+                                <td style="width:40%"><span t-esc="o.module_temperature"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'reverse_current_test'">
+                                <td>Irradiance ≤ 50 w/m2</td>
+                                <td style="width:20%"><span t-esc="o.irradiance_50_w_m2"/></td>
+                                <td>Humidity</td>
+                                <td style="width:40%"><span t-esc="o.humidity"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'rot_retention_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Force</td>
+                                <td style="width:40%"><span t-esc="o.force"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'rot_retention_test'">
+                                <td>Angle</td>
+                                <td style="width:20%"><span t-esc="o.angle"/></td>
+                                <td>Test Time</td>
+                                <td style="width:40%"><span t-esc="o.test_time"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'rot_cord_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Diameter of wire</td>
+                                <td style="width:40%"><span t-esc="o.diameter_of_wire"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'rot_cord_test'">
+                                <td>Force</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Test Time</td>
+                                <td style="width:40%"><span t-esc="o.test_time"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'rot_anchorage_torque'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Diameter of wire</td>
+                                <td style="width:40%"><span t-esc="o.diameter_of_wire"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'rot_anchorage_torque'">
+                                <td>Torque</td>
+                                <td style="width:20%"><span t-esc="o.torque"/></td>
+                                <td>Test Time</td>
+                                <td style="width:40%"><span t-esc="o.test_time"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'smlt'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Temperature</td>
+                                <td style="width:40%"><span t-esc="o.temperature"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'smlt'">
+                                <td>Humidity</td>
+                                <td style="width:20%"><span t-esc="o.humidity"/></td>
+                                <td>Average Pressure</td>
+                                <td style="width:40%"><span t-esc="o.average_pressure"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'smlt'">
+                                <td>Total No. of Cycle</td>
+                                <td style="width:20%"><span t-esc="o.total_no_cycle"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'uv_preconditioning_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>UV Wave Length &amp; Irradiance</td>
+                                <td style="width:40%"><span t-esc="o.uv_wave_length_irradiance"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'uv_preconditioning_test'">
+                                <td>Temperature</td>
+                                <td style="width:20%"><span t-esc="o.temperature"/></td>
+                                <td> Irradiation Dosage</td>
+                                <td style="width:40%"><span t-esc="o.irradiation_dosage"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'visual_inspection'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Name Plate Verification</td>
+                                <td style="width:40%"><span t-esc="o.name_plate_verification"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'visual_inspection'">
+                                <td>Module Dimension</td>
+                                <td style="width:20%"><span t-esc="o.module_dimension"/></td>
+                                <td>Visible Defect</td>
+                                <td style="width:40%"><span t-esc="o.visible_defect"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'visual_inspection'">
+                                <td>Marking</td>
+                                <td style="width:20%"><span t-esc="o.marking"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'wet_leakage_current'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Resistance</td>
+                                <td style="width:40%"><span t-esc="o.resistance"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'wet_leakage_current'">
+                                <td>Module Area</td>
+                                <td style="width:20%"><span t-esc="o.module_area"/></td>
+                                <td>Water Resistivity</td>
+                                <td style="width:40%"><span t-esc="o.water_resistivity"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'wet_leakage_current'">
+                                <td>Water Temperature</td>
+                                <td style="width:20%"><span t-esc="o.water_temperature"/></td>
+                                <td>Max System Voltage</td>
+                                <td style="width:40%"><span t-esc="o.max_system_voltage"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'wet_leakage_current'">
+                                <td>Current</td>
+                                <td style="width:20%"><span t-esc="o.current"/></td>
+                                <td>Ambient Temperature</td>
+                                <td style="width:40%"><span t-esc="o.ambient_temperature"/></td>
+                            </tr>
+
+                            <tr t-if="o.process_type == 'bypass_diode_thermal_test'">
+                                <td>Standard</td>
+                                <td style="width:20%"><span t-esc="o.standard"/></td>
+                                <td>Test Current = 1.25*Isc</td>
+                                <td style="width:40%"><span t-esc="o.test_current_125_isc"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'bypass_diode_thermal_test'">
+                                <td>Diode Voltage</td>
+                                <td style="width:20%"><span t-esc="o.diode_voltage"/></td>
+                                <td>Module Temperature</td>
+                                <td style="width:40%"><span t-esc="o.module_temperature"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'bypass_diode_thermal_test'">
+                                <td>Diode case Temperature</td>
+                                <td style="width:20%"><span t-esc="o.diode_case_temperature"/></td>
+                                <td>Diode Junction Temperature</td>
+                                <td style="width:40%"><span t-esc="o.diode_junction_temperature"/></td>
+                            </tr>
+                            <tr t-if="o.process_type == 'bypass_diode_thermal_test'">
+                                <td>Thermal Resistance Between Diode Junction &amp; Diode case Temperature</td>
+                                <td style="width:20%"><span t-esc="o.thermal_resistance_between_diode_junction"/></td>
+                                <td>Diode Power Drop</td>
+                                <td style="width:40%"><span t-esc="o.diode_power_drop"/></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="color:blue;"><b>Comments:</b></td>
+                            </tr>
+                        </table>
+
+                        <table class="table table-sm table-bordered solid">
+                            <tr>
+                               <td style="width:33%">Created By: </td>
+                               <td style="width:33%">Revised By: </td>
+                               <td style="width:33%">Approved By: </td>
+                            </tr>
+                            <tr>
+                               <td style="width:33%;height:18px;"></td>
+                               <td style="width:33%"></td>
+                               <td style="width:33%"></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
